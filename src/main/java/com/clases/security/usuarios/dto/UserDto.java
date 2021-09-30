@@ -10,18 +10,20 @@ public class UserDto {
     private String status;
     private Date created;
     private String email;
+    private String imagen;
 
     public UserDto() {
         //constructor vacio
     }
 
-    public UserDto(Long id, String name, String rol, String status, Date created, String email) {
+    public UserDto(Long id, String name,  String imagen, String rol, String status, Date created, String email) {
         this.id = id;
         this.name = name;
         this.rol = rol;
         this.status = status;
         this.created = created;
         this.email = email;
+        this.imagen = imagen;
     }
 
     public Long getId() {
@@ -72,6 +74,13 @@ public class UserDto {
         this.email = email;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 
     @Override
     public String toString() {
@@ -81,6 +90,7 @@ public class UserDto {
                 ", rol='" + rol + '\'' +
                 ", status='" + status + '\'' +
                 ", created=" + created +
+                ", imagen=" + imagen +
                 ", email='" + email + '\'' +
                 '}';
     }

@@ -27,6 +27,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {//se establece
                 .withUser("user").password(passwordEncoder().encode("user")).roles("USER");
     }
 
+
+
+
+
+
+
+
+
+
     //configura la seguridad, rutas y lo que esta permitido, y cuales seran las paginas autorizadas
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
@@ -35,6 +44,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {//se establece
                 .permitAll()//permite el acceso a todos a la pagina de anterior (login)
                 .antMatchers("/no-protegida*")
                 .permitAll()
+                .antMatchers("/no-protegida-correo*")
+                .permitAll()
+                .antMatchers("/sobrenosotros-desprotegida*")
+                .permitAll()
+                .antMatchers(" /listapelis-desprotegida*")
+                .permitAll()
+                .antMatchers(" /registro*")
+                .permitAll()
+
+
                 .anyRequest()//todas las peticiones deben cumplir el siguiente criterio
                 .authenticated()//que esten autenticadas
                 .and()// y ademas debe mostrar lo siguiente
