@@ -26,6 +26,9 @@ public class UserDto {
         this.imagen = imagen;
     }
 
+    public UserDto(long i, String s, String admin, String activo, Date date, String s1) {
+    }
+
     public Long getId() {
         return id;
     }

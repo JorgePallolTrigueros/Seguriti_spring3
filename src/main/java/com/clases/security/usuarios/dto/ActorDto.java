@@ -18,7 +18,7 @@ public class ActorDto {
         this.description = description;
     }
 
-    public ActorDto() {
+    public ActorDto(GaleriaDto galeriaDto) {
     }
 
 

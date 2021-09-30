@@ -19,19 +19,39 @@ public class UserController {
     //pagina inicial que se mostrara luego de que haya sido logeado correctamente
     @GetMapping("/")
     public String homePage(Model model) {
-
-
         model.addAttribute("users",userService.findAllUsers());
-
         return "index";
     }
+
+    //SELECCIONAR LA ID DEL USUARIO Y MANDARLO A EDITAR
+
+    //GUARDAR LO EDITADO
+
+    //SELECCIONAR LA ID DEL USUARIO Y VER EN OTRA PAGINA DETALLE
+
+    //GUARDAR LO EDITADO
+
+    //ENLACE A REGISTRO
+
+    //GRABAR LO REGISTRADO
+
+    //SELECCIONAR LA ID DEL USUARIO Y MANDARLO A BORRAR
+
+    //UN ENLACE EN EL MENU Y MANDAR AL FORMULARIO DE CORREO
+
+    //ENVIAR UN CORREO DEL FORMULARIO
+
+
+    //EDITAR O BORRAR DIRECCION
+
+
+
+    // PARTE NO PROTEGIDA
 
 
     //pagina no protegida
     @GetMapping("/no-protegida")
-    public String noProtegida() {
-        return "no-protegida";
-    }
+    public String noProtegida() { return "no-protegida"; }
 
     @GetMapping("/no-protegida-correo")
     public String noProtegidacorreo() {

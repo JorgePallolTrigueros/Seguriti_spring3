@@ -14,16 +14,13 @@ public class ActorService {
 
     private SerieDto idserie;
 
-    /**
-     * Devuelve la lista de Actores
-     * @return List<ActorDto>
-     */
-    public List<ActorDto> findAllUsers(){
+
+    public List<ActorDto> findAllActors(){
 
         List<ActorDto> actors = new ArrayList<>();
 
         for(int i=0;i<10;i++){
-            actors.add( new ActorDto(new ActorDto((long),"","","","" ));
+            actors.add(new ActorDto((long)i,"actor "+i,"",idserie,"") );
         }
 
         return actors;

@@ -26,6 +26,9 @@ public class SerieDto {
         this.description = description;
     }
 
+    public SerieDto(SerieDto serieDto) {
+    }
+
 
     public Long getId() {
         return id;

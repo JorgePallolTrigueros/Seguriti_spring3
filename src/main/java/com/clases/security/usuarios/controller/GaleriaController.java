@@ -1,6 +1,6 @@
 package com.clases.security.usuarios.controller;
 
-import com.clases.security.usuarios.service.ActorService;
+import com.clases.security.usuarios.service.GaleriaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ public class GaleriaController {
 
     @Autowired
     private GaleriaService galeriaService;
+
 
 
 }

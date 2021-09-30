@@ -8,7 +8,7 @@ public class DirectionDto {
     private String name;
     private UserDto idUser;
 
-    public DirectionDto() {
+    public DirectionDto(DirectionDto directionDto) {
     }
 
     public DirectionDto(Long id, String name, UserDto idUser) {
