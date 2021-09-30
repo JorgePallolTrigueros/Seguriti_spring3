@@ -30,9 +30,28 @@ public class UserController {
     //pagina no protegida
     @GetMapping("/no-protegida")
     public String noProtegida() {
-
-
         return "no-protegida";
     }
+
+    @GetMapping("/no-protegida-correo")
+    public String noProtegidacorreo() {
+        return "no-protegida-correo";
+    }
+
+    @GetMapping("/sobrenosotros-desprotegida")
+    public String sobrenosotrosdesprotegida() {
+        return "sobrenosotros-desprotegida";
+    }
+
+    @GetMapping("/listapelis-desprotegida")
+    public String listapelisdesprotegida() {
+        return "listapelis-desprotegida";
+    }
+
+    @GetMapping("/registro")
+    public String registro() {
+        return "registro";
+    }
+
 
 }
