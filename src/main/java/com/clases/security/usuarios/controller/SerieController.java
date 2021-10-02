@@ -1,10 +1,21 @@
 package com.clases.security.usuarios.controller;
 
+import com.clases.security.usuarios.entity.Serie;
+import com.clases.security.usuarios.repository.SerieRepository;
+import com.clases.security.usuarios.service.ImageStoreService;
 import com.clases.security.usuarios.service.SerieService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class SerieController {
@@ -14,39 +25,127 @@ public class SerieController {
     @Autowired
     private SerieService serieService;
 
+    @Autowired
+    private SerieRepository serierepository;
 
-    //SELECCIONAR LA ID DEL PELI Y MANDARLO A EDITAR
-
-    //GUARDAR LO EDITADO
-
-    //SELECCIONAR LA ID DEL USUARIO Y VER EN OTRA PAGINA DETALLE
-
-    //LA OPCION NO VISIBLE MAS QUE POR EL ADMINISTRADOR DE AÑADIR ACTORES
-
-    //LA OPCION NO VISIBLE MAS QUE POR EL ADMINISTRADOR DE BORRAR ACTORES
-
-    //LA OPCION NO VISIBLE MAS QUE POR EL ADMINISTRADOR DE AÑADIR GALERIA
-
-    //LA OPCION NO VISIBLE MAS QUE POR EL ADMINISTRADOR DE BORRAR GALERIA
-
-    //GUARDAR LO EDITADO
-
-    //ENLACE A REGISTRO
-
-    //GRABAR LO REGISTRADO
-
-    //SELECCIONAR LA ID DEL USUARIO Y MANDARLO A BORRAR
-
-    //UN ENLACE EN EL MENU Y MANDAR AL FORMULARIO DE CORREO
-
-    //ENVIAR UN CORREO DEL FORMULARIO
+    @Autowired
+    private ImageStoreService imageStoreService;
 
 
 
 
 
 
-    // PARTE NO PROTEGIDA
+    //pagina inicial que se mostrara luego de que haya sido logeado correctamente
+    @GetMapping("/serielist")
+    public String serielis(Model model) {
+        model.addAttribute("series",serieService.findAllSeries());
+        return "index";
+    }
+
+
+
+
+    //SELECCIONAR LA ID DE LA SERIE Y MANDARLO A EDITAR (Visible para administrador y solo se puede editar uno su propio perfil)
+    @GetMapping("/seriess/{id}/edit")
+    public String editSerie(@PathVariable Long id, Model model) {
+        model.addAttribute("serie", serierepository.findById(id).get());
+        return "serie-edit";
+    }
+
+
+
+
+    //SELECCIONAR LA ID DEL USUARIO Y VER EN OTRA PAGINA DETALLE (Visible para todo el mundo)
+
+    @GetMapping("/series/{id}/view")
+    public String viewSerie(@PathVariable Long id, Model model) {
+        Optional<Serie> serieOpt = serierepository.findById(id);
+        if (!serieOpt.isPresent()) {
+            model.addAttribute("error", "ID User not found.");
+            List<Serie> series = serierepository.findAll();
+            for(Serie s:series){
+                s.setImagen(imageStoreService.base64("imagenes/foto-serie_"+s.getId()+".jpg"));
+            }
+            model.addAttribute("series", series);
+            return "serie-list";
+        }
+        Serie serie = serieOpt.get();
+        serie.setImagen(imageStoreService.base64("imagenes/portada_historia_"+serie.getId()+".jpg"));
+        model.addAttribute("serie", serie);
+        return "user-view";
+    }
+
+
+
+
+    //GUARDAR LO EDITADO (Visible para administrador y solo se puede editar uno su propio perfil) Ojo esta pagina puede dar el mismo
+    //problema que las novelas siempre que se edite y en la edicion se suba una imagen este crea un registro nuevo
+
+
+    @PostMapping(value ="/series" ,consumes = {MediaType.MULTIPART_FORM_DATA_VALUE,MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    public String saveSerie(@RequestParam("image") MultipartFile file, @ModelAttribute("serie") Serie serie) {
+
+        System.out.println("Guardando Serie");
+        System.out.println(serie);
+        System.out.println("Serie");
+        //si el archivo no es nulo y no esta vacio
+        if(file!=null && !file.isEmpty()){
+            System.out.println("image: "+file.getName()+"  , original name:  "+file.getOriginalFilename()+" , content type: "+file.getContentType()+" , empty: "+file.isEmpty()+" , size: "+file.getSize());
+            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+            if(fileName.contains(".."))
+            {
+                System.out.println("archivo no valido");
+            }else{
+            }
+        }
+        serie = serierepository.saveAndFlush(serie);
+        serie.getId();
+        imageStoreService.save(file,"portada_user_"+serie.getId()+".jpg");
+        return "redirect:/series";
+    }
+
+
+
+
+
+
+
+    //SELECCIONAR LA ID DEL USUARIO Y MANDARLO A BORRAR (Visible para administrador y solo se puede editar uno su propio perfil)
+
+    @GetMapping("/series/{id}/delete")
+    public String deleteSerie(@PathVariable Long id){
+
+        serierepository.deleteById(id);
+        return "redirect:/serie-list-administrado";
+
+    }
+
+    //SELECCIONAR ESTO Y SE CARGA TODOS LAS SERIES  SOLO USABLE POR EL ADMINISTRADOR
+    @GetMapping("/series/delete")
+    public String deleteSeries() {
+        serierepository.deleteAll();
+        return "redirect:/series";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

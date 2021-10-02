@@ -1,21 +1,17 @@
 package com.clases.security.usuarios.entity;
 
-import com.clases.security.usuarios.dto.SerieDto;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 
 
@@ -23,15 +19,78 @@ import javax.persistence.OneToMany;
 @Entity
 @Table(name="galeria")
 public class Galeria implements Serializable{
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
     private Long id;
-    @Column(length =5550, name="imagen")
+
+    @ManyToOne
+    @JoinColumn(name = "id_serie")
+    private Serie serie;
+
+    @Column(length =250, name="hash")
+    private String hash;
+
+    @Column(length =250, name="ruta")
+    private String ruta;
+
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private String imagen;
-    @Column(length =5550, name="idserie")
-    private SerieDto idserie;
+
+
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
+    }
+
+
+    /**
+     * Asociando histora con galeria
+     * @param id
+     */
+    public void setSerieWithId(Long id){
+        this.serie = new Serie(id);
+    }
+
+    public String getRuta() {
+        return ruta;
+    }
+
+    public void setRuta(String ruta) {
+        this.ruta = ruta;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public Galeria(String url, Serie serie,String imagen) {
+        super();
+        this.imagen = imagen;
+        this.serie = serie;
+    }
+
+    public Galeria() {
+        super();
+    }
+
+
 
 
 }

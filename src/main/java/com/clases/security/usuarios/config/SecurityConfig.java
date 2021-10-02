@@ -48,16 +48,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {//se establece
                 .permitAll()
                 .antMatchers("/sobrenosotros-desprotegida*")
                 .permitAll()
-                .antMatchers(" /listapelis-desprotegida*")
+                .antMatchers("/listapelis-desprotegida*")
                 .permitAll()
-                .antMatchers(" /registro*")
+                .antMatchers("/registro*")
+                .permitAll()
+                .antMatchers("/correosinproteger*")
+                .permitAll()
+                .antMatchers("/users/new*")
                 .permitAll()
 
 
-                .anyRequest()//todas las peticiones deben cumplir el siguiente criterio
-                .authenticated()//que esten autenticadas
-                .and()// y ademas debe mostrar lo siguiente
-                .formLogin();//formulario de login
+
+
+
+                .anyRequest()                   //todas las peticiones deben cumplir el siguiente criterio
+                .authenticated()                //que esten autenticadas
+                .and()                          // y ademas debe mostrar lo siguiente
+                .formLogin();                   //formulario de login
         //automaticamente si el ingreso es correcto nos llevara a la pagina / que es la inicial, que esta en UserController->homePage
     }
 

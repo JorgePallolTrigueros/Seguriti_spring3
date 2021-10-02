@@ -29,7 +29,7 @@ public class Actor implements Serializable{
     @Column(length =5550, name="imagen")
     private String imagen;
     @Column(length =5550, name="idserie")
-    private SerieDto idserie;
+    private Serie idserie;
     @Column(length =5550, name="descripcion")
     private String description;
 
@@ -57,11 +57,11 @@ public class Actor implements Serializable{
         this.imagen = imagen;
     }
 
-    public SerieDto getIdserie() {
+    public Serie getIdserie() {
         return idserie;
     }
 
-    public void setIdserie(SerieDto idserie) {
+    public void setIdserie(Serie idserie) {
         this.idserie = idserie;
     }
 
@@ -74,7 +74,7 @@ public class Actor implements Serializable{
     }
 
 
-    public Actor(Long id, String name, String imagen, SerieDto idserie, String description) {
+    public Actor(Long id, String name, String imagen, Serie idserie, String description) {
         this.id = id;
         this.name = name;
         this.imagen = imagen;
