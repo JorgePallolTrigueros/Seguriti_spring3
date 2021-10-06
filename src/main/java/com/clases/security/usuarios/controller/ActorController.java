@@ -2,16 +2,15 @@ package com.clases.security.usuarios.controller;
 
 
 import com.clases.security.usuarios.service.ImageStoreService;
-import com.clases.security.usuarios.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.clases.security.usuarios.service.ActorService;
-import com.clases.security.usuarios.entity.Actor;
-import com.clases.security.usuarios.entity.Serie;
-import com.clases.security.usuarios.repository.ActorRepository;
-import com.clases.security.usuarios.repository.SerieRepository;
+import com.clases.security.usuarios.dao.entity.Actor;
+import com.clases.security.usuarios.dao.entity.Serie;
+import com.clases.security.usuarios.dao.repository.ActorRepository;
+import com.clases.security.usuarios.dao.repository.SerieRepository;
 import java.io.IOException;
 import java.util.Base64;
 
@@ -27,7 +26,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
-import com.clases.security.usuarios.service.ImageStoreService;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -35,6 +33,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class ActorController {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
+
+    /*
 
     @Autowired
     private ActorRepository actorRepository;
@@ -72,7 +72,7 @@ public class ActorController {
     @GetMapping("/actor/delete")
     public String deleteActor() {
         actorRepository.deleteAll();
-        return "redirect:/actor";
+        return "redirect:/actor-list";
     }
 
     //AQUI BORRAMOS TODOS EL ACTOR ELEGIDO
@@ -80,7 +80,7 @@ public class ActorController {
     @GetMapping("/actor/{id}/delete")
     public String deleteSerie(@PathVariable Long id){
         actorRepository.deleteById(id);
-        return "redirect:/actor";
+        return "redirect:/actor-list";
     }
 
     //AQUI DETALLE DEL ACTOR ELEGIDO
@@ -94,7 +94,7 @@ public class ActorController {
             return "actor-list";
         }
         model.addAttribute("actor", actorOpt.get());
-        return "personaje-view";
+        return "actor-view";
     }
 
 
@@ -130,7 +130,7 @@ public class ActorController {
         }
 
         actorRepository.save(actor);
-        return "redirect:/actor";
+        return "redirect:/actor-list";
     }
 
 
@@ -141,5 +141,7 @@ public class ActorController {
         return "actor-edit";
 
     }
+    */
+
 
 }

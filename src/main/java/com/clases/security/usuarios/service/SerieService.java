@@ -1,7 +1,6 @@
 package com.clases.security.usuarios.service;
 
-import com.clases.security.usuarios.dto.SerieDto;
-import com.clases.security.usuarios.dto.UserDto;
+import com.clases.security.usuarios.domain.shared.dto.SerieDto;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

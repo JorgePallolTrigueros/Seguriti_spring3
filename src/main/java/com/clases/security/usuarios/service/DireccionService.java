@@ -1,12 +1,10 @@
 package com.clases.security.usuarios.service;
 
-import com.clases.security.usuarios.dto.DirectionDto;
-import com.clases.security.usuarios.dto.GaleriaDto;
-import com.clases.security.usuarios.dto.UserDto;
+import com.clases.security.usuarios.domain.shared.dto.DirectionDto;
+import com.clases.security.usuarios.domain.shared.dto.UserDto;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 

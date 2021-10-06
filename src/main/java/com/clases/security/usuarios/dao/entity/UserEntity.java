@@ -1,4 +1,4 @@
-package com.clases.security.usuarios.entity;
+package com.clases.security.usuarios.dao.entity;
 
 
 import java.util.Date;
@@ -22,7 +22,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Table(name="user")
-public class User implements Serializable{
+public class UserEntity implements Serializable{
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,6 +47,14 @@ public class User implements Serializable{
     @Column(length =5550, name="imagen")
     private String imagen;
 
+    public UserEntity() {
+    }
+
+    public UserEntity(String name, String rol, String status) {
+        this.name = name;
+        this.rol = rol;
+        this.status = status;
+    }
 
     public Long getId() {
         return id;
@@ -102,5 +110,42 @@ public class User implements Serializable{
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+
+
+    /** metodos de comparacion de la entidad**/
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof UserEntity)) {
+            return false;
+        }
+        UserEntity other = (UserEntity) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+
+    /** metodo de impresion de datos*/
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", rol='" + rol + '\'' +
+                ", status='" + status + '\'' +
+                ", created=" + created +
+                ", email='" + email + '\'' +
+                ", imagen='" + imagen + '\'' +
+                '}';
     }
 }

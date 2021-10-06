@@ -1,4 +1,4 @@
-package com.clases.security.usuarios.entity;
+package com.clases.security.usuarios.dao.entity;
 
 import java.util.Date;
 import java.io.Serializable;
@@ -18,26 +18,26 @@ import javax.persistence.OneToMany;
 
 
 
-@Entity
-@Table(name="serie")
+//@Entity
+//@Table(name="serie")
 public class Serie implements Serializable{
 
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue
+    //@Id
+    //@GeneratedValue
     private Long id;
-    @Column(length =50, name="nombre")
+    //@Column(length =50, name="nombre")
     private String name;
-    @Column(length =50, name="active")
+    //@Column(length =50, name="active")
     private String active;
-    @Column(length =50, name="genero")
+    //@Column(length =50, name="genero")
     private String genero;
-    @Column(length =50, name="estreno")
+    //@Column(length =50, name="estreno")
     private Date estreno;
-    @Column(length =50, name="description")
+    //@Column(length =50, name="description")
     private String description;
-    @Column(length =50, name="imagen")
+    //@Column(length =50, name="imagen")
     private String imagen;
 
     public Serie(Long idSerie) {

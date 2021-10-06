@@ -1,4 +1,4 @@
-package com.clases.security.usuarios.dto;
+package com.clases.security.usuarios.domain.shared.dto;
 
 public class GaleriaDto {
     private Long id;

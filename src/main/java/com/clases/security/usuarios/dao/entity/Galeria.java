@@ -1,11 +1,10 @@
-package com.clases.security.usuarios.entity;
+package com.clases.security.usuarios.dao.entity;
 
 import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -16,26 +15,27 @@ import javax.persistence.Table;
 
 
 
-@Entity
-@Table(name="galeria")
+//@Entity
+//@Table(name="galeria")
 public class Galeria implements Serializable{
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue
+
+    //@Id
+    //@GeneratedValue
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_serie")
+    //@ManyToOne
+    //@JoinColumn(name = "id_serie")
     private Serie serie;
 
-    @Column(length =250, name="hash")
+    //@Column(length =250, name="hash")
     private String hash;
 
-    @Column(length =250, name="ruta")
+    //@Column(length =250, name="ruta")
     private String ruta;
 
-    @Lob
-    @Column(columnDefinition = "MEDIUMBLOB")
+    //@Lob
+    //@Column(columnDefinition = "MEDIUMBLOB")
     private String imagen;
 
 

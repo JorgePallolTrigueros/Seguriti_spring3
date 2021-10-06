@@ -1,7 +1,7 @@
 package com.clases.security.usuarios.controller;
 
-import com.clases.security.usuarios.entity.Serie;
-import com.clases.security.usuarios.repository.SerieRepository;
+import com.clases.security.usuarios.dao.entity.Serie;
+import com.clases.security.usuarios.dao.repository.SerieRepository;
 import com.clases.security.usuarios.service.ImageStoreService;
 import com.clases.security.usuarios.service.SerieService;
 import org.slf4j.Logger;
@@ -20,6 +20,7 @@ import java.util.Optional;
 @Controller
 public class SerieController {
 
+    /*
     private final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
@@ -73,7 +74,7 @@ public class SerieController {
         Serie serie = serieOpt.get();
         serie.setImagen(imageStoreService.base64("imagenes/portada_historia_"+serie.getId()+".jpg"));
         model.addAttribute("serie", serie);
-        return "user-view";
+        return "serie-view";
     }
 
 
@@ -102,7 +103,7 @@ public class SerieController {
         serie = serierepository.saveAndFlush(serie);
         serie.getId();
         imageStoreService.save(file,"portada_user_"+serie.getId()+".jpg");
-        return "redirect:/series";
+        return "redirect:/serie-list";
     }
 
 
@@ -125,8 +126,11 @@ public class SerieController {
     @GetMapping("/series/delete")
     public String deleteSeries() {
         serierepository.deleteAll();
-        return "redirect:/series";
+        return "redirect:/serie-list";
     }
+
+
+    */
 
 
 

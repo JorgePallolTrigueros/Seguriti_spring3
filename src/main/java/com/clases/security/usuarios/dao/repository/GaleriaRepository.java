@@ -1,6 +1,6 @@
-package com.clases.security.usuarios.repository;
+package com.clases.security.usuarios.dao.repository;
 
-import com.clases.security.usuarios.entity.Galeria;
+import com.clases.security.usuarios.dao.entity.Galeria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 
-@Repository
-public interface GaleriaRepository extends JpaRepository<Galeria, Long> {
+//@Repository
+public interface GaleriaRepository /*extends JpaRepository<Galeria, Long>*/ {
 
     //por el momento no se va a utilizar
     @Query("SELECT g FROM Galeria g WHERE g.historia.id = ?1 ")

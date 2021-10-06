@@ -1,6 +1,4 @@
-package com.clases.security.usuarios.dto;
-
-import java.util.Date;
+package com.clases.security.usuarios.domain.shared.dto;
 
 public class ActorDto {
 

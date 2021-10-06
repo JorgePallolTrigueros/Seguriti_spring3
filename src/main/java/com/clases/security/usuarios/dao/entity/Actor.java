@@ -1,36 +1,30 @@
-package com.clases.security.usuarios.entity;
+package com.clases.security.usuarios.dao.entity;
 
-import com.clases.security.usuarios.dto.SerieDto;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
-@Entity
-@Table(name="actor")
+//@Entity
+//@Table(name="actor")
 public class Actor implements Serializable{
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue
+    //@Id
+    //@GeneratedValue
     private Long id;
-    @Column(length =50, name="nombre")
+    //@Column(length =50, name="nombre")
     private String name;
-    @Column(length =5550, name="imagen")
+    //@Column(length =5550, name="imagen")
     private String imagen;
-    @Column(length =5550, name="idserie")
+    //@Column(length =5550, name="idserie")
     private Serie idserie;
-    @Column(length =5550, name="descripcion")
+    //@Column(length =5550, name="descripcion")
     private String description;
 
     public Long getId() {

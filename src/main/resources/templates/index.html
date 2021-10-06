@@ -20,7 +20,7 @@
             <div class="main-box no-header clearfix">
                 <div class="main-box-body clearfix">
                     <div class="table-responsive">
-                        <table class="table user-list">
+                        <table class="table userEntity-list">
                             <thead>
                             <tr>
                                 <th><span>Usuario</span></th>
@@ -31,20 +31,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="user:${users}">
+                            <tr th:each="userEntity:${userEntities}">
 
                                 <!-- texto  -->
                                 <td>
                                     <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
-                                    <a href="#" class="user-link"><span th:text="${user.getName()}"></span></a>
-                                    <span class="user-subhead" th:text="${user.getRol()}"></span>
+                                    <a href="#" class="userEntity-link"><span th:text="${userEntity.getName()}"></span></a>
+                                    <span class="userEntity-subhead" th:text="${userEntity.getRol()}"></span>
                                 </td>
                                 <td>2013/08/12</td>
                                 <td class="text-center">
-                                    <span class="label label-success" th:text="${user.getStatus()}"></span>
+                                    <span class="label label-success" th:text="${userEntity.getStatus()}"></span>
                                 </td>
                                 <td>
-                                    <a href="#"><span th:text="${user.getEmail()}"/></a>
+                                    <a href="#"><span th:text="${userEntity.getEmail()}"/></a>
                                 </td>
                                 <td style="width: 20%;">
                                     <a href="#" class="table-link  text-warning">
@@ -106,11 +106,11 @@
         font-size: 0.875em;
         font-weight: 600;
     }
-    .user-list tbody td .user-subhead {
+    .userEntity-list tbody td .userEntity-subhead {
         font-size: 0.875em;
         font-style: italic;
     }
-    .user-list tbody td .user-link {
+    .userEntity-list tbody td .userEntity-link {
         display: block;
         font-size: 1.25em;
         padding-top: 3px;
@@ -120,7 +120,7 @@
         color: #3498db;
         outline: none!important;
     }
-    .user-list tbody td>img {
+    .userEntity-list tbody td>img {
         position: relative;
         max-width: 50px;
         float: left;

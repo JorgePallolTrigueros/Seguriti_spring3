@@ -1,9 +1,8 @@
-package com.clases.security.usuarios.controller;
+package com.clases.security.usuarios.domain.user;
 
-import com.clases.security.usuarios.service.UserService;
+import com.clases.security.usuarios.dao.entity.UserEntity;
 import com.clases.security.usuarios.service.ImageStoreService;
-import com.clases.security.usuarios.repository.UserRepository;
-import com.clases.security.usuarios.entity.User;
+import com.clases.security.usuarios.dao.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,35 +10,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Base64;
-import java.util.Map;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpSession;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
-import java.util.List;
-import java.util.Optional;
-import org.springframework.web.bind.annotation.PathVariable;
-
 
 
 @Controller
@@ -87,19 +68,19 @@ public class UserController {
 
     @GetMapping("/users/{id}/view")
     public String viewUser(@PathVariable Long id, Model model) {
-        Optional<User> userOpt = userRepository.findById(id);
+        Optional<UserEntity> userOpt = userRepository.findById(id);
         if (!userOpt.isPresent()) {
             model.addAttribute("error", "ID User not found.");
-            List<User> users = userRepository.findAll();
-            for(User u:users){
+            List<UserEntity> userEntities = userRepository.findAll();
+            for(UserEntity u: userEntities){
                 u.setImagen(imageStoreService.base64("imagenes/foto-usuario_"+u.getId()+".jpg"));
             }
-            model.addAttribute("users", users);
+            model.addAttribute("users", userEntities);
             return "user-list";
         }
-        User user = userOpt.get();
-        user.setImagen(imageStoreService.base64("imagenes/portada_historia_"+user.getId()+".jpg"));
-        model.addAttribute("user", user);
+        UserEntity userEntity = userOpt.get();
+        userEntity.setImagen(imageStoreService.base64("imagenes/portada_historia_"+ userEntity.getId()+".jpg"));
+        model.addAttribute("user", userEntity);
         return "user-view";
     }
 
@@ -111,10 +92,10 @@ public class UserController {
 
 
     @PostMapping(value ="/users" ,consumes = {MediaType.MULTIPART_FORM_DATA_VALUE,MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public String saveUser(@RequestParam("image") MultipartFile file, @ModelAttribute("user") User user) {
+    public String saveUser(@RequestParam("image") MultipartFile file, @ModelAttribute("user") UserEntity userEntity) {
 
         System.out.println("Guardando User");
-        System.out.println(user);
+        System.out.println(userEntity);
         System.out.println("User");
         //si el archivo no es nulo y no esta vacio
         if(file!=null && !file.isEmpty()){
@@ -126,10 +107,10 @@ public class UserController {
             }else{
             }
         }
-        user = userRepository.saveAndFlush(user);
-        user.getId();
-        imageStoreService.save(file,"portada_user_"+user.getId()+".jpg");
-        return "redirect:/users";
+        userEntity = userRepository.saveAndFlush(userEntity);
+        userEntity.getId();
+        imageStoreService.save(file,"portada_user_"+ userEntity.getId()+".jpg");
+        return "redirect:/user-list";
     }
 
 
@@ -152,7 +133,7 @@ public class UserController {
     @GetMapping("/users/delete")
     public String deleteUsers() {
         userRepository.deleteAll();
-        return "redirect:/users";
+        return "redirect:/user-list";
     }
 
 
@@ -193,7 +174,7 @@ public class UserController {
 
     @GetMapping("/users/new")
     public String newUser(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserEntity());
         return "user-edit";}
 
     @GetMapping("/no-protegida")
