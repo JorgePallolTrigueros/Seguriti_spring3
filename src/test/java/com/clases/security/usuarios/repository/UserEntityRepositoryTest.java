@@ -131,6 +131,56 @@ public class UserEntityRepositoryTest {
 
     }
 
+    @Test
+    void Test_04_FindAnyUserAndDeleteUser(){
+        //imprimir el nombre del metodo y la clase
+        log.info(AppUtil.getMethodWithClass());
+
+        log.info("Users: {}",userrepository.count());
+
+        UserEntity userEntity1 = new UserEntity();
+        //llenar todos los campos menos el email
+        userEntity1.setName("A borrar");
+        userEntity1.setRol("A Borrar");
+        userEntity1.setCreated(new Date());
+        userEntity1.setStatus("A Borrar");
+        userEntity1.setImagen("imagen a Borrar");
+        userEntity1.setEmail("prueba@email.com");
+
+        //guardar el usuario y devolver (saveAndFlush) para borrarlo
+        userEntity1 =  userrepository.saveAndFlush(userEntity1);
+
+        //buscar el usuario y borrarlo
+        userrepository.deleteById(userEntity1.getId());
+
+        //imprimir la cantidad de usuarios
+        log.info("Users: {}",userrepository.count());
+    }
+
+    @Test
+    void Test_05_findByIdUser(){
+        //imprimir el nombre del metodo y la clase
+        log.info(AppUtil.getMethodWithClass());
+
+
+        UserEntity userEntity2 = new UserEntity();
+        userEntity2.setName("A Find");
+        userEntity2.setRol("A Find");
+        userEntity2.setCreated(new Date());
+        userEntity2.setStatus("A Find");
+        userEntity2.setImagen("A Find");
+        userEntity2.setEmail("A Find");
+
+        userEntity2 =  userrepository.saveAndFlush(userEntity2);
+
+
+    }
+
+    @Test
+    void Test_06_assertUser(){
+        //imprimir el nombre del metodo y la clase
+        log.info(AppUtil.getMethodWithClass());
+    }
     //TODO tarea crear el test de eliminar y comprobar que se ha eliminado
     //TODO para esto hacer uso de los codigos explicado en estos metodos, findById,assert,optionalEtc lo que te haga falta
 
