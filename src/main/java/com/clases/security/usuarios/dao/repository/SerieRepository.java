@@ -1,7 +1,9 @@
 package com.clases.security.usuarios.dao.repository;
-import com.clases.security.usuarios.dao.entity.Serie;
+
+import com.clases.security.usuarios.dao.entity.SerieEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-//@Repository
-public interface SerieRepository  /*extends JpaRepository<Serie, Long>*/{
+import java.util.Optional;
+@Repository
+public interface SerieRepository  extends JpaRepository<SerieEntity, Long> {
 }

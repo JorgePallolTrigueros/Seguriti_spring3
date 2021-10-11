@@ -1,47 +1,43 @@
 package com.clases.security.usuarios.dao.entity;
 
 import java.util.Date;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 
 
-//@Entity
-//@Table(name="serie")
-public class Serie implements Serializable{
-
+@Entity
+@Table(name="serie")
+public class SerieEntity implements Serializable{
 
     private static final long serialVersionUID = 1L;
-    //@Id
-    //@GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
-    //@Column(length =50, name="nombre")
+
+
+    @Column(length =50, name="nombre")
     private String name;
-    //@Column(length =50, name="active")
+    @Column(length =50, name="active")
     private String active;
-    //@Column(length =50, name="genero")
+    @Column(length =50, name="genero")
     private String genero;
-    //@Column(length =50, name="estreno")
+    @Column(length =50, name="estreno")
     private Date estreno;
-    //@Column(length =50, name="description")
+    @Column(length =50, name="description")
     private String description;
-    //@Column(length =50, name="imagen")
+    @Column(length =50, name="imagen")
     private String imagen;
 
-    public Serie(Long idSerie) {
-    }
+
 
 
     public Long getId() {
@@ -100,16 +96,49 @@ public class Serie implements Serializable{
         this.imagen = imagen;
     }
 
-    public Serie() {
-    }
+    public SerieEntity(String name, String active, String genero, String description) {
 
-    public Serie(Long id, String name, String active, String genero, Date estreno, String description, String imagen) {
-        this.id = id;
         this.name = name;
         this.active = active;
         this.genero = genero;
         this.estreno = estreno;
         this.description = description;
         this.imagen = imagen;
+    }
+
+    public SerieEntity() {
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof SerieEntity)) {
+            return false;
+        }
+        SerieEntity other = (SerieEntity) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+
+    @Override
+    public String toString() {
+        return "SerieEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", active='" + active + '\'' +
+                ", genero='" + genero + '\'' +
+                ", estreno=" + estreno +
+                ", description='" + description + '\'' +
+                ", imagen='" + imagen + '\'' +
+                '}';
     }
 }

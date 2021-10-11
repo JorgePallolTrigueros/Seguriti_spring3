@@ -1,24 +1,8 @@
-package com.clases.security.usuarios.controller;
+package com.clases.security.usuarios.domain.galeria;
 
-import com.clases.security.usuarios.AppUtil;
-import com.clases.security.usuarios.dao.entity.Galeria;
-import com.clases.security.usuarios.dao.repository.GaleriaRepository;
-import com.clases.security.usuarios.service.GaleriaService;
-import com.clases.security.usuarios.service.ImageStoreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
 @Controller
 public class GaleriaController {

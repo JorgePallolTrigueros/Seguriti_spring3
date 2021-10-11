@@ -1,4 +1,4 @@
-package com.clases.security.usuarios.service;
+package com.clases.security.usuarios.domain.direccion;
 
 import com.clases.security.usuarios.domain.shared.dto.DirectionDto;
 import com.clases.security.usuarios.domain.shared.dto.UserDto;

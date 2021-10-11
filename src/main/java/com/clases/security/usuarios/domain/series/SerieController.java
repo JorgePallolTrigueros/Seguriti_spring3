@@ -1,21 +1,6 @@
-package com.clases.security.usuarios.controller;
+package com.clases.security.usuarios.domain.series;
 
-import com.clases.security.usuarios.dao.entity.Serie;
-import com.clases.security.usuarios.dao.repository.SerieRepository;
-import com.clases.security.usuarios.service.ImageStoreService;
-import com.clases.security.usuarios.service.SerieService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class SerieController {

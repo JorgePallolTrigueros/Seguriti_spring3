@@ -1,32 +1,9 @@
-package com.clases.security.usuarios.controller;
+package com.clases.security.usuarios.domain.actor;
 
 
-import com.clases.security.usuarios.service.ImageStoreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import com.clases.security.usuarios.service.ActorService;
-import com.clases.security.usuarios.dao.entity.Actor;
-import com.clases.security.usuarios.dao.entity.Serie;
-import com.clases.security.usuarios.dao.repository.ActorRepository;
-import com.clases.security.usuarios.dao.repository.SerieRepository;
-import java.io.IOException;
-import java.util.Base64;
-
-import java.util.Optional;
-
-import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
-
-import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller

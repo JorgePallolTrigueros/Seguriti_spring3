@@ -1,4 +1,4 @@
-package com.clases.security.usuarios.service;
+package com.clases.security.usuarios.domain.series;
 
 import com.clases.security.usuarios.domain.shared.dto.SerieDto;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.clases.security.usuarios.service;
+package com.clases.security.usuarios.domain;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;

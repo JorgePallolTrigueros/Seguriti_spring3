@@ -1,4 +1,4 @@
-package com.clases.security.usuarios.service;
+package com.clases.security.usuarios.domain.actor;
 
 import com.clases.security.usuarios.domain.shared.dto.ActorDto;
 import com.clases.security.usuarios.domain.shared.dto.SerieDto;

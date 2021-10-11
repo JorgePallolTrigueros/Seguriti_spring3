@@ -1,4 +1,4 @@
-package com.clases.security.usuarios.service;
+package com.clases.security.usuarios.domain.galeria;
 
 import com.clases.security.usuarios.domain.shared.dto.GaleriaDto;
 import com.clases.security.usuarios.domain.shared.dto.SerieDto;

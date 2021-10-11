@@ -1,7 +1,7 @@
 package com.clases.security.usuarios.domain.user;
 
 import com.clases.security.usuarios.dao.entity.UserEntity;
-import com.clases.security.usuarios.service.ImageStoreService;
+import com.clases.security.usuarios.domain.ImageStoreService;
 import com.clases.security.usuarios.dao.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
