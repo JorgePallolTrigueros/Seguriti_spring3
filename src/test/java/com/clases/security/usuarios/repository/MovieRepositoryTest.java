@@ -1,6 +1,8 @@
 package com.clases.security.usuarios.repository;
-import com.clases.security.usuarios.dao.entity.DireccionEntity;
-import com.clases.security.usuarios.dao.repository.DirectionRepository;
+
+
+import com.clases.security.usuarios.dao.entity.MovieEntity;
+import com.clases.security.usuarios.dao.repository.MovieRepository;
 import com.clases.security.usuarios.util.AppUtil;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
@@ -9,18 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.PostConstruct;
-import java.util.Date;
 import java.util.Optional;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)//ordene la ejecucion de los test
-public class DireccionEntityReposiryTest {
+public class MovieRepositoryTest {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
     private static boolean initialized = false;
 
     @Autowired
-    private DirectionRepository directionrepository;
+    private MovieRepository movieRepository;
+
 
 
     /**
@@ -32,49 +34,51 @@ public class DireccionEntityReposiryTest {
         if(initialized) return;
         log.info(AppUtil.getMethodWithClass());
         for(int i=0;i<10;i++){
-            directionrepository.save(new DireccionEntity("Nuevo"));
+            MovieEntity save = movieRepository.save(new MovieEntity("aa"+i,"ss"+i,"dd"+i,"ff"+i));
         }
         initialized = true;
     }
-
     /**
      * Metodo que realiza la consulta de los usuarios registrados en la base de datos
      * Si resulta exitoso completa la ejecucion sin problemas
      */
     @Test
-    void Test_01_FindAllDireccion() {
+    void Test_01_FindAllSeries() {
         //imprimir el nombre del metodo y la clase
         log.info(AppUtil.getMethodWithClass());
         //imprimir la cantidad de usuarios
-        log.info("Users: {}",directionrepository.count());
+        log.info("Series: {}", movieRepository.count());
         //mostrar cada usuario en la lista de findAll
-        directionrepository.findAll().forEach(directionEntity -> log.info(directionEntity.toString()));
+        movieRepository.findAll().forEach(MovieEntity -> log.info(MovieEntity.toString()));
 
         //si llego a este punto es por que ejecuto exitosamente el test
         Assertions.assertTrue(true);
     }
 
     @Test
-    void Test_02_SaveDireccionAndFindById(){
+    void Test_02_SaveSerieAndFindById(){
         //imprimir el nombre del metodo y la clase
         log.info(AppUtil.getMethodWithClass());
 
-        DireccionEntity directionEntity = new DireccionEntity("");
-        //llenar todos los campos menos el email
-        directionEntity.setName("Nuevo");
+        MovieEntity movieEntity = new MovieEntity();
+        movieEntity.setName("Nombre1");
+        movieEntity.setDescription("Descripcion 1");
+        movieEntity.setGenre("Genero_1");
+        movieEntity.setActive("ace");
 
 
         //guardar el usuario y devolver (saveAndFlush)
-        directionEntity =  directionrepository.saveAndFlush(directionEntity);
+        movieEntity =  movieRepository.saveAndFlush(movieEntity);
 
         //imprimir la cantidad de usuarios
-        log.info("Users: {}",directionrepository.count());
+        log.info("Series: {}", movieRepository.count());
 
-        //buscar el usuario
-        Optional<DireccionEntity> directionResult = directionrepository.findById(directionEntity.getId());
-        if(directionResult.isPresent()){
+        //buscar el Series
+        Optional<MovieEntity> serieResult = movieRepository.findById(movieEntity.getId());
+
+        if(serieResult.isPresent()){
             //se encontro el usuario se imprimira la informacion
-            log.info("FOUND: {}",directionResult.get());
+            log.info("FOUND: {}",serieResult.get());
         }else{
             //si no hay usuario
             Assertions.fail();//detiene la ejecucion, lanza una excepcion
@@ -83,74 +87,74 @@ public class DireccionEntityReposiryTest {
     }
 
     @Test
-    void Test_03_FindAnyDireccionAndUpdateDireccion(){
+    void Test_03_FindAnySerieAndUpdateSerie(){
         //imprimir el nombre del metodo y la clase
         log.info(AppUtil.getMethodWithClass());
 
         //de toda la lista de usuarios
         //cogere el primero, si existe (estara envuelto en optional debo evaluar si esta presente, es decir si hay)
-        Optional<DireccionEntity> directionOptionalResult = directionrepository.findAll().stream().findFirst();
+        Optional<MovieEntity> serieOptionalResult = movieRepository.findAll().stream().findFirst();
 
         //si no esta presente
-        if(!directionOptionalResult.isPresent()){
-            log.info("No hay DIRECCIONES  en la lista");
+        if(!serieOptionalResult.isPresent()){
+            log.info("No hay series en la lista");
             Assertions.fail();//detiene la ejecucion, lanza una excepcion
         }
 
         //si paso el punto anterior es por que si hay usuario en la lista y he cogido uno
-        DireccionEntity directionEntity = directionOptionalResult.get();
+        MovieEntity movieEntity = serieOptionalResult.get();
 
         //imprimo el usuario sin modificar
-        log.info("DIRECCION ORIGINAL: {}",directionEntity);
+        log.info("USER ORIGINAL: {}", movieEntity);
 
         //guardo el rol original
-        String originalRol = directionEntity.getName();
+        String originalRol = movieEntity.getDescription();
 
         //modifico el rol
-        directionEntity.setName("MODIFICADO");
+        movieEntity.setDescription("MODIFICADO SERIE");
         //guardo los cambios
-        directionEntity = directionrepository.saveAndFlush(directionEntity);
+        movieEntity = movieRepository.saveAndFlush(movieEntity);
 
         //si el rol que tengo es igual al original
         //es por que no se ha modificado
-        if(directionEntity.getName().equals(originalRol)){
+        if(movieEntity.getDescription().equals(originalRol)){
             log.info("No se pudo modificar el campo");
             Assertions.fail();//detiene la ejecucion, lanza una excepcion
         }
 
         //si llega a este punto
         log.info("Si se ha modificado");
-        log.info("DIRECCION  MODIFIED: {}",directionEntity);
+        log.info("Serie MODIFIED: {}", movieEntity);
 
 
     }
 
     @Test
-    void Test_04_FindAnyDireccionAndDeleteDireccion(){
+    void Test_04_FindAnySerieAndDeleteSerie(){
         //imprimir el nombre del metodo y la clase
         log.info(AppUtil.getMethodWithClass());
 
-        log.info("Users: {}",directionrepository.count());
+        log.info("Users: {}", movieRepository.count());
 
-        DireccionEntity directionEntity1 = new DireccionEntity("User");
-        //llenar todos los campos menos el email
-        directionEntity1.setName("A borrar");
+        MovieEntity movieEntity = new MovieEntity();
+        movieEntity.setName("Nombre1");
+        movieEntity.setDescription("Descripcion 1");
+        movieEntity.setGenre("Genero_1");
+        movieEntity.setActive("ace");
 
+
+        //guardar el usuario y devolver (saveAndFlush)
+        movieEntity =  movieRepository.saveAndFlush(movieEntity);
 
         //guardar el usuario y devolver (saveAndFlush) para borrarlo
-        directionEntity1 =  directionrepository.saveAndFlush(directionEntity1);
+        movieEntity =  movieRepository.saveAndFlush(movieEntity);
 
         //buscar el usuario y borrarlo
-        directionrepository.deleteById(directionEntity1.getId());
+        movieRepository.deleteById(movieEntity.getId());
 
         //imprimir la cantidad de usuarios
-        log.info("Users: {}",directionrepository.count());
+        log.info("Users: {}", movieRepository.count());
+
     }
-
-
-
-
-
-
 
 }

@@ -15,8 +15,8 @@ import javax.persistence.Id;
 
 
 @Entity
-@Table(name="serie")
-public class SerieEntity implements Serializable{
+@Table(name="movie")
+public class MovieEntity implements Serializable{
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -24,20 +24,35 @@ public class SerieEntity implements Serializable{
     private Long id;
 
 
-    @Column(length =50, name="nombre")
+    @Column(length =50, name="name")
     private String name;
     @Column(length =50, name="active")
     private String active;
-    @Column(length =50, name="genero")
-    private String genero;
-    @Column(length =50, name="estreno")
-    private Date estreno;
+    @Column(length =50, name="genre")
+    private String genre;
+    @Column(length =50, name="released")
+    private Date released;
     @Column(length =50, name="description")
     private String description;
-    @Column(length =50, name="imagen")
-    private String imagen;
+    @Column(length =50, name="image")
+    private String image;
 
 
+    //constructor
+    public MovieEntity() {
+    }
+
+    public MovieEntity(String name, String active, String genre, String description) {
+
+        this.name = name;
+        this.active = active;
+        this.genre = genre;
+        this.released = released;
+        this.description = description;
+        this.image = image;
+    }
+
+    //getters y setters
 
 
     public Long getId() {
@@ -64,20 +79,20 @@ public class SerieEntity implements Serializable{
         this.active = active;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
-    public Date getEstreno() {
-        return estreno;
+    public Date getReleased() {
+        return released;
     }
 
-    public void setEstreno(Date estreno) {
-        this.estreno = estreno;
+    public void setReleased(Date released) {
+        this.released = released;
     }
 
     public String getDescription() {
@@ -88,26 +103,15 @@ public class SerieEntity implements Serializable{
         this.description = description;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getImage() {
+        return image;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public SerieEntity(String name, String active, String genero, String description) {
-
-        this.name = name;
-        this.active = active;
-        this.genero = genero;
-        this.estreno = estreno;
-        this.description = description;
-        this.imagen = imagen;
-    }
-
-    public SerieEntity() {
-    }
+    //metodos generados
 
     @Override
     public int hashCode() {
@@ -118,10 +122,10 @@ public class SerieEntity implements Serializable{
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof SerieEntity)) {
+        if (!(object instanceof MovieEntity)) {
             return false;
         }
-        SerieEntity other = (SerieEntity) object;
+        MovieEntity other = (MovieEntity) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -129,16 +133,18 @@ public class SerieEntity implements Serializable{
     }
 
 
+    //al final
+
     @Override
     public String toString() {
         return "SerieEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", active='" + active + '\'' +
-                ", genero='" + genero + '\'' +
-                ", estreno=" + estreno +
+                ", genero='" + genre + '\'' +
+                ", estreno=" + released +
                 ", description='" + description + '\'' +
-                ", imagen='" + imagen + '\'' +
+                ", imagen='" + image + '\'' +
                 '}';
     }
 }

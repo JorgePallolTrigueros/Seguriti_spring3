@@ -6,7 +6,7 @@
 #application.yml
 spring:
   datasource:
-    driver-class-name: org.h2.Driver
+#    driver-class-name: org.h2.Driver
   jpa:
     hibernate:
       ddl-auto: update

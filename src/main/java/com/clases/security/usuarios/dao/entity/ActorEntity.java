@@ -12,15 +12,14 @@ public class ActorEntity implements Serializable {
     @GeneratedValue
     private Long id;
 
-
     @Column(length =50, name="nombre")
     private String name;
 
-    @Column(length =5660, name="imagen")
-    private String imagen;
+    @Column(length =5660, name="image")
+    private String image;
 
-    @Column(length =5660, name="biografia")
-    private String biografia;
+    @Column(length =5660, name="biography")
+    private String biography;
 
     public Long getId() {
         return id;
@@ -38,28 +37,28 @@ public class ActorEntity implements Serializable {
         this.name = name;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getImage() {
+        return image;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getBiografia() {
-        return biografia;
+    public String getBiography() {
+        return biography;
     }
 
-    public void setBiografia(String biografia) {
-        this.biografia = biografia;
+    public void setBiography(String biography) {
+        this.biography = biography;
     }
 
 
-    public ActorEntity(String name, String imagen, String biografia, String s) {
+    public ActorEntity(String name, String image, String biography, String s) {
 
         this.name = name;
-        this.imagen = imagen;
-        this.biografia = biografia;
+        this.image = image;
+        this.biography = biography;
     }
 
 
@@ -72,8 +71,8 @@ public class ActorEntity implements Serializable {
         return "ActorEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", imagen='" + imagen + '\'' +
-                ", biografia='" + biografia + '\'' +
+                ", imagen='" + image + '\'' +
+                ", biography='" + biography + '\'' +
                 '}';
     }
 

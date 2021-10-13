@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="gallery")
-public class GaleryEntity implements Serializable {
+@Table(name="direccion")
+public class AddressEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -13,9 +13,8 @@ public class GaleryEntity implements Serializable {
     private Long id;
 
 
-    @Column(length =6650, name="url")
-    private String url;
-
+    @Column(length =50, name="nombre")
+    private String name;
 
     public Long getId() {
         return id;
@@ -25,27 +24,26 @@ public class GaleryEntity implements Serializable {
         this.id = id;
     }
 
-    public String getUrl() {
-        return url;
+    public String getName() {
+        return name;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public GaleryEntity( String url) {
-
-        this.url = url;
+    public AddressEntity(String name) {
+        this.name = name;
     }
 
-    public GaleryEntity() {
+    public AddressEntity() {
     }
 
     @Override
     public String toString() {
-        return "GaleryEntity{" +
+        return "DireccionEntity{" +
                 "id=" + id +
-                ", url='" + url + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 
@@ -58,14 +56,17 @@ public class GaleryEntity implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof GaleryEntity)) {
+        if (!(object instanceof AddressEntity)) {
             return false;
         }
-        GaleryEntity other = (GaleryEntity) object;
+        AddressEntity other = (AddressEntity) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
+
+
+
 
 }

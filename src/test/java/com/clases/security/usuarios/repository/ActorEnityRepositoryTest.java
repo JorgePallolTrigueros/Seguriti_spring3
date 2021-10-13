@@ -1,9 +1,7 @@
 package com.clases.security.usuarios.repository;
 
 import com.clases.security.usuarios.dao.entity.ActorEntity;
-import com.clases.security.usuarios.dao.entity.UserEntity;
 import com.clases.security.usuarios.dao.repository.ActorRepository;
-import com.clases.security.usuarios.dao.repository.UserRepository;
 import com.clases.security.usuarios.util.AppUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
@@ -15,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.PostConstruct;
-import java.util.Date;
 import java.util.Optional;
 
 
@@ -71,8 +68,8 @@ public class ActorEnityRepositoryTest {
         ActorEntity actorEntity = new ActorEntity();
         //llenar todos los campos menos el email
         actorEntity.setName("Nuevo");
-        actorEntity.setImagen("imagen");
-        actorEntity.setBiografia("biografia");
+        actorEntity.setImage("imagen");
+        actorEntity.setBiography("biografia");
 
         //guardar el usuario y devolver (saveAndFlush)
         actorEntity =  actorRepository.saveAndFlush(actorEntity);
@@ -114,16 +111,16 @@ public class ActorEnityRepositoryTest {
         log.info("ACTORS ORIGINAL: {}",actorEntity);
 
         //guardo el rol original
-        String originalRol = actorEntity.getBiografia();
+        String originalRol = actorEntity.getBiography();
 
         //modifico el rol
-        actorEntity.setBiografia("MODIFICADO");
+        actorEntity.setBiography("MODIFICADO");
         //guardo los cambios
         actorEntity = actorRepository.saveAndFlush(actorEntity);
 
         //si el rol que tengo es igual al original
         //es por que no se ha modificado
-        if(actorEntity.getBiografia().equals(originalRol)){
+        if(actorEntity.getBiography().equals(originalRol)){
             log.info("No se pudo modificar el campo");
             Assertions.fail();//detiene la ejecucion, lanza una excepcion
         }
@@ -145,9 +142,9 @@ public class ActorEnityRepositoryTest {
         ActorEntity actorEntity1 = new ActorEntity();
         //llenar todos los campos menos el email
         actorEntity1.setName("A borrar");
-        actorEntity1.setImagen("imagen a Borrar");
+        actorEntity1.setImage("imagen a Borrar");
         actorEntity1.setName("nombre a Borrar");
-        actorEntity1.setBiografia("biop a Borrar");
+        actorEntity1.setBiography("biop a Borrar");
 
         //guardar el usuario y devolver (saveAndFlush) para borrarlo
         actorEntity1 =  actorRepository.saveAndFlush(actorEntity1);
@@ -167,8 +164,8 @@ public class ActorEnityRepositoryTest {
 
         ActorEntity actorEntity2 = new ActorEntity();
         actorEntity2.setName("A Find");
-        actorEntity2.setImagen("A Find");
-        actorEntity2.setBiografia("A Find");
+        actorEntity2.setImage("A Find");
+        actorEntity2.setBiography("A Find");
 
 
         actorEntity2 =  actorRepository.saveAndFlush(actorEntity2);
