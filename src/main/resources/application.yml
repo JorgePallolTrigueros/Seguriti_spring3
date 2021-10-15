@@ -11,10 +11,20 @@ spring:
     hibernate:
       ddl-auto: update
 #  datasource:
-#    url: jdbc:mysql://localhost:3306/mil_historia_1?serverTimezone=UTC
-#    username:
-#    password:
+   url: jdbc:mysql://localhost:3306/mil_historia_1?serverTimezone=UTC
+   username: root
+   password: Kojinanjo1@
+#    password:com.mysql.cj.jdbc.Driver
 #hasta luego
 
 server:
   port: 8090
+# ===============================
+# = JPA / HIBERNATE
+# ===============================
+
+  jpa:
+    show-sql: true
+    ddl-auto: update
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL8Dialect
