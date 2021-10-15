@@ -2,6 +2,7 @@ package com.clases.security.usuarios.repository;
 
 
 import com.clases.security.usuarios.dao.entity.MovieEntity;
+import com.clases.security.usuarios.dao.entity.UserEntity;
 import com.clases.security.usuarios.dao.repository.MovieRepository;
 import com.clases.security.usuarios.util.AppUtil;
 import org.junit.jupiter.api.*;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
 import java.util.Optional;
 
 @SpringBootTest
@@ -129,31 +131,61 @@ public class MovieRepositoryTest {
 
     }
 
+
+
+
+
     @Test
-    void Test_04_FindAnySerieAndDeleteSerie(){
+    void Test_04_FindAnyMovieAndDeleteSerie(){
         //imprimir el nombre del metodo y la clase
         log.info(AppUtil.getMethodWithClass());
 
-        log.info("Users: {}", movieRepository.count());
+        log.info("Movie: {}",movieRepository.count());
 
-        MovieEntity movieEntity = new MovieEntity();
-        movieEntity.setName("Nombre1");
-        movieEntity.setDescription("Descripcion 1");
-        movieEntity.setGenre("Genero_1");
-        movieEntity.setActive("ace");
-
-
-        //guardar el usuario y devolver (saveAndFlush)
-        movieEntity =  movieRepository.saveAndFlush(movieEntity);
+        MovieEntity movieEntity1 = new MovieEntity();
+        //llenar todos los campos menos el email
+        movieEntity1.setName("A borrar");
+        movieEntity1.setDescription("A Borrar");
+        movieEntity1.setReleased(new Date());
+        movieEntity1.setGenre("A Borrar");
 
         //guardar el usuario y devolver (saveAndFlush) para borrarlo
-        movieEntity =  movieRepository.saveAndFlush(movieEntity);
+        movieEntity1 =  movieRepository.saveAndFlush(movieEntity1);
+
+        log.info("Peli o Serie guardada correctamente");
+
+        log.info("Pelis o Series guardadas : {}",movieRepository.count());
+
+        //buscar un usuario
+        Optional<MovieEntity> movieResult = movieRepository.findById(movieEntity1.getId());
+
+        //preguntar si el resultado de buscar el usuario con id especificado existe
+        if(movieResult.isPresent()){
+            //si existe lo imprimimos por consola
+            log.info("Peli o Serie guardada para borrar: {}",movieResult.get());
+        }else{
+            //si no existe es por que no se ha guardado correctamente y detenemos la prueba
+            Assertions.fail("No hay registro");
+        }
+
 
         //buscar el usuario y borrarlo
-        movieRepository.deleteById(movieEntity.getId());
+        movieRepository.deleteById(movieResult.get().getId());
+
+        //buscar un usuario ya eliminado
+        movieResult = movieRepository.findById(movieResult.get().getId());
+
+        //preguntar si el resultado de buscar el usuario con id especificado existe
+        if(movieResult.isPresent()){
+            //si existe ex por que no se eliminado correctamente
+            Assertions.fail("El dato existe cuando deberia haberse eliminado");
+        }else{
+            //si no existe es por que no se ha guardado correctamente y detenemos la prueba
+            log.info("El registro ya no existe mas en la base de datos");
+        }
 
         //imprimir la cantidad de usuarios
-        log.info("Users: {}", movieRepository.count());
+        log.info("Users: {}",movieRepository.count());
 
     }
 

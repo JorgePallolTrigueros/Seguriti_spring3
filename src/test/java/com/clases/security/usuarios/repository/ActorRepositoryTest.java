@@ -1,6 +1,7 @@
 package com.clases.security.usuarios.repository;
 
 import com.clases.security.usuarios.dao.entity.ActorEntity;
+import com.clases.security.usuarios.dao.entity.UserEntity;
 import com.clases.security.usuarios.dao.repository.ActorRepository;
 import com.clases.security.usuarios.util.AppUtil;
 import org.junit.jupiter.api.Assertions;
@@ -13,12 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
 import java.util.Optional;
 
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)//ordene la ejecucion de los test
-public class ActorEnityRepositoryTest {
+public class ActorRepositoryTest {
 
 
 
@@ -137,23 +139,51 @@ public class ActorEnityRepositoryTest {
         //imprimir el nombre del metodo y la clase
         log.info(AppUtil.getMethodWithClass());
 
-        log.info("Actors: {}",actorRepository.count());
+        log.info("Users: {}",actorRepository.count());
 
         ActorEntity actorEntity1 = new ActorEntity();
         //llenar todos los campos menos el email
         actorEntity1.setName("A borrar");
-        actorEntity1.setImage("imagen a Borrar");
-        actorEntity1.setName("nombre a Borrar");
-        actorEntity1.setBiography("biop a Borrar");
+        actorEntity1.setImage("A Borrar");
+        actorEntity1.setBiography("A Borrar");
 
         //guardar el usuario y devolver (saveAndFlush) para borrarlo
         actorEntity1 =  actorRepository.saveAndFlush(actorEntity1);
 
+        log.info("Usuario guardado correctamente");
+
+        log.info("Users: {}",actorRepository.count());
+
+        //buscar un usuario
+        Optional<ActorEntity> actorResult = actorRepository.findById(actorEntity1.getId());
+
+        //preguntar si el resultado de buscar el usuario con id especificado existe
+        if(actorResult.isPresent()){
+            //si existe lo imprimimos por consola
+            log.info("Actor To delete: {}",actorResult.get());
+        }else{
+            //si no existe es por que no se ha guardado correctamente y detenemos la prueba
+            Assertions.fail("No hay registro");
+        }
+
+
         //buscar el usuario y borrarlo
-        actorRepository.deleteById(actorEntity1.getId());
+        actorRepository.deleteById(actorResult.get().getId());
+
+        //buscar un usuario ya eliminado
+        actorResult = actorRepository.findById(actorResult.get().getId());
+
+        //preguntar si el resultado de buscar el usuario con id especificado existe
+        if(actorResult.isPresent()){
+            //si existe ex por que no se eliminado correctamente
+            Assertions.fail("El dato existe cuando deberia haberse eliminado");
+        }else{
+            //si no existe es por que no se ha guardado correctamente y detenemos la prueba
+            log.info("El registro ya no existe mas en la base de datos");
+        }
 
         //imprimir la cantidad de usuarios
-        log.info("Actors: {}",actorRepository.count());
+        log.info("Users: {}",actorRepository.count());
     }
 
     @Test

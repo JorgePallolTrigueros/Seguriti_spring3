@@ -1,5 +1,6 @@
 package com.clases.security.usuarios.repository;
 import com.clases.security.usuarios.dao.entity.GalleryEntity;
+import com.clases.security.usuarios.dao.entity.UserEntity;
 import com.clases.security.usuarios.dao.repository.GalleryRepository;
 import com.clases.security.usuarios.util.AppUtil;
 import org.junit.jupiter.api.*;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Date;
 import java.util.Optional;
 
 @SpringBootTest
@@ -114,20 +116,50 @@ public class GalleryRepositoryTest {
         //imprimir el nombre del metodo y la clase
         log.info(AppUtil.getMethodWithClass());
 
-        log.info("Users: {}", galleryRepository.count());
+        log.info("Gallery: {}",galleryRepository.count());
 
-        GalleryEntity galleryEntity = new GalleryEntity();
+        GalleryEntity galleryEntity1 = new GalleryEntity();
         //llenar todos los campos menos el email
-        galleryEntity.setUrl("A borrar");
-
+        galleryEntity1.setUrl("A borrar");
 
         //guardar el usuario y devolver (saveAndFlush) para borrarlo
-        galleryEntity =  galleryRepository.saveAndFlush(galleryEntity);
+        galleryEntity1 =  galleryRepository.saveAndFlush(galleryEntity1);
+
+        log.info("Foto guardado correctamente");
+
+        log.info("Fotos: {}",galleryRepository.count());
+
+        //buscar un usuario
+        Optional<GalleryEntity> galleryResult = galleryRepository.findById(galleryEntity1.getId());
+
+
+
+        //preguntar si el resultado de buscar el usuario con id especificado existe
+        if(galleryResult.isPresent()){
+            //si existe lo imprimimos por consola
+            log.info("User To delete: {}",galleryResult.get());
+        }else{
+            //si no existe es por que no se ha guardado correctamente y detenemos la prueba
+            Assertions.fail("No hay registro");
+        }
+
 
         //buscar el usuario y borrarlo
-        galleryRepository.deleteById(galleryEntity.getId());
+        galleryRepository.deleteById(galleryResult.get().getId());
+
+        //buscar un usuario ya eliminado
+        galleryResult = galleryRepository.findById(galleryResult.get().getId());
+
+        //preguntar si el resultado de buscar el usuario con id especificado existe
+        if(galleryResult.isPresent()){
+            //si existe ex por que no se eliminado correctamente
+            Assertions.fail("El dato existe cuando deberia haberse eliminado");
+        }else{
+            //si no existe es por que no se ha guardado correctamente y detenemos la prueba
+            log.info("El registro ya no existe mas en la base de datos");
+        }
 
         //imprimir la cantidad de usuarios
-        log.info("Users: {}", galleryRepository.count());
+        log.info("Users: {}",galleryRepository.count());
     }
 }

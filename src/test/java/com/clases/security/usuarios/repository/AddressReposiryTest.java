@@ -1,6 +1,7 @@
 package com.clases.security.usuarios.repository;
 import com.clases.security.usuarios.dao.entity.AddressEntity;
-import com.clases.security.usuarios.dao.repository.DirectionRepository;
+import com.clases.security.usuarios.dao.entity.UserEntity;
+import com.clases.security.usuarios.dao.repository.AddressRepository;
 import com.clases.security.usuarios.util.AppUtil;
 import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
@@ -9,18 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
 import java.util.Optional;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)//ordene la ejecucion de los test
-public class AddressEntityReposiryTest {
+public class AddressReposiryTest {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
     private static boolean initialized = false;
 
     @Autowired
-    private DirectionRepository directionrepository;
-
+    private AddressRepository addressRepository;
 
     /**
      * Se llama despues de crear la clase
@@ -31,7 +32,7 @@ public class AddressEntityReposiryTest {
         if(initialized) return;
         log.info(AppUtil.getMethodWithClass());
         for(int i=0;i<10;i++){
-            directionrepository.save(new AddressEntity("Nuevo"));
+            addressRepository.save(new AddressEntity("Nuevo"));
         }
         initialized = true;
     }
@@ -45,9 +46,9 @@ public class AddressEntityReposiryTest {
         //imprimir el nombre del metodo y la clase
         log.info(AppUtil.getMethodWithClass());
         //imprimir la cantidad de usuarios
-        log.info("Users: {}",directionrepository.count());
+        log.info("Users: {}",addressRepository.count());
         //mostrar cada usuario en la lista de findAll
-        directionrepository.findAll().forEach(directionEntity -> log.info(directionEntity.toString()));
+        addressRepository.findAll().forEach(directionEntity -> log.info(directionEntity.toString()));
 
         //si llego a este punto es por que ejecuto exitosamente el test
         Assertions.assertTrue(true);
@@ -64,13 +65,13 @@ public class AddressEntityReposiryTest {
 
 
         //guardar el usuario y devolver (saveAndFlush)
-        directionEntity =  directionrepository.saveAndFlush(directionEntity);
+        directionEntity =  addressRepository.saveAndFlush(directionEntity);
 
         //imprimir la cantidad de usuarios
-        log.info("Users: {}",directionrepository.count());
+        log.info("Direcciones: {}",addressRepository.count());
 
         //buscar el usuario
-        Optional<AddressEntity> directionResult = directionrepository.findById(directionEntity.getId());
+        Optional<AddressEntity> directionResult = addressRepository.findById(directionEntity.getId());
         if(directionResult.isPresent()){
             //se encontro el usuario se imprimira la informacion
             log.info("FOUND: {}",directionResult.get());
@@ -88,7 +89,7 @@ public class AddressEntityReposiryTest {
 
         //de toda la lista de usuarios
         //cogere el primero, si existe (estara envuelto en optional debo evaluar si esta presente, es decir si hay)
-        Optional<AddressEntity> directionOptionalResult = directionrepository.findAll().stream().findFirst();
+        Optional<AddressEntity> directionOptionalResult = addressRepository.findAll().stream().findFirst();
 
         //si no esta presente
         if(!directionOptionalResult.isPresent()){
@@ -108,7 +109,7 @@ public class AddressEntityReposiryTest {
         //modifico el rol
         directionEntity.setName("MODIFICADO");
         //guardo los cambios
-        directionEntity = directionrepository.saveAndFlush(directionEntity);
+        directionEntity = addressRepository.saveAndFlush(directionEntity);
 
         //si el rol que tengo es igual al original
         //es por que no se ha modificado
@@ -125,25 +126,54 @@ public class AddressEntityReposiryTest {
     }
 
     @Test
-    void Test_04_FindAnyDireccionAndDeleteDireccion(){
+    void Test_04_FindAnyAddressAndDeleteDireccion(){
         //imprimir el nombre del metodo y la clase
         log.info(AppUtil.getMethodWithClass());
 
-        log.info("Users: {}",directionrepository.count());
+        log.info("Users: {}",addressRepository.count());
 
-        AddressEntity directionEntity1 = new AddressEntity("User");
+        AddressEntity addressEntity1 = new AddressEntity();
         //llenar todos los campos menos el email
-        directionEntity1.setName("A borrar");
+        addressEntity1.setName("A borrar");
 
 
         //guardar el usuario y devolver (saveAndFlush) para borrarlo
-        directionEntity1 =  directionrepository.saveAndFlush(directionEntity1);
+        addressEntity1 = addressRepository.saveAndFlush(addressEntity1);
+
+        log.info("Usuario guardado correctamente");
+
+        log.info("Users: {}",addressRepository.count());
+
+        //buscar un usuario
+        Optional<AddressEntity> addressResult = addressRepository.findById(addressEntity1.getId());
+
+        //preguntar si el resultado de buscar el usuario con id especificado existe
+        if(addressResult.isPresent()){
+            //si existe lo imprimimos por consola
+            log.info("User To delete: {}",addressResult.get());
+        }else{
+            //si no existe es por que no se ha guardado correctamente y detenemos la prueba
+            Assertions.fail("No hay registro");
+        }
+
 
         //buscar el usuario y borrarlo
-        directionrepository.deleteById(directionEntity1.getId());
+        addressRepository.deleteById(addressResult.get().getId());
+
+        //buscar un usuario ya eliminado
+        addressResult = addressRepository.findById(addressResult.get().getId());
+
+        //preguntar si el resultado de buscar el usuario con id especificado existe
+        if(addressResult.isPresent()){
+            //si existe ex por que no se eliminado correctamente
+            Assertions.fail("El dato existe cuando deberia haberse eliminado");
+        }else{
+            //si no existe es por que no se ha guardado correctamente y detenemos la prueba
+            log.info("El registro ya no existe mas en la base de datos");
+        }
 
         //imprimir la cantidad de usuarios
-        log.info("Users: {}",directionrepository.count());
+        log.info("Users: {}",addressRepository.count());
     }
 
 
