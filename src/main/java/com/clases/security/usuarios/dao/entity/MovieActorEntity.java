@@ -36,7 +36,7 @@ public class MovieActorEntity implements Serializable {
 
     //campos extras que se desean agregar a la tabla intermedia
 
-    @Column(name="character")
+    @Column(name="actor_character")
     private String character;
 
     @Column(name="participation")
