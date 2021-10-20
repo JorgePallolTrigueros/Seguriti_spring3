@@ -16,7 +16,7 @@ public class MovieUserEntityPK implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "user")
+    @Column(name = "user")//nombre de columna en base de jpa
     private Long idUser;
 
     @Basic(optional = false)

@@ -31,7 +31,12 @@ public class MovieActorEntity implements Serializable {
     @JoinColumn(name = "id_movie")
     private MovieEntity movie;
 
+
     //campos extras que se desean agregar a la tabla intermedia
+
+    @Column(name="character")
+    private String character;
+
     @Column(name="participation")
     private Date participation;
 
@@ -72,6 +77,14 @@ public class MovieActorEntity implements Serializable {
         this.participation = participation;
     }
 
+    public String getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -98,6 +111,7 @@ public class MovieActorEntity implements Serializable {
                 ", actor=" + (actor!=null?actor.getId():"null") +
                 ", movie=" + (movie!=null?movie.getId():"null") +
                 ", participation=" + participation +
+                ", character=" + character +
                 '}';
     }
 }

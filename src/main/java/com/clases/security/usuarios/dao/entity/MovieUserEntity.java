@@ -1,10 +1,13 @@
 package com.clases.security.usuarios.dao.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-public class MovieUserEntity {
 
+@Entity
+@Table(name="movie_user")
+public class MovieUserEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,6 +34,16 @@ public class MovieUserEntity {
     @Column(name="critic")
     private String critic;
 
+    //campos extras que se desean agregar a la tabla intermedia
+    @Column(name="view_date")
+    private Date viewDate;
+
+
+    /** constructores **/
+
+    public MovieUserEntity() {
+    }
+
     public MovieUserEntity(MovieUserEntityPK pk, UserEntity user, MovieEntity movie, Integer valoration, String critic) {
         this.pk = pk;
         this.user = user;
@@ -39,8 +52,8 @@ public class MovieUserEntity {
         this.critic = critic;
     }
 
-    public MovieUserEntity() {
-    }
+
+    /** getter y setter */
 
     public MovieUserEntityPK getPk() {
         return pk;
@@ -82,6 +95,14 @@ public class MovieUserEntity {
         this.critic = critic;
     }
 
+    public Date getViewDate() {
+        return viewDate;
+    }
+
+    public void setViewDate(Date viewDate) {
+        this.viewDate = viewDate;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -108,6 +129,7 @@ public class MovieUserEntity {
                 ", user=" + user +
                 ", movie=" + movie +
                 ", valoration=" + valoration +
+                ", viewDate=" + viewDate +
                 ", critic='" + critic + '\'' +
                 '}';
     }

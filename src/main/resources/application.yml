@@ -5,17 +5,15 @@
 
 #application.yml
 spring:
-  datasource:
-#    driver-class-name: org.h2.Driver
   jpa:
     hibernate:
       ddl-auto: update
-#  datasource:
-   url: jdbc:mysql://localhost:3306/mil_historia_1?serverTimezone=UTC
-   username: root
-   password: Kojinanjo1@
-#    password:com.mysql.cj.jdbc.Driver
-#hasta luego
+  datasource:
+#    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/security_spring_user?serverTimezone=UTC
+    username: root
+    password: Kojinanjo1@
 
 server:
   port: 8090

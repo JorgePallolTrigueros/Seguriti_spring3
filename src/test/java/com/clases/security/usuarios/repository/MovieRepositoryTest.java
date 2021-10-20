@@ -113,7 +113,7 @@ public class MovieRepositoryTest {
         String originalRol = movieEntity.getDescription();
 
         //modifico el rol
-        movieEntity.setDescription("MODIFICADO SERIE");
+        movieEntity.setDescription("MODIFICADO SERIE "+AppUtil.currentDate());
         //guardo los cambios
         movieEntity = movieRepository.saveAndFlush(movieEntity);
 

@@ -116,7 +116,7 @@ public class ActorRepositoryTest {
         String originalRol = actorEntity.getBiography();
 
         //modifico el rol
-        actorEntity.setBiography("MODIFICADO");
+        actorEntity.setBiography("MODIFICADO "+AppUtil.currentDate() );
         //guardo los cambios
         actorEntity = actorRepository.saveAndFlush(actorEntity);
 

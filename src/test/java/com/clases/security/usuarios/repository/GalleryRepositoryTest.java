@@ -93,7 +93,7 @@ public class GalleryRepositoryTest {
         String originalRol = galleryEntity.getUrl();
 
         //modifico el rol
-        galleryEntity.setUrl("MODIFICADO");
+        galleryEntity.setUrl("MODIFICADO "+AppUtil.currentDate());
         //guardo los cambios
         galleryEntity = galleryRepository.saveAndFlush(galleryEntity);
 

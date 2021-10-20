@@ -107,7 +107,7 @@ public class AddressReposiryTest {
         String originalRol = directionEntity.getName();
 
         //modifico el rol
-        directionEntity.setName("MODIFICADO");
+        directionEntity.setName("MODIFICADO "+AppUtil.currentDate());
         //guardo los cambios
         directionEntity = addressRepository.saveAndFlush(directionEntity);
 

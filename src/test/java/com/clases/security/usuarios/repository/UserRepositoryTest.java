@@ -113,7 +113,7 @@ public class UserRepositoryTest {
         String originalRol = userEntity.getRol();
 
         //modifico el rol
-        userEntity.setRol("MODIFICADO");
+        userEntity.setRol("MODIFICADO "+AppUtil.currentDate());
         //guardo los cambios
         userEntity = userrepository.saveAndFlush(userEntity);
 
