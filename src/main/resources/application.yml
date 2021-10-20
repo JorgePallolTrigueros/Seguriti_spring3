@@ -6,14 +6,19 @@
 #application.yml
 spring:
   jpa:
+    generate-ddl: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
   datasource:
+    platform: mysql
 #    driver-class-name: org.h2.Driver
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/security_spring_user?serverTimezone=UTC
     username: root
     password: Kojinanjo1@
+
 
 server:
   port: 8090

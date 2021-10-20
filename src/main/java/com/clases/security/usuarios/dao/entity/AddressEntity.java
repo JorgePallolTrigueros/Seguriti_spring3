@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="direccion")
+@Table(name="address")
 public class AddressEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -12,9 +12,11 @@ public class AddressEntity implements Serializable {
     @GeneratedValue
     private Long id;
 
-
     @Column(length =50, name="nombre")
     private String name;
+
+    @Column(name="id_user")
+    private Long idUser;
 
     public Long getId() {
         return id;

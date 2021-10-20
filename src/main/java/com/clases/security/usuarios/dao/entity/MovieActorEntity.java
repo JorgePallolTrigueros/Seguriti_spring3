@@ -32,6 +32,8 @@ public class MovieActorEntity implements Serializable {
     private MovieEntity movie;
 
 
+
+
     //campos extras que se desean agregar a la tabla intermedia
 
     @Column(name="character")
@@ -41,6 +43,15 @@ public class MovieActorEntity implements Serializable {
     private Date participation;
 
     //constructor
+
+
+    public MovieActorEntity(MovieActorEntityPK pk, ActorEntity actor, MovieEntity movie, String character, Date participation) {
+        this.pk = pk;
+        this.actor = actor;
+        this.movie = movie;
+        this.character = character;
+        this.participation = participation;
+    }
 
     public MovieActorEntity() {
     }

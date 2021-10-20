@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)//ordene la ejecucion de los test
-public class AddressReposiryTest {
+public class AddressRepositoryTest {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
     private static boolean initialized = false;

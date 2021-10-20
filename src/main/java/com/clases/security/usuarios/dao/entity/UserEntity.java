@@ -7,17 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
-
-
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
+import javax.persistence.*;
 
 
 @Entity
@@ -29,7 +19,7 @@ public class UserEntity implements Serializable{
     @GeneratedValue
     private Long id;
 
-    @Column(length =50, name="nombre")
+    @Column(length =50, name="name")
     private String name;
 
     @Column(length =50, name="rol")
@@ -47,6 +37,13 @@ public class UserEntity implements Serializable{
     @Column(length =5550, name="imagen")
     private String imagen;
 
+    /** relaciones entre tablas **/
+
+    @JoinColumn(name ="id_user")//de lado de la base de datos
+    @OneToOne
+    private AddressEntity address;
+
+
     public UserEntity() {
     }
 
@@ -54,6 +51,14 @@ public class UserEntity implements Serializable{
         this.name = name;
         this.rol = rol;
         this.status = status;
+    }
+
+    public AddressEntity getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressEntity address) {
+        this.address = address;
     }
 
     public Long getId() {
@@ -146,6 +151,7 @@ public class UserEntity implements Serializable{
                 ", created=" + created +
                 ", email='" + email + '\'' +
                 ", imagen='" + imagen + '\'' +
+                ", adresses=" + (address!=null ? address.getId() : "null") + '\'' +
                 '}';
     }
 }

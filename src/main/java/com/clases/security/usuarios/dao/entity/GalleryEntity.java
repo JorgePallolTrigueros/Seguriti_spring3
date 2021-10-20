@@ -12,10 +12,23 @@ public class GalleryEntity implements Serializable {
     @GeneratedValue
     private Long id;
 
-
     @Column(length =6650, name="url")
     private String url;
 
+    /** relaciones entre tablas **/
+
+    @ManyToOne
+    @JoinColumn(name = "id_movie")
+    private MovieEntity movie;
+
+
+    public GalleryEntity() {
+
+    }
+
+    public MovieEntity getMovie() {
+        return movie;
+    }
 
     public Long getId() {
         return id;
@@ -33,21 +46,6 @@ public class GalleryEntity implements Serializable {
         this.url = url;
     }
 
-    public GalleryEntity(String url) {
-
-        this.url = url;
-    }
-
-    public GalleryEntity() {
-    }
-
-    @Override
-    public String toString() {
-        return "GaleryEntity{" +
-                "id=" + id +
-                ", url='" + url + '\'' +
-                '}';
-    }
 
     @Override
     public int hashCode() {
@@ -66,6 +64,14 @@ public class GalleryEntity implements Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "GaleryEntity{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                '}';
     }
 
 }

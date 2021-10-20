@@ -3,6 +3,7 @@ package com.clases.security.usuarios.repository;
 
 import com.clases.security.usuarios.dao.entity.MovieEntity;
 import com.clases.security.usuarios.dao.entity.UserEntity;
+import com.clases.security.usuarios.dao.repository.MovieActorRepository;
 import com.clases.security.usuarios.dao.repository.MovieRepository;
 import com.clases.security.usuarios.util.AppUtil;
 import org.junit.jupiter.api.*;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.Optional;
 
@@ -24,6 +26,8 @@ public class MovieRepositoryTest {
 
     @Autowired
     private MovieRepository movieRepository;
+    @Autowired
+    private MovieActorRepository movieActorRepository;
 
 
 
@@ -45,7 +49,31 @@ public class MovieRepositoryTest {
      * Si resulta exitoso completa la ejecucion sin problemas
      */
     @Test
+    @Transactional//abre transacciones debe ir en metodos
     void Test_01_FindAllSeries() {
+
+        //movie
+        //  id
+        //  name
+        //  ....
+        //  pictures  -> join para sacar estos datos
+        //     1
+        //     2
+        //     ....
+
+
+        //movie->pictures
+        //select m from movies m inner join gallery g on m.id = g.id_movie .....
+        //la consulta es lazy
+        //por lo que se tiene que abrir una transaccion para poder obtener todos los registros
+        //si no fuera lazy entonces si nos devolveria todos los registros sin abrir la transaccion por que una vez
+        //que se llama a movie haria la consulta inmediata de gallery
+
+
+        //movieEntity.pictures -> esto desencadena la llamada
+        //solo entonces se llama a la union
+
+
         //imprimir el nombre del metodo y la clase
         log.info(AppUtil.getMethodWithClass());
         //imprimir la cantidad de usuarios
@@ -189,4 +217,17 @@ public class MovieRepositoryTest {
 
     }
 
-}
+    @Test
+    void Test_05_FindAllMovieActor(){
+
+        //imprimir el nombre del metodo y la clase
+        log.info(AppUtil.getMethodWithClass());
+        //imprimir la cantidad de usuarios
+        log.info("MovieActor: {}", movieActorRepository.count());
+        //mostrar cada usuario en la lista de findAll
+        movieActorRepository.findAll().forEach( m -> log.info(m.toString()));
+
+        //si llego a este punto es por que ejecuto exitosamente el test
+        Assertions.assertTrue(true);
+    }
+    }

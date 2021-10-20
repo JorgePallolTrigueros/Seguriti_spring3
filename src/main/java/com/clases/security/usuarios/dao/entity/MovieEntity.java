@@ -1,17 +1,12 @@
 package com.clases.security.usuarios.dao.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
-
-
-import javax.persistence.Id;
-
+import javax.persistence.*;
 
 
 @Entity
@@ -22,7 +17,6 @@ public class MovieEntity implements Serializable{
     @Id
     @GeneratedValue
     private Long id;
-
 
     @Column(length =50, name="name")
     private String name;
@@ -38,8 +32,15 @@ public class MovieEntity implements Serializable{
     private String image;
 
 
+    /** relaciones entre tablas **/
+
+    @JoinColumn(name ="id_movie")
+    @OneToMany
+    private List<GalleryEntity> pictures = new ArrayList<>();
+
     //constructor
     public MovieEntity() {
+
     }
 
     public MovieEntity(String name, String active, String genre, String description) {
@@ -54,6 +55,13 @@ public class MovieEntity implements Serializable{
 
     //getters y setters
 
+    public List<GalleryEntity> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<GalleryEntity> pictures) {
+        this.pictures = pictures;
+    }
 
     public Long getId() {
         return id;
@@ -145,6 +153,7 @@ public class MovieEntity implements Serializable{
                 ", estreno=" + released +
                 ", description='" + description + '\'' +
                 ", imagen='" + image + '\'' +
+                ", pictures=" + pictures.size() +
                 '}';
     }
 }

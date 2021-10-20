@@ -2,6 +2,8 @@ package com.clases.security.usuarios.domain.shared.dto;
 
 public class ActorDto {
 
+    //TODO actualizar de los nuevos campos de las entidades a esta
+    //TODO las entidades
     private Long id;
     private String name;
     private String imagen;
