@@ -1,5 +1,6 @@
 package com.clases.security.usuarios.config;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -40,6 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {//se establece
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()//autoriza las peticiones
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+
                 .antMatchers("/login*")//hace que se mueva a este prefijo de login, spring security crea esta pagina
                 .permitAll()//permite el acceso a todos a la pagina de anterior (login)
                 .antMatchers("/no-protegida*")
@@ -56,8 +59,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {//se establece
                 .permitAll()
                 .antMatchers("/users/new*")
                 .permitAll()
-
-
 
 
 

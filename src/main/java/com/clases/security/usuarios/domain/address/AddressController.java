@@ -1,6 +1,6 @@
-package com.clases.security.usuarios.domain.galeria;
+package com.clases.security.usuarios.domain.address;
 
-import com.clases.security.usuarios.domain.shared.dto.GaleriaDto;
+import com.clases.security.usuarios.domain.shared.dto.AddressDto;
 import com.clases.security.usuarios.util.AppUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,15 +15,13 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @Controller
-//@RequestMapping("v1/user")
-public class GaleriaController {
-
+public class AddressController {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
-    private final GaleriaService galeriaService;
+    private final AddressService addressService;
 
-    public GaleriaController(GaleriaService galeriaService) {
-        this.galeriaService = galeriaService;
+    public AddressController(AddressService addressService) {
+        this.addressService = addressService;
     }
 
     /**
@@ -35,7 +33,7 @@ public class GaleriaController {
     @GetMapping("/")
     public String homePage(Model model) {
         log.info(AppUtil.getMethodWithClass());
-        model.addAttribute("galerias",galeriaService.findAllGalerias());
+        model.addAttribute("addresss",addressService.findAllAddresss());
         return "index";
     }
 
@@ -45,10 +43,10 @@ public class GaleriaController {
      * @param model
      * @return
      */
-    @GetMapping("/galerias/{id}/view")
-    public String viewGaleria(@PathVariable Long id, Model model) {
+    @GetMapping("/addresss/{id}/view")
+    public String viewAddress(@PathVariable Long id, Model model) {
         log.info(AppUtil.getMethodWithClass());
-        return galeriaService.viewGaleria(id,model);
+        return addressService.viewAddress(id,model);
     }
 
 
@@ -58,10 +56,10 @@ public class GaleriaController {
      * @param model
      * @return
      */
-    @GetMapping("/galerias/{id}/edit")
-    public String viewGaleriaEdit(@PathVariable Long id, Model model) {
+    @GetMapping("/addresss/{id}/edit")
+    public String viewAddressEdit(@PathVariable Long id, Model model) {
         log.info(AppUtil.getMethodWithClass());
-        return galeriaService.viewGaleriaEdit(id,model);
+        return addressService.viewAddressEdit(id,model);
     }
 
     /**
@@ -69,11 +67,11 @@ public class GaleriaController {
      * @param model
      * @return
      */
-    @PostMapping("/galerias/edit")
-    public String editGaleria(Model model, @ModelAttribute("galeria") GaleriaDto galeriaDto) {
+    @PostMapping("/addresss/edit")
+    public String editAddress(Model model, @ModelAttribute("address") AddressDto addressDto) {
         log.info(AppUtil.getMethodWithClass());
-        log.info("GALERIA DTO: {}",galeriaDto);
-        return galeriaService.editGaleria(model,galeriaDto);
+        log.info("GALERIA DTO: {}",addressDto);
+        return addressService.editAddress(model,addressDto);
     }
 
 }

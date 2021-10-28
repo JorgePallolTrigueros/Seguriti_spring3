@@ -1,6 +1,5 @@
 package com.clases.security.usuarios.repository;
 import com.clases.security.usuarios.dao.entity.AddressEntity;
-import com.clases.security.usuarios.dao.entity.UserEntity;
 import com.clases.security.usuarios.dao.repository.AddressRepository;
 import com.clases.security.usuarios.util.AppUtil;
 import org.junit.jupiter.api.*;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.PostConstruct;
-import java.util.Date;
 import java.util.Optional;
 
 @SpringBootTest
@@ -61,7 +59,7 @@ public class AddressRepositoryTest {
 
         AddressEntity directionEntity = new AddressEntity("");
         //llenar todos los campos menos el email
-        directionEntity.setName("Nuevo");
+        directionEntity.setAddress("Nuevo");
 
 
         //guardar el usuario y devolver (saveAndFlush)
@@ -104,16 +102,16 @@ public class AddressRepositoryTest {
         log.info("DIRECCION ORIGINAL: {}",directionEntity);
 
         //guardo el rol original
-        String originalRol = directionEntity.getName();
+        String originalRol = directionEntity.getAddress();
 
         //modifico el rol
-        directionEntity.setName("MODIFICADO "+AppUtil.currentDate());
+        directionEntity.setAddress("MODIFICADO "+AppUtil.currentDate());
         //guardo los cambios
         directionEntity = addressRepository.saveAndFlush(directionEntity);
 
         //si el rol que tengo es igual al original
         //es por que no se ha modificado
-        if(directionEntity.getName().equals(originalRol)){
+        if(directionEntity.getAddress().equals(originalRol)){
             log.info("No se pudo modificar el campo");
             Assertions.fail();//detiene la ejecucion, lanza una excepcion
         }
@@ -134,7 +132,7 @@ public class AddressRepositoryTest {
 
         AddressEntity addressEntity1 = new AddressEntity();
         //llenar todos los campos menos el email
-        addressEntity1.setName("A borrar");
+        addressEntity1.setAddress("A borrar");
 
 
         //guardar el usuario y devolver (saveAndFlush) para borrarlo

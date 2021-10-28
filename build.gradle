@@ -13,6 +13,10 @@ repositories {
 }
 
 dependencies {
+
+	//mapeo de DTO a clases model
+	implementation 'org.modelmapper:modelmapper:2.3.8'
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'

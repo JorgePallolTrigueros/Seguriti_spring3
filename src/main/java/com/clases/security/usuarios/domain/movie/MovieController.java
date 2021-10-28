@@ -1,6 +1,7 @@
-package com.clases.security.usuarios.domain.galeria;
-
-import com.clases.security.usuarios.domain.shared.dto.GaleriaDto;
+package com.clases.security.usuarios.domain.movie;
+import com.clases.security.usuarios.domain.shared.dto.MovieDto;
+import com.clases.security.usuarios.domain.shared.dto.UserDto;
+import com.clases.security.usuarios.domain.user.UserService;
 import com.clases.security.usuarios.util.AppUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,15 +16,13 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @Controller
-//@RequestMapping("v1/user")
-public class GaleriaController {
-
-
+//@RequestMapping("v1/movie")
+public class MovieController {
     private final Logger log = LoggerFactory.getLogger(getClass());
-    private final GaleriaService galeriaService;
+    private final MovieService movieService;
 
-    public GaleriaController(GaleriaService galeriaService) {
-        this.galeriaService = galeriaService;
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
     }
 
     /**
@@ -35,7 +34,7 @@ public class GaleriaController {
     @GetMapping("/")
     public String homePage(Model model) {
         log.info(AppUtil.getMethodWithClass());
-        model.addAttribute("galerias",galeriaService.findAllGalerias());
+        model.addAttribute("movies",movieService.findAllMovies());
         return "index";
     }
 
@@ -45,10 +44,10 @@ public class GaleriaController {
      * @param model
      * @return
      */
-    @GetMapping("/galerias/{id}/view")
-    public String viewGaleria(@PathVariable Long id, Model model) {
+    @GetMapping("/movies/{id}/view")
+    public String viewMovie(@PathVariable Long id, Model model) {
         log.info(AppUtil.getMethodWithClass());
-        return galeriaService.viewGaleria(id,model);
+        return movieService.viewMovie(id,model);
     }
 
 
@@ -58,10 +57,10 @@ public class GaleriaController {
      * @param model
      * @return
      */
-    @GetMapping("/galerias/{id}/edit")
-    public String viewGaleriaEdit(@PathVariable Long id, Model model) {
+    @GetMapping("/movies/{id}/edit")
+    public String viewMovieEdit(@PathVariable Long id, Model model) {
         log.info(AppUtil.getMethodWithClass());
-        return galeriaService.viewGaleriaEdit(id,model);
+        return movieService.viewMovieEdit(id,model);
     }
 
     /**
@@ -69,11 +68,9 @@ public class GaleriaController {
      * @param model
      * @return
      */
-    @PostMapping("/galerias/edit")
-    public String editGaleria(Model model, @ModelAttribute("galeria") GaleriaDto galeriaDto) {
+    @PostMapping("/movies/edit")
+    public String editMovie(Model model, @ModelAttribute("movie") MovieDto movieDto) {
         log.info(AppUtil.getMethodWithClass());
-        log.info("GALERIA DTO: {}",galeriaDto);
-        return galeriaService.editGaleria(model,galeriaDto);
-    }
-
-}
+        log.info("USER DTO: {}",movieDto);
+        return movieService.editMovie(model,movieDto);
+    }  }

@@ -12,12 +12,23 @@ public class AddressEntity implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @Column(length =50, name="nombre")
-    private String name;
+    @Column(length =250, name="address")
+    private String address;
 
     @Column(name="id_user")
     private Long idUser;
 
+    /** constructor */
+
+    public AddressEntity() {
+        //constructor vacio
+    }
+
+    public AddressEntity(Long id) {
+        this.id = id;
+    }
+
+    /** getter Y setters **/
     public Long getId() {
         return id;
     }
@@ -26,29 +37,27 @@ public class AddressEntity implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getAddress() {
+        return address;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public AddressEntity(String name) {
-        this.name = name;
+    public AddressEntity(String address) {
+        this.address = address;
     }
 
-    public AddressEntity() {
+    public Long getIdUser() {
+        return idUser;
     }
 
-    @Override
-    public String toString() {
-        return "DireccionEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 
+    /** metodos generados **/
     @Override
     public int hashCode() {
         int hash = 0;
@@ -68,7 +77,12 @@ public class AddressEntity implements Serializable {
         return true;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "AddressEntity{" +
+                "id=" + id +
+                ", address='" + address + '\'' +
+                ", idUser=" + idUser +
+                '}';
+    }
 }

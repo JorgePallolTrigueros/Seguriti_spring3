@@ -7,14 +7,16 @@ public class ActorDto {
     private Long id;
     private String name;
     private String imagen;
-    private SerieDto idserie;
+    private MovieDto idmovie;
     private String description;
 
-    public ActorDto(Long id, String name, String imagen, SerieDto idserie, String description) {
+
+
+    public ActorDto(Long id, String name, String imagen, MovieDto idmovie, String description) {
         this.id = id;
         this.name = name;
         this.imagen = imagen;
-        this.idserie = idserie;
+        this.idmovie = idmovie;
         this.description = description;
     }
 
@@ -46,12 +48,12 @@ public class ActorDto {
         this.imagen = imagen;
     }
 
-    public SerieDto getIdserie() {
-        return idserie;
+    public MovieDto getIdmovie() {
+        return idmovie;
     }
 
-    public void setIdserie(SerieDto idserie) {
-        this.idserie = idserie;
+    public void setIdmovie(MovieDto idmovie) {
+        this.idmovie = idmovie;
     }
 
     public String getDescription() {
@@ -69,7 +71,7 @@ public class ActorDto {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", imagen='" + imagen + '\'' +
-                ", idserie=" + idserie +
+                ", idmovie=" + idmovie +
                 ", description='" + description + '\'' +
                 '}';
     }

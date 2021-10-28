@@ -1,35 +1,31 @@
 package com.clases.security.usuarios.domain.shared.dto;
 
+
 import java.util.Date;
 
-public class SerieDto {
+public class MovieDto{
+        private Long id;
+        private String name;
+        private String active;
+        private String genero;
+        private Date estreno;
+        private String description;
+        private String imagen;
 
-    private Long id;
-    private String name;
-    private String active;
-    private String genero;
-    private Date estreno;
-    private String description;
-    private String imagen;
 
 
-    public SerieDto(long i, String s, String s1, String s2) {
-    }
-
-    public SerieDto(Long id, String name, String active, String genero, Date estreno, String description, String imagen) {
+    public MovieDto(Long id, String name, String active, String genero, Date estreno, String description, String imagen) {
         this.id = id;
         this.name = name;
         this.active = active;
         this.genero = genero;
         this.estreno = estreno;
-        this.imagen = imagen;
         this.description = description;
+        this.imagen = imagen;
     }
+    public MovieDto() {
 
-    public SerieDto(SerieDto serieDto) {
     }
-
-
     public Long getId() {
         return id;
     }
@@ -50,20 +46,8 @@ public class SerieDto {
         return active;
     }
 
-    public void setAsctive(String active) {
-        this.active = active;
-    }
-
     public void setActive(String active) {
         this.active = active;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
     }
 
     public String getGenero() {
@@ -90,16 +74,24 @@ public class SerieDto {
         this.description = description;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     @Override
     public String toString() {
-        return "SerieDto{" +
+        return "MovieDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", imagen='" + imagen + '\'' +
                 ", active='" + active + '\'' +
                 ", genero='" + genero + '\'' +
                 ", estreno=" + estreno +
                 ", description='" + description + '\'' +
+                ", imagen='" + imagen + '\'' +
                 '}';
     }
 }

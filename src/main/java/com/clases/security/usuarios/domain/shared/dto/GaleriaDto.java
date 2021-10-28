@@ -3,7 +3,16 @@ package com.clases.security.usuarios.domain.shared.dto;
 public class GaleriaDto {
     private Long id;
     private String imagen;
-    private SerieDto idserie;
+    private MovieDto idmovie;
+
+    public GaleriaDto(Long id, String imagen, MovieDto idmovie) {
+        this.id = id;
+        this.imagen = imagen;
+        this.idmovie = idmovie;
+    }
+
+    public GaleriaDto() {
+    }
 
     public Long getId() {
         return id;
@@ -21,21 +30,12 @@ public class GaleriaDto {
         this.imagen = imagen;
     }
 
-    public SerieDto getIdserie() {
-        return idserie;
+    public MovieDto getIdmovie() {
+        return idmovie;
     }
 
-    public void setIdserie(SerieDto idserie) {
-        this.idserie = idserie;
-    }
-
-    public GaleriaDto(Long id, String imagen, SerieDto idserie) {
-        this.id = id;
-        this.imagen = imagen;
-        this.idserie = idserie;
-    }
-
-    public GaleriaDto() {
+    public void setIdmovie(MovieDto idmovie) {
+        this.idmovie = idmovie;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class GaleriaDto {
         return "GaleriaDto{" +
                 "id=" + id +
                 ", imagen='" + imagen + '\'' +
-                ", idserie=" + idserie +
+                ", idmovie=" + idmovie +
                 '}';
     }
 }

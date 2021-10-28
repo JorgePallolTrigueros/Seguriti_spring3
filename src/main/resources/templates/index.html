@@ -31,29 +31,29 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="userEntity:${userEntities}">
+                            <tr th:each="user:${users}">
 
                                 <!-- texto  -->
                                 <td>
                                     <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
-                                    <a href="#" class="userEntity-link"><span th:text="${userEntity.getName()}"></span></a>
-                                    <span class="userEntity-subhead" th:text="${userEntity.getRol()}"></span>
+                                    <a href="#" class="userEntity-link"><span th:text="${user.getName()}"></span></a>
+                                    <span class="userEntity-subhead" th:text="${user.getRol()}"></span>
                                 </td>
                                 <td>2013/08/12</td>
                                 <td class="text-center">
-                                    <span class="label label-success" th:text="${userEntity.getStatus()}"></span>
+                                    <span class="label label-success" th:text="${user.getStatus()}"></span>
                                 </td>
                                 <td>
-                                    <a href="#"><span th:text="${userEntity.getEmail()}"/></a>
+                                    <a href="#"><span th:text="${user.getEmail()}"/></a>
                                 </td>
                                 <td style="width: 20%;">
-                                    <a href="#" class="table-link  text-warning">
+                                    <a th:href="@{'/users/' + ${user.getId()}  + '/view'}" class="table-link  text-warning">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
                                             </span>
                                     </a>
-                                    <a href="#" class="table-link  text-info">
+                                    <a th:href="@{'/users/' + ${user.getId()}  + '/edit'}" class="table-link  text-info">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>

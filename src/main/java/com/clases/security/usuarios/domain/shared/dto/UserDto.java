@@ -12,6 +12,8 @@ public class UserDto {
     private String email;
     private String imagen;
 
+
+
     public UserDto() {
         //constructor vacio
     }
