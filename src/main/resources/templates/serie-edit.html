@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -17,53 +18,102 @@
 </head>
 
 <body>
-    <header class="p-sm-5 p-4">
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-auto text-center text-sm-right"><img src="assets/img/logo.svg" data-article-id="1234"></div>
-            <div class="col-auto text-center text-sm-left align-self-center mt-3 mt-sm-0">
-                <h1>Los Usuarios de:</h1>
-                <p class="lead">Sandman</p>
-            </div>
+<header class="p-sm-5 p-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-auto text-center text-sm-right"><img src="assets/img/logo.svg" data-article-id="1234">
         </div>
-    </header>
-    <div class="container bg-white border rounded border-white shadow-sm main">
-        <nav class="navbar navbar-light navbar-expand-md">
-            <div class="container-fluid">
-                <div><a class="navbar-brand d-none" href="#"> </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="navbar-nav main-nav">
-
-                        <li class="nav-item"><a class="nav-link-2" href="#">Lista de Peliculas </a></li>
-                        <li class="nav-item"><a class="nav-link-2" href="#">Lista de Usuarios </a></li>
-                        <li class="nav-item"><a class="nav-link-2" href="#">Contacto Protegido </a></li>
-                        <li class="nav-item"><a class="nav-link-2" href="#">Quienes Somos Protegido </a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <section class="content">
-            <ol></ol>
-        </section>
-        <section class="content">
-            <figure class="figure"></figure>
-            <figure class="figure"></figure>
-            <figure class="figure"></figure>
-        </section>
-        <div class="rf-register-form">
-            <form class="rg-form">
-                <h2 style="color: var(--blue);margin-right: 40px;"><strong>Registro de Proyecto</strong></h2>
-                <div class="rf-input-container"><i class="fa fa-star fa fa-userEntity rf-icon"></i><input class="form-control rf-input-field" type="text" placeholder="Name"><i class="fa fa-star fa fa-userEntity rf-icon"></i><input class="form-control rf-input-field" type="text" placeholder="Name"></div>
-                <div class="rf-input-container"><i class="fa fa-star fa fa-envelope rf-icon"></i><input class="form-control rf-input-field" type="text" placeholder="Username"><i class="icon ion-android-alarm-clock fa fa-envelope rf-icon"></i><input class="form-control rf-input-field" type="text" placeholder="Username"></div>
-                <div class="rf-input-container"></div><button class="btn btn-primary rf-btn" type="button">Register</button>
-            </form>
+        <div class="col-auto text-center text-sm-left align-self-center mt-3 mt-sm-0">
+            <h1>Los Usuarios de:</h1>
+            <p class="lead">Sandman</p>
         </div>
-        <section class="content">
-            <figure class="figure"></figure>
-        </section>
-        <section class="content"></section>
     </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</header>
+<div class="container bg-white border rounded border-white shadow-sm main">
+    <nav class="navbar navbar-light navbar-expand-md">
+        <div class="container-fluid">
+            <div><a class="navbar-brand d-none" href="#"> </a>
+                <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                        class="navbar-toggler-icon"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav main-nav">
+
+                    <li class="nav-item"><a class="nav-link-2" href="#">Lista de Peliculas </a></li>
+                    <li class="nav-item"><a class="nav-link-2" href="#">Lista de Usuarios </a></li>
+                    <li class="nav-item"><a class="nav-link-2" href="#">Contacto Protegido </a></li>
+                    <li class="nav-item"><a class="nav-link-2" href="#">Quienes Somos Protegido </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="content">
+        <ol></ol>
+    </section>
+    <section class="content">
+        <figure class="figure"></figure>
+        <figure class="figure"></figure>
+        <figure class="figure"></figure>
+    </section>
+    <div class="rf-register-form">
+
+        <h1>Vista de novelas <span th:text="${movie.id}"></span></h1>
+
+
+
+
+
+
+
+
+
+        <form th:action="@{/movies/edit}" th:object="${movie}" method="POST"  class="rg-form">
+
+            <input type="hidden" th:field="*{id}">
+
+            <h2 style="color: var(--blue);margin-right: 40px;"><strong>Edicion de Pelicula</strong></h2>
+
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" th:field="*{name}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Rol</label>
+                <textarea class="form-control" id="description" th:field="*{description}"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                <input type="text" class="form-control" id="genre" th:field="*{genre}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                <input type="text" class="form-control" id="active" th:field="*{active}">
+            </div>
+
+
+            <button type="submit" class="btn btn-primary rf-btn" >Guardar</button>
+        </form>
+
+
+
+
+
+
+
+
+
+    </div>
+    <section class="content">
+        <figure class="figure"></figure>
+    </section>
+    <section class="content"></section>
+</div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

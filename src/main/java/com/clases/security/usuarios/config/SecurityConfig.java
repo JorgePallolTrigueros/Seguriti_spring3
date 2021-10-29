@@ -43,6 +43,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {//se establece
         http.authorizeRequests()//autoriza las peticiones
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 
+
+
+                .antMatchers("/resources/static/assets/**")
+                .permitAll()
+
+
+
+
                 .antMatchers("/login*")//hace que se mueva a este prefijo de login, spring security crea esta pagina
                 .permitAll()//permite el acceso a todos a la pagina de anterior (login)
                 .antMatchers("/no-protegida*")

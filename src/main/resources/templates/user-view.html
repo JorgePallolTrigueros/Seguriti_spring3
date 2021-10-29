@@ -19,66 +19,97 @@
 </head>
 
 <body>
-    <header class="p-sm-5 p-4">
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-auto text-center text-sm-right"><img src="assets/img/logo.svg" data-article-id="1234"></div>
-            <div class="col-auto text-center text-sm-left align-self-center mt-3 mt-sm-0">
-                <h1>Los Usuarios de:</h1>
-                <p class="lead">Sandman</p>
+<header class="p-sm-5 p-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-auto text-center text-sm-right"><img src="assets/img/logo.svg" data-article-id="1234"></div>
+        <div class="col-auto text-center text-sm-left align-self-center mt-3 mt-sm-0">
+            <h1>Los Usuarios de:</h1>
+            <p class="lead">Sandman</p>
+        </div>
+    </div>
+</header>
+<div class="container bg-white border rounded border-white shadow-sm main">
+    <nav class="navbar navbar-light navbar-expand-md">
+        <div class="container-fluid">
+            <div><a class="navbar-brand d-none" href="#"> </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav main-nav">
+
+                    <li class="nav-item"><a class="nav-link-2" href="#">Lista de Peliculas </a></li>
+                    <li class="nav-item"><a class="nav-link-2" href="#">Lista de Usuarios </a></li>
+                    <li class="nav-item"><a class="nav-link-2" href="#">Contacto Protegido </a></li>
+                    <li class="nav-item"><a class="nav-link-2" href="#">Quienes Somos Protegido </a></li>
+                </ul>
             </div>
         </div>
-    </header>
-    <div class="container bg-white border rounded border-white shadow-sm main">
-        <nav class="navbar navbar-light navbar-expand-md">
-            <div class="container-fluid">
-                <div><a class="navbar-brand d-none" href="#"> </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="navbar-nav main-nav">
+    </nav>
+    <blockquote class="blockquote">
+        <p><strong>Nombre del Empleado:</strong></p>
+    </blockquote><img>
 
-                        <li class="nav-item"><a class="nav-link-2" href="#">Lista de Peliculas </a></li>
-                        <li class="nav-item"><a class="nav-link-2" href="#">Lista de Usuarios </a></li>
-                        <li class="nav-item"><a class="nav-link-2" href="#">Contacto Protegido </a></li>
-                        <li class="nav-item"><a class="nav-link-2" href="#">Quienes Somos Protegido </a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <blockquote class="blockquote">
-            <p><strong>Nombre del Empleado:</strong></p>
-        </blockquote><img>
-        <figure class="figure">
-            <figcaption class="figure-caption">Datos Personales de la lista</figcaption>
-        </figure>
-        <section class="content">
-            <ol></ol>
-        </section>
-        <section class="content">
-            <figure class="figure"></figure>
-            <figure class="figure"></figure>
-            <figure class="figure"></figure>
-        </section>
-        <blockquote class="blockquote">
-            <p><strong>Direccion </strong></p>
 
-            <span class="label label-success" th:text="${user.getId()}"></span>
-            <span class="label label-success" th:text="${user.getName()}"></span>
-        </blockquote>
-        <figure class="figure">
-            <figcaption class="figure-caption">Datos Personales de la lista</figcaption>
-        </figure>
-        <blockquote class="blockquote">
-            <p><strong>Proyectos</strong></p>
-        </blockquote>
-        <figure class="figure">
-            <figcaption class="figure-caption">Datos Personales de la lista</figcaption>
-        </figure>
-        <section class="content">
-            <figure class="figure"></figure>
-        </section>
-        <section class="content"></section>
-    </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <figure class="figure">
+        <figcaption class="figure-caption">Datos Personales de la lista</figcaption>
+    </figure>
+
+
+    <section class="content">
+        <ol></ol>
+    </section>
+
+
+
+    <section class="content">
+        <figure class="figure"></figure>
+        <figure class="figure"></figure>
+        <figure class="figure"></figure>
+    </section>
+
+
+
+
+    <blockquote class="blockquote">
+        <p><strong>Usuario</strong></p>
+
+        <span class="label label-success" th:text="${user.getId()}"></span>
+        <span class="label label-success" th:text="${user.getName()}"></span>
+    </blockquote>
+
+
+    <figure class="figure">
+        <figcaption class="figure-caption">
+            Direccion:
+        </figcaption>
+    </figure>
+
+
+    <figure class="figure">
+        <figcaption class="figure-caption">
+            Peliculas:
+        </figcaption>
+    </figure>
+
+
+    <section class="content">
+        <figure class="figure"></figure>
+    </section>
+
+
+    <section class="content"></section>
+
+
+</div>
+
+
+
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+
+
+
 </body>
 
 </html>
