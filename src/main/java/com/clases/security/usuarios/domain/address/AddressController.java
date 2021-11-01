@@ -30,11 +30,11 @@ public class AddressController {
      * @param model
      * @return
      */
-    @GetMapping("/")
-    public String homePage(Model model) {
+    @GetMapping("/adressindex")
+    public String addressPage(Model model) {
         log.info(AppUtil.getMethodWithClass());
         model.addAttribute("addresss",addressService.findAllAddresss());
-        return "index";
+        return "address-list";
     }
 
     /**

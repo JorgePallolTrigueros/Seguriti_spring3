@@ -32,11 +32,11 @@ public class GaleriaController {
      * @param model
      * @return
      */
-    @GetMapping("/")
-    public String homePage(Model model) {
+    @GetMapping("/galeriaindex")
+    public String GaleriaPage(Model model) {
         log.info(AppUtil.getMethodWithClass());
         model.addAttribute("galerias",galeriaService.findAllGalerias());
-        return "index";
+        return "galeria-list";
     }
 
     /**

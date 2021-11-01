@@ -31,11 +31,11 @@ public class MovieController {
      * @param model
      * @return
      */
-    @GetMapping("/")
-    public String homePage(Model model) {
+    @GetMapping("/movieindex")
+    public String moviePage(Model model) {
         log.info(AppUtil.getMethodWithClass());
         model.addAttribute("movies",movieService.findAllMovies());
-        return "index";
+        return "movie-list";
     }
 
     /**

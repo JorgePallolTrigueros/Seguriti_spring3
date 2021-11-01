@@ -26,11 +26,11 @@ public class ActorController {
      * @param model
      * @return
      */
-    @GetMapping("/")
-    public String homePage(Model model) {
+    @GetMapping("/actorindex")
+    public String actorPage(Model model) {
         log.info(AppUtil.getMethodWithClass());
         model.addAttribute("actors",actorService.findAllActors());
-        return "index";
+        return "actor-list";
     }
 
     /**
