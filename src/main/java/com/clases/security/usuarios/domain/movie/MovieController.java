@@ -1,6 +1,6 @@
 package com.clases.security.usuarios.domain.movie;
 import com.clases.security.usuarios.domain.shared.dto.MovieDto;
-import com.clases.security.usuarios.domain.shared.dto.UserDto;
+import com.clases.security.usuarios.domain.movie.MovieService;
 import com.clases.security.usuarios.domain.user.UserService;
 import com.clases.security.usuarios.util.AppUtil;
 import org.slf4j.Logger;
@@ -71,6 +71,6 @@ public class MovieController {
     @PostMapping("/movies/edit")
     public String editMovie(Model model, @ModelAttribute("movie") MovieDto movieDto) {
         log.info(AppUtil.getMethodWithClass());
-        log.info("USER DTO: {}",movieDto);
+        log.info("MOVIE DTO: {}",movieDto);
         return movieService.editMovie(model,movieDto);
     }  }
