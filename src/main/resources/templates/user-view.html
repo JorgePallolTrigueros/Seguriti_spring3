@@ -7,21 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>a1</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.min.css}" href="../static/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alatsi">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amita">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
-    <link rel="stylesheet" href="assets/css/Navigation-Menu.css">
-    <link rel="stylesheet" href="assets/css/Register-form.css">
+    <link rel="stylesheet" th:href="@{/assets/fonts/font-awesome.min.css}"   href="../static/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/assets/fonts/ionicons.min.css" href="../static/assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" th:href="@{/assets/css/styles.css}"  href="../assets/css/styles.css">
+    <link rel="stylesheet" th:href="@{/assets/css/Login-Form-Clean.css}" href="../static/assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" th:href="@{/assets/css/Navigation-Menu.css}" href="../static/assets/css/Navigation-Menu.css">
+    <link rel="stylesheet" th:href="@{/assets/css/Register-form.css}" href="../static/assets/css/Register-form.css">
 </head>
 
 <body>
 <header class="p-sm-5 p-4">
     <div class="row justify-content-center">
-        <div class="col-12 col-sm-auto text-center text-sm-right"><img src="assets/img/logo.svg" data-article-id="1234"></div>
+        <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234"></div>
         <div class="col-auto text-center text-sm-left align-self-center mt-3 mt-sm-0">
             <h1>Los Usuarios de:</h1>
             <p class="lead">Sandman</p>
@@ -35,10 +35,20 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav main-nav">
 
-                    <li class="nav-item"><a class="nav-link-2" href="#">Lista de Peliculas </a></li>
-                    <li class="nav-item"><a class="nav-link-2" href="#">Lista de Usuarios </a></li>
-                    <li class="nav-item"><a class="nav-link-2" href="#">Contacto Protegido </a></li>
-                    <li class="nav-item"><a class="nav-link-2" href="#">Quienes Somos Protegido </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/contacto}" >Contacto </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos Protegido </a></li>
+
+                    <!--/*/
+                       Aqui seria el menu si el usuario no estuviera logeado
+                       <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Login </a></li>
+                       <li class="nav-item"><a class="nav-link-2" th:href="@{/newuser}" >Register </a></li>
+
+                       Aqui seria el menu si el usuario == Administrador
+                        Solo se añade borrar y recoger correo
+                       <li class="nav-item"><a class="nav-link-2" th:href="@{/correoindex}" >Lista de Correo </a></li>
+                     /*/-->
                 </ul>
             </div>
         </div>
@@ -54,17 +64,10 @@
     </figure>
 
 
-    <section class="content">
-        <ol></ol>
-    </section>
 
 
 
-    <section class="content">
-        <figure class="figure"></figure>
-        <figure class="figure"></figure>
-        <figure class="figure"></figure>
-    </section>
+
 
 
 
@@ -80,6 +83,11 @@
     <figure class="figure">
         <figcaption class="figure-caption">
             Direccion:
+
+            <!--/*/
+La Direccion de usuario relacion 1 a 1
+Debe haber un boton que solo se puede ver por el logeado y solo en su pertfil
+ /*/-->
         </figcaption>
     </figure>
 
@@ -87,13 +95,50 @@
     <figure class="figure">
         <figcaption class="figure-caption">
             Peliculas:
+
+
+
+
+            <table class="table userEntity-list">
+                <thead>
+                <tr>
+                    <th><span>Usuario</span></th>
+                    <th><span>Creación</span></th>
+                    <th class="text-center"><span>Estado</span></th>
+                    <th><span>Email</span></th>
+                    <th>&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="movie:${movies}">
+
+                    <!-- texto  -->
+                    <td>
+                        <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
+                        <a href="#" class="userEntity-link">
+                            <span th:text="${movie.getName()}"></span>
+                            <!--/*/    Valoracion     /*/-->
+                        </a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+
+
+
+
+
+
+
+
+
+
         </figcaption>
     </figure>
 
 
-    <section class="content">
-        <figure class="figure"></figure>
-    </section>
+
 
 
     <section class="content"></section>

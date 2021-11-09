@@ -21,8 +21,7 @@
 <body>
 <header class="p-sm-5 p-4">
     <div class="row justify-content-center">
-        <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234">
-        </div>
+        <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234"></div>
         <div class="col-auto text-center text-sm-left align-self-center mt-3 mt-sm-0">
             <h1>Los Usuarios de:</h1>
             <p class="lead">Sandman</p>
@@ -32,10 +31,7 @@
 <div class="container bg-white border rounded border-white shadow-sm main">
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid">
-            <div><a class="navbar-brand d-none" href="#"> </a>
-                <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
-                        class="navbar-toggler-icon"></span></button>
-            </div>
+            <div><a class="navbar-brand d-none" href="#"> </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav main-nav">
 
@@ -57,48 +53,49 @@
             </div>
         </div>
     </nav>
+    <blockquote class="blockquote">
+        <p><strong>Nombre del Empleado:</strong></p>
+    </blockquote><img>
+
+
+
+    <figure class="figure">
+        <figcaption class="figure-caption">Datos Personales de la lista</figcaption>
+    </figure>
 
 
     <section class="content">
         <ol></ol>
     </section>
+
+
+
     <section class="content">
         <figure class="figure"></figure>
         <figure class="figure"></figure>
         <figure class="figure"></figure>
     </section>
-    <div class="rf-register-form">
-
-        <h1>Vista de novelas <span th:text="${actor.id}"></span></h1>
 
 
 
 
+    <blockquote class="blockquote">
+        <p><strong>Usuario</strong></p>
+
+        <span class="label label-success" th:text="${user.getId()}"></span>
+        <span class="label label-success" th:text="${user.getName()}"></span>
+    </blockquote>
 
 
+    <figure class="figure">
+        <figcaption class="figure-caption">
+            Direccion:
+        </figcaption>
+    </figure>
 
 
-
-        <form th:action="@{/actors/edit}" th:object="${actor}" method="POST"  class="rg-form">
-
-            <input type="hidden" th:field="*{id}">
-
-            <h2 style="color: var(--blue);margin-right: 40px;"><strong>Edicion de el actor</strong></h2>
-
-            <div class="mb-3">
-                <label class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" th:field="*{name}">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Rol</label>
-                <textarea class="form-control" id="biography" th:field="*{biography}"></textarea>
-            </div>
-
-
-
-            <button type="submit" class="btn btn-primary rf-btn" >Guardar</button>
-        </form>
+    <figure class="figure">
+        <figcaption class="figure-caption">
 
 
 
@@ -108,14 +105,67 @@
 
 
 
-    </div>
+
+
+
+
+            Actores:
+
+
+            <table class="table userEntity-list">
+                <thead>
+                <tr>
+                    <th><span>Actor</span></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="actor:${actors}">
+
+                    <!-- texto  -->
+                    <td>
+                        <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
+                        <a href="#" class="userEntity-link">
+                            <span th:text="${actor.getName()}"></span>
+                        </a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+
+
+
+
+
+
+
+
+
+
+        </figcaption>
+    </figure>
+
+
     <section class="content">
         <figure class="figure"></figure>
     </section>
+
+
     <section class="content"></section>
+
+
 </div>
+
+
+
+
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+
+
+
 </body>
 
 </html>

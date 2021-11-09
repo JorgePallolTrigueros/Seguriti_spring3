@@ -2,25 +2,77 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+
     <meta charset="utf-8">
-    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
-    <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>Usuarios</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>a1</title>
+    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.min.css}" href="../static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alatsi">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amita">
+    <link rel="stylesheet" th:href="@{/assets/fonts/font-awesome.min.css}"   href="../static/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/assets/fonts/ionicons.min.css" href="../static/assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" th:href="@{/assets/css/styles.css}"  href="../assets/css/styles.css">
+    <link rel="stylesheet" th:href="@{/assets/css/Login-Form-Clean.css}" href="../static/assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" th:href="@{/assets/css/Navigation-Menu.css}" href="../static/assets/css/Navigation-Menu.css">
+    <link rel="stylesheet" th:href="@{/assets/css/Register-form.css}" href="../static/assets/css/Register-form.css">
 </head>
+
 <body>
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-<hr>
-<div class="container bootstrap snippets bootdey">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="main-box no-header clearfix">
-                <div class="main-box-body clearfix">
-                    <div class="table-responsive">
-                        <table class="table userEntity-list">
+<header class="p-sm-5 p-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234"></div>
+        <div class="col-auto text-center text-sm-left align-self-center mt-3 mt-sm-0">
+            <h1>Los Usuarios de:</h1>
+            <p class="lead">Sandman</p>
+        </div>
+    </div>
+</header>
+<div class="container bg-white border rounded border-white shadow-sm main">
+    <nav class="navbar navbar-light navbar-expand-md">
+        <div class="container-fluid">
+            <div><a class="navbar-brand d-none" href="#"> </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav main-nav">
+
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/contacto}" >Contacto </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos Protegido </a></li>
+
+                    <!--/*/
+                       Aqui seria el menu si el usuario no estuviera logeado
+                       <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Login </a></li>
+                       <li class="nav-item"><a class="nav-link-2" th:href="@{/newuser}" >Register </a></li>
+
+                       Aqui seria el menu si el usuario == Administrador
+                        Solo se añade borrar y recoger correo
+                       <li class="nav-item"><a class="nav-link-2" th:href="@{/correoindex}" >Lista de Correo </a></li>
+                     /*/-->
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="content">
+        <ol></ol>
+    </section>
+    <section class="content">
+        <figure class="figure"></figure>
+        <blockquote class="blockquote">
+            <p><strong>Este es el proyecto de la calase de Spring Security sobre los personajes de Sandman</strong></p>
+        </blockquote>
+        <figure class="figure">
+            <figcaption class="figure-caption">
+
+
+
+
+
+
+
+            <table class="table userEntity-list">
                             <thead>
                             <tr>
                                 <th><span>Usuario</span></th>
@@ -72,85 +124,31 @@
 
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </figcaption>
+        </figure>
+        <figure class="figure"></figure>
+    </section>
+    <section class="content">
+        <figure class="figure"></figure>
+    </section>
+    <section class="content"></section>
 </div>
-
-<style type="text/css">
-    body{
-        background:#eee;
-    }
-    .main-box.no-header {
-        padding-top: 20px;
-    }
-    .main-box {
-        background: #FFFFFF;
-        -webkit-box-shadow: 1px 1px 2px 0 #CCCCCC;
-        -moz-box-shadow: 1px 1px 2px 0 #CCCCCC;
-        -o-box-shadow: 1px 1px 2px 0 #CCCCCC;
-        -ms-box-shadow: 1px 1px 2px 0 #CCCCCC;
-        box-shadow: 1px 1px 2px 0 #CCCCCC;
-        margin-bottom: 16px;
-        -webikt-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-    }
-    .table a.table-link.danger {
-        color: #e74c3c;
-    }
-    .label {
-        border-radius: 3px;
-        font-size: 0.875em;
-        font-weight: 600;
-    }
-    .userEntity-list tbody td .userEntity-subhead {
-        font-size: 0.875em;
-        font-style: italic;
-    }
-    .userEntity-list tbody td .userEntity-link {
-        display: block;
-        font-size: 1.25em;
-        padding-top: 3px;
-        margin-left: 60px;
-    }
-    a {
-        color: #3498db;
-        outline: none!important;
-    }
-    .userEntity-list tbody td>img {
-        position: relative;
-        max-width: 50px;
-        float: left;
-        margin-right: 15px;
-    }
-
-    .table thead tr th {
-        text-transform: uppercase;
-        font-size: 0.875em;
-    }
-    .table thead tr th {
-        border-bottom: 2px solid #e7ebee;
-    }
-    .table tbody tr td:first-child {
-        font-size: 1.125em;
-        font-weight: 300;
-    }
-    .table tbody tr td {
-        font-size: 0.875em;
-        vertical-align: middle;
-        border-top: 1px solid #e7ebee;
-        padding: 12px 8px;
-    }
-    a:hover{
-        text-decoration:none;
-    }
-</style>
-
-<script type="text/javascript">
-
-</script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
+
 </html>

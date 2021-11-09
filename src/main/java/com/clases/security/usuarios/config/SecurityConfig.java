@@ -9,11 +9,38 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.Arrays;
 
 @Configuration       // anotacion de esta clase como de configuracion
 @EnableWebSecurity   // activo la seguridad web
-public class SecurityConfig extends WebSecurityConfigurerAdapter {//se establece el adaptador para la configuracion
+public class SecurityConfig  extends WebSecurityConfigurerAdapter {//se establece el adaptador para la configuracion
 
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("*");
+            }
+        };
+    }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("*"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
     //se configuran la autenticacion de los usuarios
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -28,28 +55,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {//se establece
                 .withUser("user").password(passwordEncoder().encode("user")).roles("USER");
     }
 
-
-
-
-
-
-
-
-
-
     //configura la seguridad, rutas y lo que esta permitido, y cuales seran las paginas autorizadas
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
+
         http.authorizeRequests()//autoriza las peticiones
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 
-
-
                 .antMatchers("/resources/static/assets/**")
                 .permitAll()
-
-
-
 
                 .antMatchers("/login*")//hace que se mueva a este prefijo de login, spring security crea esta pagina
                 .permitAll()//permite el acceso a todos a la pagina de anterior (login)
