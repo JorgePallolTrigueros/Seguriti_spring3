@@ -1,17 +1,17 @@
 package com.clases.security.usuarios.domain.shared.dto;
 
-public class GaleriaDto {
+public class GalleryDto {
     private Long id;
     private String imagen;
     private MovieDto idmovie;
 
-    public GaleriaDto(Long id, String imagen, MovieDto idmovie) {
+    public GalleryDto(Long id, String imagen, MovieDto idmovie) {
         this.id = id;
         this.imagen = imagen;
         this.idmovie = idmovie;
     }
 
-    public GaleriaDto() {
+    public GalleryDto() {
     }
 
     public Long getId() {

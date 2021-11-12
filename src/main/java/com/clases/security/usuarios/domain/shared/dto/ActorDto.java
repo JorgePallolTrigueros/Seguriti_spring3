@@ -11,6 +11,9 @@ public class ActorDto {
     private String description;
 
 
+    //TODO siempre constructor vacio
+    public ActorDto() {
+    }
 
     public ActorDto(Long id, String name, String imagen, MovieDto idmovie, String description) {
         this.id = id;
@@ -20,7 +23,7 @@ public class ActorDto {
         this.description = description;
     }
 
-    public ActorDto(GaleriaDto galeriaDto) {
+    public ActorDto(GalleryDto galleryDto) {
     }
 
 

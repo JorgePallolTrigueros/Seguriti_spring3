@@ -1,31 +1,44 @@
 package com.clases.security.usuarios.domain.shared.dto;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MovieDto{
-        private Long id;
-        private String name;
-        private String active;
-        private String genero;
-        private Date estreno;
-        private String description;
-        private String imagen;
+
+    private Long id;
+    private String name;
+    private String active;
+    private String genre;
+    private Date released;
+    private String description;
+    private String image;
 
 
+    /** relaciones entre tablas **/
+    private List<GalleryDto> pictures = new ArrayList<>();
 
-    public MovieDto(Long id, String name, String active, String genero, Date estreno, String description, String imagen) {
+    public MovieDto() {
+    }
+
+    public MovieDto(Long id) {
+        this.id = id;
+    }
+
+    public MovieDto(Long id, String name, String active, String genre, Date released, String description, String image, List<GalleryDto> pictures) {
         this.id = id;
         this.name = name;
         this.active = active;
-        this.genero = genero;
-        this.estreno = estreno;
+        this.genre = genre;
+        this.released = released;
         this.description = description;
-        this.imagen = imagen;
+        this.image = image;
+        this.pictures = pictures;
     }
-    public MovieDto() {
 
-    }
+
+    /** getter y setter **/
     public Long getId() {
         return id;
     }
@@ -50,20 +63,20 @@ public class MovieDto{
         this.active = active;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
-    public Date getEstreno() {
-        return estreno;
+    public Date getReleased() {
+        return released;
     }
 
-    public void setEstreno(Date estreno) {
-        this.estreno = estreno;
+    public void setReleased(Date released) {
+        this.released = released;
     }
 
     public String getDescription() {
@@ -74,13 +87,22 @@ public class MovieDto{
         this.description = description;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getImage() {
+        return image;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setImage(String image) {
+        this.image = image;
     }
+
+    public List<GalleryDto> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<GalleryDto> pictures) {
+        this.pictures = pictures;
+    }
+
 
     @Override
     public String toString() {
@@ -88,10 +110,11 @@ public class MovieDto{
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", active='" + active + '\'' +
-                ", genero='" + genero + '\'' +
-                ", estreno=" + estreno +
+                ", genre='" + genre + '\'' +
+                ", released=" + released +
                 ", description='" + description + '\'' +
-                ", imagen='" + imagen + '\'' +
+                ", image='" + image + '\'' +
+                ", pictures=" + pictures +
                 '}';
     }
 }

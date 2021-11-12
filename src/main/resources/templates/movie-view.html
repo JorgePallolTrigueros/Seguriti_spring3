@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alatsi">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amita">
     <link rel="stylesheet" th:href="@{/assets/fonts/font-awesome.min.css}"   href="../static/assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" th:href="@{/assets/fonts/ionicons.min.css" href="../static/assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" th:href="@{/assets/fonts/ionicons.min.css}" href="../static/assets/fonts/ionicons.min.css">
     <link rel="stylesheet" th:href="@{/assets/css/styles.css}"  href="../assets/css/styles.css">
     <link rel="stylesheet" th:href="@{/assets/css/Login-Form-Clean.css}" href="../static/assets/css/Login-Form-Clean.css">
     <link rel="stylesheet" th:href="@{/assets/css/Navigation-Menu.css}" href="../static/assets/css/Navigation-Menu.css">
@@ -40,7 +40,7 @@
                     <li class="nav-item"><a class="nav-link-2" th:href="@{/contacto}" >Contacto </a></li>
                     <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos Protegido </a></li>
 
-                    <!--/*/
+                    <!--
                        Aqui seria el menu si el usuario no estuviera logeado
                        <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Login </a></li>
                        <li class="nav-item"><a class="nav-link-2" th:href="@{/newuser}" >Register </a></li>
@@ -48,7 +48,7 @@
                        Aqui seria el menu si el usuario == Administrador
                         Solo se añade borrar y recoger correo
                        <li class="nav-item"><a class="nav-link-2" th:href="@{/correoindex}" >Lista de Correo </a></li>
-                     /*/-->
+                     -->
                 </ul>
             </div>
         </div>
@@ -82,8 +82,8 @@
     <blockquote class="blockquote">
         <p><strong>Usuario</strong></p>
 
-        <span class="label label-success" th:text="${user.getId()}"></span>
-        <span class="label label-success" th:text="${user.getName()}"></span>
+        <span class="label label-success" th:text="${movie.getId()}"></span>
+        <span class="label label-success" th:text="${movie.getName()}"></span>
     </blockquote>
 
 
@@ -98,16 +98,30 @@
         <figcaption class="figure-caption">
 
 
+            <!--
 
+            <table class="table userEntity-list">
+                <thead>
+                <tr>
+                    <th><span>Galeria</span></th>
 
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="galery:${galerys}">
 
+                    <td>
+                        <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
+                        <a href="#" class="userEntity-link">
+                            <span th:text="${actor.getName()}"></span>
+                        </a>
+                    </td>
 
+                </tr>
+                </tbody>
+            </table>
 
-
-
-
-
-
+-->
 
             Actores:
 
@@ -120,14 +134,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="actor:${actors}">
+                <tr th:each="movieActor:${movieActors}">
 
                     <!-- texto  -->
                     <td>
                         <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
                         <a href="#" class="userEntity-link">
-                            <span th:text="${actor.getName()}"></span>
+                            <span th:text="${movieActor.getCharacter()}"></span>
                         </a>
+                    </td>
+                    <td>
+                        <span th:text="${movieActor.getActor().getName()}"></span>
                     </td>
 
                 </tr>

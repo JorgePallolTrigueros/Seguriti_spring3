@@ -1,6 +1,6 @@
 package com.clases.security.usuarios.domain.galeria;
 
-import com.clases.security.usuarios.domain.shared.dto.GaleriaDto;
+import com.clases.security.usuarios.domain.shared.dto.GalleryDto;
 import com.clases.security.usuarios.util.AppUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,10 +70,10 @@ public class GaleriaController {
      * @return
      */
     @PostMapping("/galerias/edit")
-    public String editGaleria(Model model, @ModelAttribute("galeria") GaleriaDto galeriaDto) {
+    public String editGaleria(Model model, @ModelAttribute("galeria") GalleryDto galleryDto) {
         log.info(AppUtil.getMethodWithClass());
-        log.info("GALERIA DTO: {}",galeriaDto);
-        return galeriaService.editGaleria(model,galeriaDto);
+        log.info("GALERIA DTO: {}", galleryDto);
+        return galeriaService.editGaleria(model, galleryDto);
     }
 
 }

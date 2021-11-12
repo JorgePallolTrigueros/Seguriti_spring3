@@ -3,8 +3,11 @@ import com.clases.security.usuarios.dao.entity.MovieEntity;
 import com.clases.security.usuarios.dao.entity.MovieUserEntity;
 import com.clases.security.usuarios.dao.entity.UserEntity;
 import com.clases.security.usuarios.dao.repository.MovieUserRepository;
+import com.clases.security.usuarios.dao.repository.AddressRepository;
 import com.clases.security.usuarios.dao.repository.UserRepository;
+import com.clases.security.usuarios.domain.shared.dto.MovieUserDto;
 import com.clases.security.usuarios.domain.shared.dto.UserDto;
+import com.clases.security.usuarios.domain.shared.dto.AddressDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
@@ -22,10 +25,17 @@ public class UserService {
     private final MovieUserRepository movieUserRepository;
     private final UserRepository userRepository;
     private final ModelMapper mapper;
+    private final AddressRepository addressRepository;
 
-    public UserService(MovieUserRepository movieUserRepository, UserRepository userRepository, ModelMapper mapper) {
+
+    public UserService(AddressRepository addressRepository,
+                       MovieUserRepository movieUserRepository,
+                       UserRepository userRepository,
+                       ModelMapper mapper)
+    {
         this.movieUserRepository = movieUserRepository;
         this.userRepository = userRepository;
+        this.addressRepository = addressRepository;
         this.mapper = mapper;
     }
 
@@ -52,16 +62,20 @@ public class UserService {
         Optional<UserEntity> userEntityOptional = userRepository.findById(id);
 
         if(userEntityOptional.isPresent()){
-
-            List<MovieUserEntity> movieUserEntities = movieUserRepository.findAllByUserId(id);
-
             //TODO mapear a movies
-            List<MovieEntity> movies = movieUserEntities.stream().map(MovieUserEntity::getMovie).collect(Collectors.toList());
-
-
-            //si esta presente
+            List<MovieUserEntity> movieUserEntities = movieUserRepository.findAllByUserId(id);
+            List<MovieEntity> movies = movieUserEntities.stream().map(MovieUserEntity::getMovie).collect(Collectors.toList());//si esta presente
             model.addAttribute("user", mapper.map(userEntityOptional.get(), UserDto.class) );
-            model.addAttribute("movies",movies);//TODO falta DTO
+            model.addAttribute("movies",movies);
+            //TODO falta DTO
+            //MAPEAR LA DIRECCION
+            List<AddressDto> addressDtoList = addressRepository
+                    .findAllAddressByIdUser(id)
+                    .stream()
+                    .map(m -> mapper.map(m,AddressDto.class))
+                    .collect(Collectors.toList());
+            model.addAttribute("addressUsers", addressDtoList );
+
             return "user-view";
         }else{
             //si no esta presente
