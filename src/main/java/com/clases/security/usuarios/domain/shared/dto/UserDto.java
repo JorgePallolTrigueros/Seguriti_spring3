@@ -11,8 +11,7 @@ public class UserDto {
     private Date created;
     private String email;
     private String imagen;
-
-
+    private AddressDto address;
 
     public UserDto() {
         //constructor vacio
@@ -28,7 +27,12 @@ public class UserDto {
         this.imagen = imagen;
     }
 
-    public UserDto(long i, String s, String admin, String activo, Date date, String s1) {
+    public AddressDto getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressDto address) {
+        this.address = address;
     }
 
     public Long getId() {

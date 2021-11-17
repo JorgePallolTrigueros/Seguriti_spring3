@@ -39,8 +39,9 @@ public class UserEntity implements Serializable{
 
     /** relaciones entre tablas **/
 
-    @JoinColumn(name ="id_user")//de lado de la base de datos
-    @OneToOne
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private AddressEntity address;
 
 

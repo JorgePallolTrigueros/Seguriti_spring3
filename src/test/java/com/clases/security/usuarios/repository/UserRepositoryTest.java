@@ -19,7 +19,7 @@ import java.util.Optional;
 public class UserRepositoryTest {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
-    private static boolean initialized = false;
+    private static boolean initialized = true;
 
     @Autowired
     private UserRepository userrepository;

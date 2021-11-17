@@ -9,14 +9,25 @@ public class AddressEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
+    @Column(name = "user_id")
     private Long id;
 
-    @Column(length =250, name="address")
+    @Column(length =250, name="content")
     private String address;
 
-    @Column(name="id_user")
-    private Long idUser;
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 
     /** constructor */
 
@@ -49,13 +60,8 @@ public class AddressEntity implements Serializable {
         this.address = address;
     }
 
-    public Long getIdUser() {
-        return idUser;
-    }
 
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
-    }
+
 
     /** metodos generados **/
     @Override
@@ -82,7 +88,6 @@ public class AddressEntity implements Serializable {
         return "AddressEntity{" +
                 "id=" + id +
                 ", address='" + address + '\'' +
-                ", idUser=" + idUser +
                 '}';
     }
 }
