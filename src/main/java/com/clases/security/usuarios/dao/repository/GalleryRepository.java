@@ -12,6 +12,6 @@ import java.util.List;
 public interface GalleryRepository extends JpaRepository<GalleryEntity, Long> {
 
 
-    @Query(value = "SELECT g FROM GalleryEntity g WHERE g.movie = :idMovie")
+    @Query(value = "SELECT g FROM GalleryEntity g WHERE g.movie.id = :idMovie")
     List<GalleryEntity> findAllGalleryByIdMovie(Long idMovie);
 }

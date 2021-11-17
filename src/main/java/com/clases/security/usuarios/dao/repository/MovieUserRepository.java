@@ -19,10 +19,10 @@ public interface MovieUserRepository extends JpaRepository<MovieUserEntity, Movi
 
 
     @Query(value = "SELECT mu FROM MovieUserEntity mu WHERE mu.pk.idMovie = :idMovie")
-    List<MovieActorEntity> findAllMovieUserByIdMovie(Long idMovie);
+    List<MovieUserEntity> findAllMovieUserByIdMovie(Long idMovie);
 
     @Query(value = "SELECT mu FROM MovieUserEntity mu WHERE mu.pk.idUser = :idUser")
-    List<MovieActorEntity> findAllMovieUserByIdUser(Long idUser);
+    List<MovieUserEntity> findAllMovieUserByIdUser(Long idUser);
 
 
 

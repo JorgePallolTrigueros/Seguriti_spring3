@@ -92,7 +92,7 @@ public class MovieService {
                     .stream()//trabajamos con el flujo stream
                     .map(m -> mapper.map(m,MovieUserDto.class))
                     .collect(Collectors.toList());
-            model.addAttribute("movieUsers", galleryDtoList );
+            model.addAttribute("movieUsers", movieUserDtoList );
             //TODO falta DTO
 
 

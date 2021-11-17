@@ -26,6 +26,11 @@ public class GalleryEntity implements Serializable {
 
     }
 
+
+    public void setMovie(MovieEntity movie) {
+        this.movie = movie;
+    }
+
     public MovieEntity getMovie() {
         return movie;
     }

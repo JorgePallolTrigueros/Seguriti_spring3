@@ -9,8 +9,6 @@ import java.util.Date;
 
 public class MovieUserDto {
 
-    private UserEntity user;
-    private MovieEntity movie;
     private Integer valoration;
     private String critic;
     private Date viewDate;
@@ -19,21 +17,6 @@ public class MovieUserDto {
     public MovieUserDto() {
     }
 
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
-
-    public MovieEntity getMovie() {
-        return movie;
-    }
-
-    public void setMovie(MovieEntity movie) {
-        this.movie = movie;
-    }
 
     public Integer getValoration() {
         return valoration;
@@ -62,8 +45,6 @@ public class MovieUserDto {
     @Override
     public String toString() {
         return "MovieUserDto{" +
-                "user=" + user +
-                ", movie=" + movie +
                 ", valoration=" + valoration +
                 ", critic='" + critic + '\'' +
                 ", viewDate=" + viewDate +
