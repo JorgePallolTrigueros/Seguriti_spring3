@@ -83,7 +83,7 @@ public class MovieService {
             List<GalleryDto> galleryDtoList = galleryRepository
                     .findAllGalleryByIdMovie(id)//devolver lista de Galery ojo que es entity hay que convertila a dto
                     .stream()//trabajamos con el flujo stream
-                    .map(m -> mapper.map(m,GalleryDto.class))
+                    .map(g -> mapper.map(g,GalleryDto.class))
                     .collect(Collectors.toList());
             model.addAttribute("gallerys", galleryDtoList );
             //TODO como es una lista especifico con plural moveActorSSSSS

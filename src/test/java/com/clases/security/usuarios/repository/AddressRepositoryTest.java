@@ -35,6 +35,20 @@ public class AddressRepositoryTest {
         initialized = true;
     }
 
+
+    @Test
+    void Test_01_FindAddressByIdUser() {
+        //imprimir el nombre del metodo y la clase
+        log.info(AppUtil.getMethodWithClass());
+        long idUser = 2;
+        //mostrar cada usuario en la lista de findAll
+        addressRepository.findAllAddressByIdUser(idUser) .forEach(address -> log.info(address.toString()));
+        //si llego a este punto es por que ejecuto exitosamente el test
+        Assertions.assertTrue(true);
+    }
+
+
+
     /**
      * Metodo que realiza la consulta de los usuarios registrados en la base de datos
      * Si resulta exitoso completa la ejecucion sin problemas
