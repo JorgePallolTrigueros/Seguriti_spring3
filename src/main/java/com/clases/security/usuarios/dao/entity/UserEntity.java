@@ -19,6 +19,10 @@ public class UserEntity implements Serializable{
     @GeneratedValue
     private Long id;
 
+
+    @Column(name="enabled")
+    private Boolean enabled;
+
     @Column(length =50, name="username",unique = true)
     private String username;
 
@@ -40,7 +44,6 @@ public class UserEntity implements Serializable{
     @Column(length =5550, name="imagen")
     private String imagen;
 
-
     @Column(length =50, name="password")
     private String password;
 
@@ -59,6 +62,14 @@ public class UserEntity implements Serializable{
         this.name = name;
         this.rol = rol;
         this.status = status;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getPassword() {

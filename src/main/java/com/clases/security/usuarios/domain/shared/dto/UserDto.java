@@ -7,6 +7,7 @@ public class UserDto {
     private Long id;
     private String name;
     private String username;
+    private Boolean enabled;
     private String password;
     private String rol;
     private String status;
@@ -27,6 +28,14 @@ public class UserDto {
         this.created = created;
         this.email = email;
         this.imagen = imagen;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getUsername() {
