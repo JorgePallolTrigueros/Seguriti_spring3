@@ -35,9 +35,9 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav main-nav">
 
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/contacto}" >Contacto </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/contacto}" >Contacto </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
                     <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos Protegido </a></li>
 
                     <!--
@@ -54,76 +54,67 @@
         </div>
     </nav>
     <blockquote class="blockquote">
-        <p><strong>Nombre del Empleado:</strong></p>
+        <figcaption class="figure-caption">Datos De la pelicula:</figcaption>
+        <span class="label label-success" th:text="${movie.getId()}"></span>
+        <span class="label label-success" th:text="${movie.getName()}"></span>
+        <!--
+        <span class="label label-success" th:text="${movie.getPictures().size()}"></span>
+        -->
     </blockquote><img>
 
 
 
     <figure class="figure">
-        <figcaption class="figure-caption">Datos Personales de la lista</figcaption>
-    </figure>
-
-
-    <section class="content">
-        <ol></ol>
-    </section>
-
-
-
-    <section class="content">
-        <figure class="figure"></figure>
-        <figure class="figure"></figure>
-        <figure class="figure"></figure>
-    </section>
 
 
 
 
-    <blockquote class="blockquote">
-        <p><strong>Usuario</strong></p>
-
-        <span class="label label-success" th:text="${movie.getId()}"></span>
-        <span class="label label-success" th:text="${movie.getName()}"></span>
-    </blockquote>
 
 
-    <figure class="figure">
-        <figcaption class="figure-caption">
-            Direccion:
-        </figcaption>
-    </figure>
+
+
+
+
+
+
 
 
     <figure class="figure">
         <figcaption class="figure-caption">
 
 
-            <!--
+
+
 
             <table class="table userEntity-list">
                 <thead>
                 <tr>
                     <th><span>Galeria</span></th>
-
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="galery:${galerys}">
-
-                    <td>
-                        <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
-                        <a href="#" class="userEntity-link">
-                            <span th:text="${actor.getName()}"></span>
-                        </a>
-                    </td>
-
+                <tr th:each="picture:${movie.getPictures()}">
+                    <td th:utext="${picture.getUrl()}"></td>
                 </tr>
                 </tbody>
             </table>
 
--->
 
-            Actores:
+            <!--
+            <tr th:each="capitulo: ${historia.incidentes}">
+                <th th:utext="${capitulo.orden}" scope="row">1</th>
+                <td th:utext="${capitulo.descripcion}"></td>
+                <td th:utext="${capitulo.nombre}"></td>
+                <td>
+                    <a  th:href="@{/incidentes/{id}/view(id=${capitulo.id})}">Saber Mas</a>
+                    <a  th:href="@{/incidentes/{id}/edit(id=${capitulo.id})}">Editar</a>
+                    <a  th:href="@{/incidentes/{id}/delete(id=${capitulo.id})}">Borrar</a></td>
+
+            </tr>
+
+            -->
+
+
 
 
             <table class="table userEntity-list">
@@ -152,6 +143,35 @@
             </table>
 
 
+            <table class="table userEntity-list">
+                <thead>
+                <tr>
+                    <th><span>Valoraciones</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="movieUser:${movieUsers}">
+
+                    <td>
+                        <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
+                        <a th:href="@{'/users/' + ${movieUser.getUser().getId()}  + '/view'}" class="userEntity-link">
+                            <span th:text="${movieUser.getUser().getName()}"></span>
+                        </a>
+                    </td>
+                    <td>
+                        Valoracion:
+                        <span th:text="${movieUser.getValoration()}"></span>
+                    </td>
+                    <td>
+                        Critica:
+                        <span th:text="${movieUser.getCritic()}"></span>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+
+
 
 
 
@@ -164,12 +184,8 @@
     </figure>
 
 
-    <section class="content">
-        <figure class="figure"></figure>
-    </section>
 
-
-    <section class="content"></section>
+    </figure>
 
 
 </div>

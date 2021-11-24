@@ -6,6 +6,8 @@ public class UserDto {
 
     private Long id;
     private String name;
+    private String username;
+    private String password;
     private String rol;
     private String status;
     private Date created;
@@ -25,6 +27,22 @@ public class UserDto {
         this.created = created;
         this.email = email;
         this.imagen = imagen;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public AddressDto getAddress() {

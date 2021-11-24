@@ -19,6 +19,9 @@ public class UserEntity implements Serializable{
     @GeneratedValue
     private Long id;
 
+    @Column(length =50, name="username",unique = true)
+    private String username;
+
     @Column(length =50, name="name")
     private String name;
 
@@ -37,6 +40,10 @@ public class UserEntity implements Serializable{
     @Column(length =5550, name="imagen")
     private String imagen;
 
+
+    @Column(length =50, name="password")
+    private String password;
+
     /** relaciones entre tablas **/
 
 
@@ -52,6 +59,22 @@ public class UserEntity implements Serializable{
         this.name = name;
         this.rol = rol;
         this.status = status;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public AddressEntity getAddress() {

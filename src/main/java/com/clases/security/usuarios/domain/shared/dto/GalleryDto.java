@@ -3,10 +3,8 @@ package com.clases.security.usuarios.domain.shared.dto;
 public class GalleryDto {
 
     private Long id;
-    private String imagen;
-    private MovieDto idmovie;
-
-
+    private String url;
+    private MovieDto movie;
 
     public GalleryDto() {
     }
@@ -19,28 +17,28 @@ public class GalleryDto {
         this.id = id;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getUrl() {
+        return url;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public MovieDto getIdmovie() {
-        return idmovie;
+    public MovieDto getMovie() {
+        return movie;
     }
 
-    public void setIdmovie(MovieDto idmovie) {
-        this.idmovie = idmovie;
+    public void setMovie(MovieDto movie) {
+        this.movie = movie;
     }
 
     @Override
     public String toString() {
-        return "GaleriaDto{" +
+        return "GalleryDto{" +
                 "id=" + id +
-                ", imagen='" + imagen + '\'' +
-                ", idmovie=" + idmovie +
+                ", url='" + url + '\'' +
+                ", movie=" + movie +
                 '}';
     }
 }

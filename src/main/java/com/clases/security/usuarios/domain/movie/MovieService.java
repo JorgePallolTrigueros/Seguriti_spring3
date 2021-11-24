@@ -78,27 +78,14 @@ public class MovieService {
                     .map(m -> mapper.map(m,MovieActorDto.class))
                     .collect(Collectors.toList());
             model.addAttribute("movieActors", movieActorDtoList );
-            //TODO como es una lista especifico con plural moveActorSSSSS
-            //TODO buscando la lista de galeria en esa pelicula
-            List<GalleryDto> galleryDtoList = galleryRepository
-                    .findAllGalleryByIdMovie(id)//devolver lista de Galery ojo que es entity hay que convertila a dto
-                    .stream()//trabajamos con el flujo stream
-                    .map(g -> mapper.map(g,GalleryDto.class))
-                    .collect(Collectors.toList());
-            model.addAttribute("gallerys", galleryDtoList );
-            //TODO como es una lista especifico con plural moveActorSSSSS
+
+            //TODO como es una lista especifico con plural movieUsers
             List<MovieUserDto> movieUserDtoList = movieUserRepository
                     .findAllMovieUserByIdMovie(id)//devolver lista de movieActor ojo que es entity hay que convertila a dto
                     .stream()//trabajamos con el flujo stream
                     .map(m -> mapper.map(m,MovieUserDto.class))
                     .collect(Collectors.toList());
             model.addAttribute("movieUsers", movieUserDtoList );
-            //TODO falta DTO
-
-
-
-
-
 
             return "movie-view";
         }else{

@@ -9,6 +9,7 @@ import java.util.Date;
 
 public class MovieUserDto {
 
+    private UserDto user;
     private Integer valoration;
     private String critic;
     private Date viewDate;
@@ -17,6 +18,13 @@ public class MovieUserDto {
     public MovieUserDto() {
     }
 
+    public UserDto getUser() {
+        return user;
+    }
+
+    public void setUser(UserDto user) {
+        this.user = user;
+    }
 
     public Integer getValoration() {
         return valoration;

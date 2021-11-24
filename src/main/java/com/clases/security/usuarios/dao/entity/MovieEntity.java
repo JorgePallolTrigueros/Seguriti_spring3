@@ -38,6 +38,10 @@ public class MovieEntity implements Serializable{
     @OneToMany
     private List<GalleryEntity> pictures = new ArrayList<>();
 
+
+
+
+
     //constructor
     public MovieEntity() {
 
@@ -52,6 +56,14 @@ public class MovieEntity implements Serializable{
         this.description = description;
         this.image = image;
     }
+
+
+
+
+
+
+
+
 
     //getters y setters
 
@@ -118,6 +130,13 @@ public class MovieEntity implements Serializable{
     public void setImage(String image) {
         this.image = image;
     }
+
+
+
+
+
+
+
 
     //metodos generados
 
