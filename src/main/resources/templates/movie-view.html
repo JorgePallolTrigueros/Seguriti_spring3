@@ -84,7 +84,14 @@
 
 
 
-
+            <!-- Crear Nueva Galeria
+          <a th:href="@{'/galerys/' + ${picture.getId()}  + '/delete'}" class="table-link  text-warning">
+                                  <span class="fa-stack">
+                                      <i class="fa fa-square fa-stack-2x"></i>
+                                      <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                  </span>
+          </a>
+          -->
 
             <table class="table userEntity-list">
                 <thead>
@@ -95,39 +102,36 @@
                 <tbody>
                 <tr th:each="picture:${movie.getPictures()}">
                     <td th:utext="${picture.getUrl()}"></td>
-                </tr>
-                </tbody>
-            </table>
 
-
-            <!--
-            <tr th:each="capitulo: ${historia.incidentes}">
-                <th th:utext="${capitulo.orden}" scope="row">1</th>
-                <td th:utext="${capitulo.descripcion}"></td>
-                <td th:utext="${capitulo.nombre}"></td>
-                <td>
-                    <a  th:href="@{/incidentes/{id}/view(id=${capitulo.id})}">Saber Mas</a>
-                    <a  th:href="@{/incidentes/{id}/edit(id=${capitulo.id})}">Editar</a>
-                    <a  th:href="@{/incidentes/{id}/delete(id=${capitulo.id})}">Borrar</a></td>
-
-            </tr>
-
-            -->
+                    <!-- <td>
+                 <a th:href="@{'/galerys/' + ${picture.getId()}  + '/delete'}" class="table-link  text-warning">
+                                         <span class="fa-stack">
+                                             <i class="fa fa-square fa-stack-2x"></i>
+                                             <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                         </span>
+                 </a></td>
+                 -->
+             </tr>
+             </tbody>
+         </table>
 
 
 
 
-            <table class="table userEntity-list">
-                <thead>
-                <tr>
-                    <th><span>Actor</span></th>
 
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="movieActor:${movieActors}">
 
-                    <!-- texto  -->
+
+         <table class="table userEntity-list">
+             <thead>
+             <tr>
+                 <th><span>Actor</span></th>
+
+             </tr>
+             </thead>
+             <tbody>
+             <tr th:each="movieActor:${movieActors}">
+
+                 <!-- texto  -->
                     <td>
                         <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
                         <a href="#" class="userEntity-link">
@@ -137,6 +141,26 @@
                     <td>
                         <span th:text="${movieActor.getActor().getName()}"></span>
                     </td>
+                    <td>
+
+                        <!--
+
+                    <a th:href="@{'/galerys/' + ${picture.getId()}  + '/delete'}" class="table-link  text-warning">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                            </span>
+                    </a></td>
+                    <a th:href="@{'/galerys/' + ${picture.getId()}  + '/delete'}" class="table-link  text-warning">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+                                            </span>
+                    </a></td>
+
+                    -->
+
+
 
                 </tr>
                 </tbody>
