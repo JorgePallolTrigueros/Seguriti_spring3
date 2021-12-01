@@ -1,6 +1,8 @@
 package com.clases.security.usuarios.dao.entity;
 
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.util.Date;
 
 import java.io.Serializable;
@@ -44,7 +46,7 @@ public class UserEntity implements Serializable{
     @Column(length =5550, name="imagen")
     private String imagen;
 
-    @Column(length =50, name="password")
+    @Column(length =250, name="password")
     private String password;
 
     /** relaciones entre tablas **/
@@ -76,8 +78,9 @@ public class UserEntity implements Serializable{
         return password;
     }
 
+    //se encripta la contrasena
     public void setPassword(String password) {
-        this.password = password;
+        this.password = (new BCryptPasswordEncoder()).encode(password);;
     }
 
     public String getUsername() {

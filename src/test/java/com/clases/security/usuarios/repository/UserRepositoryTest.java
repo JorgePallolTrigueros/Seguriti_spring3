@@ -33,8 +33,12 @@ public class UserRepositoryTest {
     public void initData(){
         if(initialized) return;
         log.info(AppUtil.getMethodWithClass());
-        for(int i=0;i<10;i++){
-            userrepository.save(new UserEntity("User"+i,"ADMIN","ACTIVO"));
+        for(int i=0;i<3;i++){
+            UserEntity user = new UserEntity("User"+i,"ADMIN","ACTIVO");
+            user.setUsername("user"+i);
+            user.setPassword("jorge");
+            user.setCreated(new Date());
+            userrepository.save(user);
         }
         initialized = true;
     }
