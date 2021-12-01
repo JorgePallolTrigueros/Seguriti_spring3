@@ -4,11 +4,15 @@ import com.clases.security.usuarios.domain.shared.dto.UserDto;
 import com.clases.security.usuarios.util.AppUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 /**
  *
@@ -35,16 +39,31 @@ public class UserController {
      * @return
      */
     @GetMapping("/")
-    public String homePage(HttpSession session, Model model) {
-        log.info("Session: "+session.getId()+" "+session.toString());
-        log.info(AppUtil.getMethodWithClass());
+    public String homePage( Model model) {
+        //TODO saber informacion del usuario autenticado
+        //TODO esta informacion solo es accesible en paginas con seguridad
+        //TODO por que en las paginas que no tienen seguridad no hay usuario logeado
+        final Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+        Optional rol = currentUser.getAuthorities().stream().findFirst();
+
+        log.info("user: "+currentUser.getName());
+        log.info("rol: "+rol.get().toString().toUpperCase());
+
         model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentRol", rol.get().toString());
+
         return "index";
     }
 
     @GetMapping("/prohibido")
     public String forbiden() {
         return "prohibido";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 
 

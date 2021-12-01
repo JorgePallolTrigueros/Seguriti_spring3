@@ -50,6 +50,10 @@
                        <li class="nav-item"><a class="nav-link-2" th:href="@{/correoindex}" >Lista de Correo </a></li>
                      -->
 
+                    Bienvenido
+                    <br>
+                    <span class="userEntity-subhead" th:text="${currentUser.getName()}"></span>
+
 
                 </ul>
             </div>
@@ -89,6 +93,7 @@
                                 <td>
                                     <img src="https://bootdey.com/img/Content/user_3.jpg" alt="">
                                     <a href="#" class="userEntity-link"><span th:text="${user.getName()}"></span></a>
+                                    <span class="userEntity-subhead" th:text="${user.getUsername()}"></span>
                                     <span class="userEntity-subhead" th:text="${user.getRol()}"></span>
                                 </td>
                                 <td>2013/08/12</td>
@@ -105,18 +110,33 @@
                                                 <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
                                             </span>
                                     </a>
-                                    <a th:href="@{'/users/' + ${user.getId()}  + '/edit'}" class="table-link  text-info">
+
+
+                                    <div th:if="${currentUser.getName()} eq ${user.getUsername()}">
+                                        <a th:href="@{'/users/' + ${user.getId()}  + '/edit'}" class="table-link  text-info">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                                             </span>
-                                    </a>
-                                    <a href="#" class="table-link danger">
+                                        </a>
+                                    </div>
+
+
+
+                                    <div th:switch="${currentRol}">
+                                        <div th:case="'ROLE_VISITOR'">
+
+                                        </div>
+                                        <div th:case="'ROLE_ADMIN'">
+                                            <a href="#" class="table-link danger">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                                             </span>
-                                    </a>
+                                            </a>
+                                        </div>
+                                    </div>
+
                                 </td>
 
                             </tr>

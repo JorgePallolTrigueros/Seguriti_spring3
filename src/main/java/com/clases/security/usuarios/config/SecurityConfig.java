@@ -87,7 +87,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {//se establec
                 .and()                          // y ademas debe mostrar lo siguiente
                 .exceptionHandling().accessDeniedPage("/prohibido")
                 .and()
-                .formLogin();                   //formulario de login
+                .formLogin().loginPage("/login");                   //formulario de login
         //automaticamente si el ingreso es correcto nos llevara a la pagina / que es la inicial, que esta en UserController->homePage
     }
 
