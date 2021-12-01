@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 /**
  *
  * Listar usuarios          v1/user/
@@ -33,11 +35,19 @@ public class UserController {
      * @return
      */
     @GetMapping("/")
-    public String homePage(Model model) {
+    public String homePage(HttpSession session, Model model) {
+        log.info("Session: "+session.getId()+" "+session.toString());
         log.info(AppUtil.getMethodWithClass());
         model.addAttribute("users", userService.findAllUsers());
         return "index";
     }
+
+    @GetMapping("/prohibido")
+    public String forbiden() {
+        return "prohibido";
+    }
+
+
 
     /**
      * SELECCIONAR LA ID DEL USUARIO Y VER EN OTRA PAGINA DETALLE

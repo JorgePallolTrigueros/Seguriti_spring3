@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -80,10 +81,12 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {//se establec
                 .permitAll()
                 .antMatchers("/users/new*")
                 .permitAll()
-
+                .antMatchers(HttpMethod.GET,"/movies/{id}/view").hasAnyRole("ADMIN")
                 .anyRequest()                   //todas las peticiones deben cumplir el siguiente criterio
                 .authenticated()                //que esten autenticadas
                 .and()                          // y ademas debe mostrar lo siguiente
+                .exceptionHandling().accessDeniedPage("/prohibido")
+                .and()
                 .formLogin();                   //formulario de login
         //automaticamente si el ingreso es correcto nos llevara a la pagina / que es la inicial, que esta en UserController->homePage
     }

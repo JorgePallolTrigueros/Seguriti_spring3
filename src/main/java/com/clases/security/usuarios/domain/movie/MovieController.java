@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 /**
  *
  * Listar usuarios          v1/user/
@@ -45,7 +47,7 @@ public class MovieController {
      * @return
      */
     @GetMapping("/movies/{id}/view")
-    public String viewMovie(@PathVariable Long id, Model model) {
+    public String viewMovie(HttpSession session, @PathVariable Long id, Model model) {
         log.info(AppUtil.getMethodWithClass());
         return movieService.viewMovie(id,model);
     }

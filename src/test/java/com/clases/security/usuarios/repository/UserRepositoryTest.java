@@ -24,7 +24,6 @@ public class UserRepositoryTest {
     @Autowired
     private UserRepository userrepository;
 
-
     /**
      * Se llama despues de crear la clase
      * Es el primer metodo despues del constructor en ser llamado
