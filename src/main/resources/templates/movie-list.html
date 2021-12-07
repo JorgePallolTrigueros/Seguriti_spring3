@@ -40,15 +40,15 @@
                         <li class="nav-item"><a class="nav-link-2" th:href="@{/contacto}" >Contacto </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
                         <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos Protegido </a></li>
 
-                        <!--
-                           Aqui seria el menu si el usuario no estuviera logeado
-                           <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Login </a></li>
-                           <li class="nav-item"><a class="nav-link-2" th:href="@{/newuser}" >Register </a></li>
 
-                           Aqui seria el menu si el usuario == Administrador
-                            Solo se añade borrar y recoger correo
-                           <li class="nav-item"><a class="nav-link-2" th:href="@{/correoindex}" >Lista de Correo </a></li>
-                       -->
+                        <div th:switch="${currentRol}">
+                            <div th:case="'ROLE_ADMIN'">
+
+                                <li class="nav-item"><a class="nav-link-2" th:href="@{/correoindex}" >Lista de Correo </a></li>
+                            </div>
+                        </div>
+
+
                     </ul>
                 </div>
             </div>
@@ -111,6 +111,11 @@
                                                 <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
                                             </span>
                                 </a>
+
+
+
+                                <div th:switch="${currentRol}">
+                                    <div th:case="'ROLE_ADMIN'">
                                 <a th:href="@{'/movies/' + ${movie.getId()}  + '/edit'}" class="table-link  text-info">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
@@ -123,6 +128,8 @@
                                                 <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
                                             </span>
                                 </a>
+                                    </div></div>
+
                             </td>
 
                         </tr>

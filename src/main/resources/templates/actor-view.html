@@ -44,15 +44,14 @@
                     <li class="nav-item"><a class="nav-link-2" th:href="@{/contacto}" >Contacto </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
                     <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos Protegido </a></li>
 
-                    <!--
-                       Aqui seria el menu si el usuario no estuviera logeado
-                       <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Login </a></li>
-                       <li class="nav-item"><a class="nav-link-2" th:href="@{/newuser}" >Register </a></li>
+                    <div th:switch="${currentRol}">
+                        <div th:case="'ROLE_ADMIN'">
 
-                       Aqui seria el menu si el usuario == Administrador
-                        Solo se añade borrar y recoger correo
-                       <li class="nav-item"><a class="nav-link-2" th:href="@{/correoindex}" >Lista de Correo </a></li>
-                 -->
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/correoindex}" >Lista de Correo </a></li>
+                        </div>
+                    </div>
+
+
                 </ul>
             </div>
         </div>

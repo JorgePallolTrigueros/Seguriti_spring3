@@ -30,20 +30,17 @@ public class MovieService {
     //TODO aqui se agrega la relacion de actores en esa pelicula
     private final MovieActorRepository movieActorRepository;
     private final MovieRepository movieRepository;
-    private final GalleryRepository galleryRepository;
     private final MovieUserRepository movieUserRepository;
     private final ModelMapper mapper;
 
     //TODO agregando el nuevo repository
     public MovieService(MovieUserRepository movieUserRepository,
                         MovieActorRepository movieActorRepository,
-                        GalleryRepository galleryRepository,
                         MovieRepository movieRepository,
                         ModelMapper mapper)
     {
         this.movieActorRepository = movieActorRepository;
         this.movieRepository = movieRepository;
-        this.galleryRepository =galleryRepository;
         this.movieUserRepository=movieUserRepository;
         this.mapper = mapper;
     }

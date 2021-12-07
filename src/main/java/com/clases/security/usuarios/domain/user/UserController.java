@@ -70,13 +70,20 @@ public class UserController {
 
     /**
      * SELECCIONAR LA ID DEL USUARIO Y VER EN OTRA PAGINA DETALLE
-     *
-     * @param id
-     * @param model
-     * @return
      */
     @GetMapping("/users/{id}/view")
     public String viewUser(@PathVariable Long id, Model model) {
+        //TODO ESTO VA SOBRE AUTENTIFICACION
+        final Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+        Optional rol = currentUser.getAuthorities().stream().findFirst();
+        log.info("user: "+currentUser.getName());
+        log.info("rol: "+rol.get().toString().toUpperCase());
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentRol", rol.get().toString());
+
+
+
         log.info(AppUtil.getMethodWithClass());
         return userService.viewUser(id, model);
     }
@@ -84,13 +91,17 @@ public class UserController {
 
     /**
      * SELECCIONAR LA ID DEL USUARIO Y VER EN OTRA PAGINA DETALLE
-     *
-     * @param id
-     * @param model
-     * @return
      */
     @GetMapping("/users/{id}/edit")
     public String viewUserEdit(@PathVariable Long id, Model model) {
+        //TODO ESTO VA SOBRE AUTENTIFICACION
+        final Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+        Optional rol = currentUser.getAuthorities().stream().findFirst();
+        log.info("user: "+currentUser.getName());
+        log.info("rol: "+rol.get().toString().toUpperCase());
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentRol", rol.get().toString());
         log.info(AppUtil.getMethodWithClass());
         return userService.viewUserEdit(id, model);
     }
@@ -103,37 +114,18 @@ public class UserController {
      */
     @PostMapping("/users/edit")
     public String editUser(Model model, @ModelAttribute("user") UserDto userDto) {
+        //TODO ESTO VA SOBRE AUTENTIFICACION
+        final Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+        Optional rol = currentUser.getAuthorities().stream().findFirst();
+        log.info("user: "+currentUser.getName());
+        log.info("rol: "+rol.get().toString().toUpperCase());
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentRol", rol.get().toString());
         log.info(AppUtil.getMethodWithClass());
         log.info("USER DTO: {}", userDto);
         return userService.editUser(model, userDto);
     }
 
 
-    @GetMapping("/correos")
-    public String newCorreo(Model model) {
-        return "correo";
-    }
-
-
-    @GetMapping("/users/new")
-    public String newUser() {
-        return "user-edit";
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @GetMapping("/sobrenosotros")
-    public String sobrenosotros() {
-        return "sobrenosotros";
-    }
 }

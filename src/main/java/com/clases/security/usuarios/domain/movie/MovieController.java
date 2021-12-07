@@ -5,11 +5,14 @@ import com.clases.security.usuarios.domain.user.UserService;
 import com.clases.security.usuarios.util.AppUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 /**
  *
@@ -22,9 +25,13 @@ import javax.servlet.http.HttpSession;
 public class MovieController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final MovieService movieService;
+    private final UserService userService;
 
-    public MovieController(MovieService movieService) {
+
+
+    public MovieController(MovieService movieService,UserService userService) {
         this.movieService = movieService;
+        this.userService = userService;
     }
 
     /**
@@ -35,6 +42,13 @@ public class MovieController {
      */
     @GetMapping("/movieindex")
     public String moviePage(Model model) {
+        final Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+        Optional rol = currentUser.getAuthorities().stream().findFirst();
+        log.info("user: "+currentUser.getName());
+        log.info("rol: "+rol.get().toString().toUpperCase());
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentRol", rol.get().toString());
         log.info(AppUtil.getMethodWithClass());
         model.addAttribute("movies",movieService.findAllMovies());
         return "movie-list";
@@ -48,6 +62,13 @@ public class MovieController {
      */
     @GetMapping("/movies/{id}/view")
     public String viewMovie(HttpSession session, @PathVariable Long id, Model model) {
+        final Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+        Optional rol = currentUser.getAuthorities().stream().findFirst();
+        log.info("user: "+currentUser.getName());
+        log.info("rol: "+rol.get().toString().toUpperCase());
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentRol", rol.get().toString());
         log.info(AppUtil.getMethodWithClass());
         return movieService.viewMovie(id,model);
     }
@@ -61,6 +82,13 @@ public class MovieController {
      */
     @GetMapping("/movies/{id}/edit")
     public String viewMovieEdit(@PathVariable Long id, Model model) {
+        final Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+        Optional rol = currentUser.getAuthorities().stream().findFirst();
+        log.info("user: "+currentUser.getName());
+        log.info("rol: "+rol.get().toString().toUpperCase());
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentRol", rol.get().toString());
         log.info(AppUtil.getMethodWithClass());
         return movieService.viewMovieEdit(id,model);
     }
@@ -72,6 +100,13 @@ public class MovieController {
      */
     @PostMapping("/movies/edit")
     public String editMovie(Model model, @ModelAttribute("movie") MovieDto movieDto) {
+        final Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+        Optional rol = currentUser.getAuthorities().stream().findFirst();
+        log.info("user: "+currentUser.getName());
+        log.info("rol: "+rol.get().toString().toUpperCase());
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentRol", rol.get().toString());
         log.info(AppUtil.getMethodWithClass());
         log.info("MOVIE DTO: {}",movieDto);
         return movieService.editMovie(model,movieDto);
