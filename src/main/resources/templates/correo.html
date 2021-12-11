@@ -35,15 +35,20 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav main-nav">
 
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/contacto}" >Contacto </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos Protegido </a></li>
-
                     <div th:switch="${currentRol}">
+                        <div th:case="'ROLE_VISITOR'">
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos</a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/correo}" >Enviar Correo </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/actorindex}" >Lista de Actores </a></li>
+                        </div>
                         <div th:case="'ROLE_ADMIN'">
-
-                            <li class="nav-item"><a class="nav-link-2" th:href="@{/correoindex}" >Lista de Correo </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos</a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/actorindex}" >Lista de Actores </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/correo-list}" >Lista de Correo </a></li>
                         </div>
                     </div>
 

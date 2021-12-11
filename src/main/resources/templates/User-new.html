@@ -39,17 +39,12 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav main-nav">
 
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/contacto}" >Contacto </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos Protegido </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex1}" >Lista de Peliculas </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/correo1}" >Contacto </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros1}" >Quienes Somos   </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/registro}" >Registro  </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/login}" >Login  </a></li>
 
-                    <div th:switch="${currentRol}">
-                        <div th:case="'ROLE_ADMIN'">
-
-                            <li class="nav-item"><a class="nav-link-2" th:href="@{/correoindex}" >Lista de Correo </a></li>
-                        </div>
-                    </div>
 
 
 
@@ -70,25 +65,19 @@
     </section>
     <div class="rf-register-form">
 
-        <h1>Vista de novelas <span th:text="${user.id}"></span></h1>
+        <h1>Registrarse</h1>
 
-        <form th:action="@{/users/edit}" th:object="${user}" method="POST"  class="rg-form">
-
-            <input type="hidden" th:field="*{id}">
+        <form th:action="@{/users/save}" th:object="${user}" method="POST"  class="rg-form">
 
             <h2 style="color: var(--blue);margin-right: 40px;"><strong>Insercion de Usuario</strong></h2>
 
             <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" th:field="*{username}">
+            </div>
+            <div class="mb-3">
                 <label class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="nombre" th:field="*{name}">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Rol</label>
-                <input type="text" class="form-control" id="rol" th:field="*{rol}">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Status</label>
-                <input type="text" class="form-control" id="status" th:field="*{status}">
             </div>
 
             <div class="mb-3">
@@ -96,29 +85,22 @@
                 <input type="text" class="form-control" id="password" th:field="*{password}">
             </div>
             <div class="mb-3">
-                <label class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" th:field="*{username}">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Enable</label>
-                <input type="text" class="form-control" id="enable" th:field="*{enable}">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Created</label>
-                <input type="text" class="form-control" id="created" th:field="*{created}">
-            </div>
-            <div class="mb-3">
                 <label class="form-label">Email</label>
                 <input type="text" class="form-control" id="email" th:field="*{email}">
             </div>
             <div class="mb-3">
-                <label class="form-label">Imagen</label>
-                <input type="text" class="form-control" id="imagen" th:field="*{imagen}">
+                <label class="form-label">Rol</label>
+                <input type="text" readonly class="form-control" id="rol" th:field="*{rol}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                <input type="text" readonly class="form-control" id="status" th:field="*{status}">
             </div>
 
-
-
+            <div class="mb-3">
+                <label class="form-label">Enable</label>
+                <input type="text" readonly class="form-control" id="enabled" th:field="*{enabled}">
+            </div>
 
             <button type="submit" class="btn btn-primary rf-btn" >Guardar</button>
         </form>

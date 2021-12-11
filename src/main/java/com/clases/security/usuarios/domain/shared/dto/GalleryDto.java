@@ -9,6 +9,16 @@ public class GalleryDto {
     public GalleryDto() {
     }
 
+    public GalleryDto(Long id, String url, MovieDto movie) {
+        this.id = id;
+        this.url = url;
+        this.movie = movie;
+    }
+
+    public GalleryDto( MovieDto movie) {
+        this.movie = movie;
+    }
+
     public Long getId() {
         return id;
     }

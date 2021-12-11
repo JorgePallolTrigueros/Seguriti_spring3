@@ -26,6 +26,15 @@ public class GalleryEntity implements Serializable {
 
     }
 
+    public GalleryEntity( MovieEntity movie) {
+        this.movie = movie;
+    }
+
+    public GalleryEntity(Long id, String url, MovieEntity movie) {
+        this.id = id;
+        this.url = url;
+        this.movie = movie;
+    }
 
     public void setMovie(MovieEntity movie) {
         this.movie = movie;

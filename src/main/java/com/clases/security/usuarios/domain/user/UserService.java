@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -117,6 +118,36 @@ public class UserService {
             return "index";
         }
     }
+
+    public String saveUser(Model model,UserDto userDto) {
+
+        log.info("user to save: "+userDto.toString());
+
+        Optional<UserEntity> userEntityOptional = userRepository.findByUsername(userDto.getUsername());
+
+        //si hay un usuario con el username debe lanzar un error
+        if(userEntityOptional.isPresent()){
+            model.addAttribute("error","Ya existe el usuario con el mismo username");
+            return "error";
+        }
+
+        userDto.setStatus("ACTIVO");
+        userDto.setCreated(new Date());
+        userDto.setRol("VISITOR");
+        userDto.setEnabled(true);
+
+
+        UserEntity userEntity = mapper.map(userDto,UserEntity.class);
+
+        userEntity = userRepository.saveAndFlush(userEntity);
+        //agregar al model attribute
+        model.addAttribute("user", mapper.map(userEntity, UserDto.class) );
+        //retornar la vista
+
+        return "login";
+
+    }
+
 
 
 

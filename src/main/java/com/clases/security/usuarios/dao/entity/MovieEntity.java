@@ -24,8 +24,7 @@ public class MovieEntity implements Serializable{
     private String active;
     @Column(length =50, name="genre")
     private String genre;
-    @Column(length =50, name="released")
-    private Date released;
+
     @Column(length =50, name="description")
     private String description;
     @Column(length =50, name="image")
@@ -52,7 +51,6 @@ public class MovieEntity implements Serializable{
         this.name = name;
         this.active = active;
         this.genre = genre;
-        this.released = released;
         this.description = description;
         this.image = image;
     }
@@ -105,14 +103,6 @@ public class MovieEntity implements Serializable{
 
     public void setGenre(String genre) {
         this.genre = genre;
-    }
-
-    public Date getReleased() {
-        return released;
-    }
-
-    public void setReleased(Date released) {
-        this.released = released;
     }
 
     public String getDescription() {
@@ -169,7 +159,6 @@ public class MovieEntity implements Serializable{
                 ", name='" + name + '\'' +
                 ", active='" + active + '\'' +
                 ", genero='" + genre + '\'' +
-                ", estreno=" + released +
                 ", description='" + description + '\'' +
                 ", imagen='" + image + '\'' +
                 ", pictures=" + pictures.size() +

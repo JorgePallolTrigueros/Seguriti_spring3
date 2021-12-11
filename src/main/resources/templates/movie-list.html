@@ -35,16 +35,20 @@
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav main-nav">
 
-                        <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="nav-item"><a class="nav-link-2" th:href="@{/contacto}" >Contacto </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos Protegido </a></li>
-
-
                         <div th:switch="${currentRol}">
+                            <div th:case="'ROLE_VISITOR'">
+                                <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
+                                <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
+                                <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos</a></li>
+                                <li class="nav-item"><a class="nav-link-2" th:href="@{/correo}" >Enviar Correo </a></li>
+                                <li class="nav-item"><a class="nav-link-2" th:href="@{/actorindex}" >Lista de Actores </a></li>
+                            </div>
                             <div th:case="'ROLE_ADMIN'">
-
-                                <li class="nav-item"><a class="nav-link-2" th:href="@{/correoindex}" >Lista de Correo </a></li>
+                                <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
+                                <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
+                                <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos</a></li>
+                                <li class="nav-item"><a class="nav-link-2" th:href="@{/actorindex}" >Lista de Actores </a></li>
+                                <li class="nav-item"><a class="nav-link-2" th:href="@{/correo-list}" >Lista de Correo </a></li>
                             </div>
                         </div>
 
@@ -65,17 +69,10 @@
                 <figcaption class="figure-caption">
 
 
-                    <!--
-
-                    Nueva Pelicula
-<a th:href="@{'/galerys/' + ${picture.getId()}  + '/delete'}" class="table-link  text-warning">
-                     <span class="fa-stack">
-                         <i class="fa fa-square fa-stack-2x"></i>
-                         <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
-                     </span>
-</a></td>
--->
-
+                    <div th:switch="${currentRol}">
+                    <div th:case="'ROLE_ADMIN'">
+                        <li class="nav-item"><a class="nav-link-2" th:href="@{/nuevoMovie}" >Lista de Correo </a></li>
+                    </div></div>
 
 
                     <table class="table userEntity-list">
@@ -102,7 +99,7 @@
                                 <span class="label label-success" th:text="${movie.getGenre()}"></span>
                             </td>
                             <td>
-                                <a href="#"><span th:text="${movie.getReleased()}"/></a>
+                                <a href="#"><span th:text="${movie.getName()}"/></a>
                             </td>
                             <td style="width: 20%;">
                                 <a th:href="@{'/movies/' + ${movie.getId()}  + '/view'}" class="table-link  text-warning">
@@ -116,13 +113,12 @@
 
                                 <div th:switch="${currentRol}">
                                     <div th:case="'ROLE_ADMIN'">
-                                <a th:href="@{'/movies/' + ${movie.getId()}  + '/edit'}" class="table-link  text-info">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                </a>
-                                <a href="#" class="table-link danger">
+
+
+
+
+
+                                <a th:href="@{'/movies/' + ${movie.getId()}+ '/borrar'}" class="table-link danger">
                                             <span class="fa-stack">
                                                 <i class="fa fa-square fa-stack-2x"></i>
                                                 <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>

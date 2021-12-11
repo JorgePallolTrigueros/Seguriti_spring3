@@ -24,7 +24,7 @@
             <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234"></div>
             <div class="col-auto text-center text-sm-left align-self-center mt-3 mt-sm-0">
                 <h1>Los Usuarios de:</h1>
-                <p class="lead">Series-DIA</p>
+                <p class="lead">Sandman</p>
             </div>
         </div>
     </header>
@@ -34,24 +34,12 @@
                 <div><a class="navbar-brand d-none" href="#"> </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav main-nav">
-                        <div th:switch="${currentRol}">
-                            <div th:case="'ROLE_VISITOR'">
-                                <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
-                                <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
-                                <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos</a></li>
-                                <li class="nav-item"><a class="nav-link-2" th:href="@{/correo}" >Enviar Correo </a></li>
-                                <li class="nav-item"><a class="nav-link-2" th:href="@{/actorindex}" >Lista de Actores </a></li>
-                            </div>
-                            <div th:case="'ROLE_ADMIN'">
-                                <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
-                                <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
-                                <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos</a></li>
-                                <li class="nav-item"><a class="nav-link-2" th:href="@{/actorindex}" >Lista de Actores </a></li>
-                                <li class="nav-item"><a class="nav-link-2" th:href="@{/correo-list}" >Lista de Correo </a></li>
-                            </div>
-                        </div>
 
-
+                        <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex1}" >Lista de Peliculas </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li class="nav-item"><a class="nav-link-2" th:href="@{/correo1}" >Contacto </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros1}" >Quienes Somos   </a></li>
+                        <li class="nav-item"><a class="nav-link-2" th:href="@{/registro}" >Registro  </a></li>
+                        <li class="nav-item"><a class="nav-link-2" th:href="@{/login}" >Login  </a></li>
 
 
                     </ul>
@@ -62,18 +50,64 @@
             <ol></ol>
         </section>
         <section class="content">
-            <figure class="figure">
-                <figcaption class="figure-caption">Clase de Spring Security</figcaption>
-            </figure>
+            <figure class="figure"></figure>
             <blockquote class="blockquote">
-                <p><strong>Este es el proyecto de la calase de Spring Security sobre Series Actuales</strong></p>
+                <p><strong>Este es el proyecto de la calase de Spring Security sobre los personajes de Sandman</strong></p>
             </blockquote>
-            <div class="dropdown"><button class="btn btn-primary btn-block dropdown-toggle shadow" aria-expanded="false" data-toggle="dropdown" type="button">Tareas&nbsp;</button>
-                <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-            </div>
             <figure class="figure">
-                <figcaption class="figure-caption">Despliega erl select para saber si quieres registrarte- Logearte o ver lo que hay</figcaption>
-                <figcaption class="figure-caption" style="font-size: 34px;font-family: Amita, cursive;">Que empiece Spring</figcaption>
+                <figcaption class="figure-caption">
+
+
+
+
+
+
+
+
+
+                    <div th:if="${!list.isEmpty()}">
+
+                    <table class="table table-dark table-striped mt-3">
+
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nodelo</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr th:each="movie: ${list}">
+                            <th th:utext="${movie.id}"></th>
+                            <th th:utext="${movie.getId()}"></th>
+
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+
+
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" th:each="page : ${pages}"><a
+                    class="page-link" th:href="@{|/moviepaginada?page=${page}|}"
+                    th:text="${page}"></a></li>
+        </ul>
+    </nav>
+
+                    </div>
+
+
+
+
+
+                </figcaption>
             </figure>
             <figure class="figure"></figure>
         </section>

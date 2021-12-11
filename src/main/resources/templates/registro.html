@@ -19,63 +19,68 @@
 </head>
 
 <body>
-    <header class="p-sm-5 p-4">
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234"></div>
-            <div class="col-auto text-center text-sm-left align-self-center mt-3 mt-sm-0">
-                <h1>Los Usuarios de:</h1>
-                <p class="lead">Series-DIA</p>
+<header class="p-sm-5 p-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234"></div>
+        <div class="col-auto text-center text-sm-left align-self-center mt-3 mt-sm-0">
+            <h1>Los Usuarios de:</h1>
+            <p class="lead">Sandman</p>
+        </div>
+    </div>
+</header>
+<div class="container bg-white border rounded border-white shadow-sm main">
+    <nav class="navbar navbar-light navbar-expand-md">
+        <div class="container-fluid">
+            <div><a class="navbar-brand d-none" href="#"> </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav main-nav">
+
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex1}" >Lista de Peliculas </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/correo1}" >Contacto </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros1}" >Quienes Somos   </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/registro}" >Registro  </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/login}" >Login  </a></li>
+
+
+                </ul>
             </div>
         </div>
-    </header>
-    <div class="container bg-white border rounded border-white shadow-sm main">
-        <nav class="navbar navbar-light navbar-expand-md">
-            <div class="container-fluid">
-                <div><a class="navbar-brand d-none" href="#"> </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="navbar-nav main-nav">
-                        <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="nav-item"><a class="nav-link-2" th:href="@{/contacto}" >Contacto </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos Protegido </a></li>
-
-
-                        <div th:switch="${currentRol}">
-                            <div th:case="'ROLE_ADMIN'">
-
-                                <li class="nav-item"><a class="nav-link-2" th:href="@{/correoindex}" >Lista de Correo </a></li>
-                            </div>
-                        </div>
+    </nav>
+    <section class="content">
+        <ol></ol>
+    </section>
+    <section class="content">
+        <figure class="figure"></figure>
+        <blockquote class="blockquote">
+            <p><strong>Este es el proyecto de la calase de Spring Security sobre los personajes de Sandman</strong></p>
+        </blockquote>
+        <figure class="figure">
+            <figcaption class="figure-caption">
 
 
 
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <section class="content">
-            <ol></ol>
-        </section>
-        <section class="content">
-            <figure class="figure"></figure>
-            <figure class="figure"></figure>
-            <figure class="figure"></figure>
-        </section>
-        <div class="rf-register-form">
+
+            <div class="rf-register-form">
             <form class="rg-form">
                 <h2 style="color: var(--blue);margin-right: 40px;"><strong>Registro de Usuario</strong></h2>
                 <div class="rf-input-container"><i class="fa fa-star fa fa-userEntity rf-icon"></i><input class="form-control rf-input-field" type="text" placeholder="Name"></div>
                 <div class="rf-input-container"><i class="fa fa-star fa fa-envelope rf-icon"></i><input class="form-control rf-input-field" type="text" placeholder="Username"></div>
                 <div class="rf-input-container"><i class="fa fa-star fa fa-key rf-icon"></i><input class="form-control rf-input-field" type="password" placeholder="Password"></div><button class="btn btn-primary rf-btn" type="button">Register</button>
             </form>
-        </div>
-        <section class="content">
-            <figure class="figure"></figure>
-        </section>
-        <section class="content"></section>
-    </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+
+
+            </figcaption>
+        </figure>
+        <figure class="figure"></figure>
+    </section>
+    <section class="content">
+        <figure class="figure"></figure>
+    </section>
+    <section class="content"></section>
+</div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

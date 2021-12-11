@@ -21,7 +21,8 @@
 <body>
 <header class="p-sm-5 p-4">
     <div class="row justify-content-center">
-        <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234"></div>
+        <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234">
+        </div>
         <div class="col-auto text-center text-sm-left align-self-center mt-3 mt-sm-0">
             <h1>Los Usuarios de:</h1>
             <p class="lead">Sandman</p>
@@ -31,7 +32,10 @@
 <div class="container bg-white border rounded border-white shadow-sm main">
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid">
-            <div><a class="navbar-brand d-none" href="#"> </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div>
+            <div><a class="navbar-brand d-none" href="#"> </a>
+                <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                        class="navbar-toggler-icon"></span></button>
+            </div>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav main-nav">
 
@@ -53,46 +57,49 @@
                     </div>
 
 
+
+
                 </ul>
             </div>
         </div>
     </nav>
-    <section class="content">
-        <ol></ol>
-    </section>
-    <section class="content">
-        <figure class="figure"></figure>
-        <blockquote class="blockquote">
-            <p><strong>Este es el proyecto de la calase de Spring Security sobre los personajes de Sandman</strong></p>
-        </blockquote>
-        <figure class="figure">
-            <figcaption class="figure-caption">
 
 
 
 
+    <div class="rf-register-form">
+
+        <h1>Registrarse</h1>
+
+        <form th:action="@{/movies/edit}" th:object="${movie}" method="POST"  class="rg-form">
+
+            <input type="hidden" th:field="*{id}">
+
+            <h2 style="color: var(--blue);margin-right: 40px;"><strong>Insercion de Movie</strong></h2>
+
+            <div class="mb-3">
+                <label class="form-label">Active</label>
+                <input type="text" class="form-control" id="active" th:field="*{active}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" th:field="*{name}">
+            </div>
 
 
+            <div class="mb-3">
+                <label class="form-label">Genre</label>
+                <input type="text" class="form-control" id="genre" th:field="*{genre}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <input type="text"  class="form-control" id="description" th:field="*{description}">
+            </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            </figcaption>
-        </figure>
-        <figure class="figure"></figure>
-    </section>
+            <button type="submit" class="btn btn-primary rf-btn" >Guardar</button>
+        </form>
+    </div>
     <section class="content">
         <figure class="figure"></figure>
     </section>

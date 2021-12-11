@@ -11,9 +11,11 @@ public class MovieDto{
     private String name;
     private String active;
     private String genre;
-    private Date released;
     private String description;
     private String image;
+
+
+
 
 
     /** relaciones entre tablas **/
@@ -26,12 +28,12 @@ public class MovieDto{
         this.id = id;
     }
 
-    public MovieDto(Long id, String name, String active, String genre, Date released, String description, String image, List<GalleryDto> pictures) {
+    public MovieDto(Long id, String name, String active, String genre,
+                    String description, String image, List<GalleryDto> pictures) {
         this.id = id;
         this.name = name;
         this.active = active;
         this.genre = genre;
-        this.released = released;
         this.description = description;
         this.image = image;
         this.pictures = pictures;
@@ -71,14 +73,6 @@ public class MovieDto{
         this.genre = genre;
     }
 
-    public Date getReleased() {
-        return released;
-    }
-
-    public void setReleased(Date released) {
-        this.released = released;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -111,7 +105,6 @@ public class MovieDto{
                 ", name='" + name + '\'' +
                 ", active='" + active + '\'' +
                 ", genre='" + genre + '\'' +
-                ", released=" + released +
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
                 ", pictures=" + pictures +

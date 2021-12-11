@@ -1,4 +1,4 @@
-
+<http pattern="/resources/**" security="none"/>
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -35,11 +35,13 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav main-nav">
 
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/contacto}" >Contacto </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos   </a></li>
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Registro  </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/pelis-movie}" >Lista de Peliculas </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/correo1}" >Contacto </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros1}" >Quienes Somos   </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/registro}" >Registro  </a></li>
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/login}" >Login  </a></li>
+
+                    <li class="nav-item"><a class="nav-link-2" th:href="@{/moviepaginada}" >pag  </a></li>
 
 
 
@@ -63,13 +65,21 @@
             <div th:if="${param.logout}" class="alert alert-success">
                 You have been logged out.
             </div>
+
+            <div class="form-actions">
             <label for="username">Username</label>
             <input type="text" id="username" name="username"/>
+            </div>
+
+            <div class="form-actions">
             <label for="password">Password</label>
             <input type="password" id="password" name="password"/>
+            </div>
+
             <div class="form-actions">
                 <button type="submit" class="btn">Log in</button>
             </div>
+
         </fieldset>
     </form>
 </div>  </blockquote>

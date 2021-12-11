@@ -2,6 +2,7 @@ package com.clases.security.usuarios.domain.actor;
 
 
 import com.clases.security.usuarios.domain.shared.dto.ActorDto;
+import com.clases.security.usuarios.domain.shared.dto.UserDto;
 import com.clases.security.usuarios.domain.user.UserService;
 import com.clases.security.usuarios.util.AppUtil;
 import org.slf4j.Logger;
@@ -67,6 +68,20 @@ public class ActorController {
         model.addAttribute("currentRol", rol.get().toString());
         log.info(AppUtil.getMethodWithClass());
         return actorService.viewActor(id,model);
+
+    }
+
+
+
+
+
+
+
+    @GetMapping("/nuevoActor")
+    public String nuevoActor(Model model)
+    {
+        model.addAttribute("actor",new ActorDto());
+        return "actor-new";
     }
 
 
@@ -91,6 +106,18 @@ public class ActorController {
         return actorService.viewActorEdit(id,model);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * SELECCIONAR LA ID DEL USUARIO Y MANDARLO A EDITAR (Visible para administrador y solo se puede editar uno su propio perfil)
      */
@@ -112,5 +139,13 @@ public class ActorController {
         log.info("GALERIA DTO: {}",actorDto);
         return actorService.editActor(model,actorDto);
     }
+
+
+    @PostMapping("/actors/save")
+    public String saveActor(Model model, @ModelAttribute("actor") ActorDto actorDto) {
+        log.info("saveActor "+actorDto.toString());
+        return actorService.saveActor(model, actorDto);
+    }
+
 
 }

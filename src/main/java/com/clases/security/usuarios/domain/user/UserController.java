@@ -34,9 +34,7 @@ public class UserController {
     /**
      * Devolver la lista de usuarios al modelAttribute
      * RUTA: /
-     *
-     * @param model
-     * @return
+
      */
     @GetMapping("/")
     public String homePage( Model model) {
@@ -106,6 +104,20 @@ public class UserController {
         return userService.viewUserEdit(id, model);
     }
 
+    @GetMapping("/users/{id}/borrar")
+    public String borrar(@PathVariable Long id, Model model) {
+        //TODO ESTO VA SOBRE AUTENTIFICACION
+        final Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+        Optional rol = currentUser.getAuthorities().stream().findFirst();
+        log.info("user: "+currentUser.getName());
+        log.info("rol: "+rol.get().toString().toUpperCase());
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentRol", rol.get().toString());
+        log.info(AppUtil.getMethodWithClass());
+        return userService.deleteUser(id, model);
+    }
+
     /**
      * SELECCIONAR LA ID DEL USUARIO Y MANDARLO A EDITAR (Visible para administrador y solo se puede editar uno su propio perfil)
      *
@@ -127,5 +139,11 @@ public class UserController {
         return userService.editUser(model, userDto);
     }
 
+
+    @PostMapping("/users/save")
+    public String saveUser(Model model, @ModelAttribute("user") UserDto userDto) {
+        log.info("saveUser "+userDto.toString());
+        return userService.saveUser(model, userDto);
+    }
 
 }

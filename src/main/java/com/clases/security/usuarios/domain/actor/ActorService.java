@@ -1,8 +1,10 @@
 package com.clases.security.usuarios.domain.actor;
 
+import com.clases.security.usuarios.dao.entity.UserEntity;
 import com.clases.security.usuarios.domain.shared.dto.ActorDto;
 import com.clases.security.usuarios.dao.entity.ActorEntity;
 import com.clases.security.usuarios.dao.repository.ActorRepository;
+import com.clases.security.usuarios.domain.shared.dto.UserDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
@@ -10,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -75,6 +78,33 @@ public class ActorService {
             return "index";
         }
     }
+
+    public String saveActor(Model model, ActorDto actorDto) {
+
+        log.info("actor to save: "+actorDto.toString());
+
+        Optional<ActorEntity> actorEntityOptional = actorRepository.findByActorname(actorDto.getName());
+
+        //si hay un usuario con el username debe lanzar un error
+        if(actorEntityOptional.isPresent()){
+            model.addAttribute("error","Ya existe el actor con el mismo nombre");
+            return "error";
+        }
+
+
+
+        ActorEntity actorEntity = mapper.map(actorDto,ActorEntity.class);
+
+        actorEntity = actorRepository.saveAndFlush(actorEntity);
+        //agregar al model attribute
+        model.addAttribute("actor", mapper.map(actorEntity, ActorDto.class) );
+        //retornar la vista
+
+        return "actor-list";
+
+    }
+
+
 
 
     public String editActor(Model model,ActorDto actorDto) {

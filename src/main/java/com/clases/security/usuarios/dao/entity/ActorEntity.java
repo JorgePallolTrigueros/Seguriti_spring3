@@ -19,7 +19,7 @@ public class ActorEntity implements Serializable {
     private String image;
 
     @Column(length =5660, name="biography")
-    private String biography;
+    private String description;
 
     public Long getId() {
         return id;
@@ -45,20 +45,19 @@ public class ActorEntity implements Serializable {
         this.image = image;
     }
 
-    public String getBiography() {
-        return biography;
+    public String getDescription() {
+        return description;
     }
 
-    public void setBiography(String biography) {
-        this.biography = biography;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-
-    public ActorEntity(String name, String image, String biography, String s) {
+    public ActorEntity(String name, String image, String description, String s) {
 
         this.name = name;
         this.image = image;
-        this.biography = biography;
+        this.description = description;
     }
 
 
@@ -72,7 +71,7 @@ public class ActorEntity implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", imagen='" + image + '\'' +
-                ", biography='" + biography + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 

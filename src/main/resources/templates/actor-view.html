@@ -21,8 +21,7 @@
 <body>
 <header class="p-sm-5 p-4">
     <div class="row justify-content-center">
-        <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234">
-        </div>
+        <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234"></div>
         <div class="col-auto text-center text-sm-left align-self-center mt-3 mt-sm-0">
             <h1>Los Usuarios de:</h1>
             <p class="lead">Sandman</p>
@@ -32,43 +31,44 @@
 <div class="container bg-white border rounded border-white shadow-sm main">
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid">
-            <div><a class="navbar-brand d-none" href="#"> </a>
-                <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
-                        class="navbar-toggler-icon"></span></button>
-            </div>
+            <div><a class="navbar-brand d-none" href="#"> </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav main-nav">
 
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/contacto}" >Contacto </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos Protegido </a></li>
-
                     <div th:switch="${currentRol}">
+                        <div th:case="'ROLE_VISITOR'">
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos</a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/correo}" >Enviar Correo </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/actorindex}" >Lista de Actores </a></li>
+                        </div>
                         <div th:case="'ROLE_ADMIN'">
-
-                            <li class="nav-item"><a class="nav-link-2" th:href="@{/correoindex}" >Lista de Correo </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos</a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/actorindex}" >Lista de Actores </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/correo-list}" >Lista de Correo </a></li>
                         </div>
                     </div>
+
+
+
 
 
                 </ul>
             </div>
         </div>
     </nav>
+    <blockquote class="blockquote">
+        <p><strong>Nombre del Empleado:</strong></p>
+    </blockquote><img>
 
 
-    <section class="content">
-        <ol></ol>
-    </section>
-    <section class="content">
-        <figure class="figure"></figure>
-        <figure class="figure"></figure>
-        <figure class="figure"></figure>
-    </section>
-    <div class="rf-register-form">
 
-        <h1>Vista de novelas <span th:text="${actor.id}"></span></h1>
+    <figure class="figure">
+        <figcaption class="figure-caption">Datos Personales de la lista</figcaption>
+    </figure>
 
 
 
@@ -78,26 +78,24 @@
 
 
 
-        <form th:action="@{/actors/edit}" th:object="${actor}" method="POST"  class="rg-form">
 
-            <input type="hidden" th:field="*{id}">
+    <blockquote class="blockquote">
+        <p><strong>Actor</strong></p>
 
-            <h2 style="color: var(--blue);margin-right: 40px;"><strong>Edicion de el actor</strong></h2>
-
-            <div class="mb-3">
-                <label class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" th:field="*{name}">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Rol</label>
-                <textarea class="form-control" id="biography" th:field="*{biography}"></textarea>
-            </div>
+        <span class="label label-success" th:text="${actor.getName()}"></span>
+        <span class="label label-success" th:text="${actor.getDescription()}"></span>
+    </blockquote>
 
 
 
-            <button type="submit" class="btn btn-primary rf-btn" >Guardar</button>
-        </form>
+
+
+    <figure class="figure">
+        <figcaption class="figure-caption">
+            Peliculas:
+
+
+PROXIMAMENTE
 
 
 
@@ -107,14 +105,29 @@
 
 
 
-    </div>
-    <section class="content">
-        <figure class="figure"></figure>
-    </section>
+
+
+        </figcaption>
+    </figure>
+
+
+
+
+
     <section class="content"></section>
+
+
 </div>
+
+
+
+
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+
+
+
 </body>
 
 </html>

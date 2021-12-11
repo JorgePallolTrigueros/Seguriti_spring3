@@ -1,4 +1,5 @@
 package com.clases.security.usuarios.domain.otros;
+import com.clases.security.usuarios.domain.shared.dto.UserDto;
 import com.clases.security.usuarios.domain.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,7 @@ public class OtrosController {
 
         private final Logger log = LoggerFactory.getLogger(getClass());
         private final OtrosService otrosService;
-    private final UserService userService;
+        private final UserService userService;
 
         public OtrosController( OtrosService otrosService, UserService userService) {
             this.otrosService= otrosService;
@@ -25,28 +26,38 @@ public class OtrosController {
 
 // Las paginas sin proteger
 
-    @GetMapping("/sobrenosotros")
-    public String sobrenosotros() {
-        return "sobrenosotros";
+    @GetMapping("/sobrenosotros1")
+    public String sobrenosotrosn() {
+        return "sobrenosotrosn";
     }
 
 
-    @GetMapping("/correo")
-    public String correo() {
-        return "correo";
+    @GetMapping("/correo-list")
+    public String correolist() {
+        return "correo-list";
     }
+
+
+
+
 
     @GetMapping("/registro")
-    public String registro() {
+    public String registro(Model model)
+    {
+        model.addAttribute("user",new UserDto());
         return "User-new";
     }
+
+
+
+
 
 
 // Las paginas protegidas
 
 
-    @GetMapping("/sobrenosotrosp")
-    public String sobrenosotrosp(Model model) {
+    @GetMapping("/sobrenosotros")
+    public String sobrenosotros(Model model) {
         //TODO saber informacion del usuario autenticado
         //TODO esta informacion solo es accesible en paginas con seguridad
         //TODO por que en las paginas que no tienen seguridad no hay usuario logeado
@@ -60,12 +71,12 @@ public class OtrosController {
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("currentRol", rol.get().toString());
 
-        return "sobrenosotrosp";
+        return "sobrenosotros";
     }
 
 
-    @GetMapping("/correop")
-    public String correop(Model model) {
+    @GetMapping("/correo")
+    public String correo(Model model) {
         //TODO saber informacion del usuario autenticado
         //TODO esta informacion solo es accesible en paginas con seguridad
         //TODO por que en las paginas que no tienen seguridad no hay usuario logeado
@@ -79,11 +90,17 @@ public class OtrosController {
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("currentRol", rol.get().toString());
 
-        return "correop";
+        return "correo";
     }
 
 
 
+    @GetMapping("/correo1")
+    public String correo1(Model model) {
+
+
+        return "correo1";
+    }
 
 
     }

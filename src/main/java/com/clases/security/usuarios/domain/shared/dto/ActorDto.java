@@ -10,11 +10,6 @@ public class ActorDto {
     private MovieDto idmovie;
     private String description;
 
-
-    //TODO siempre constructor vacio
-    public ActorDto() {
-    }
-
     public ActorDto(Long id, String name, String imagen, MovieDto idmovie, String description) {
         this.id = id;
         this.name = name;
@@ -23,8 +18,13 @@ public class ActorDto {
         this.description = description;
     }
 
-    public ActorDto(GalleryDto galleryDto) {
+    //TODO siempre constructor vacio
+    public ActorDto() {
     }
+
+
+
+
 
 
     public Long getId() {
@@ -43,6 +43,14 @@ public class ActorDto {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getImagen() {
         return imagen;
     }
@@ -59,13 +67,7 @@ public class ActorDto {
         this.idmovie = idmovie;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
 
     @Override

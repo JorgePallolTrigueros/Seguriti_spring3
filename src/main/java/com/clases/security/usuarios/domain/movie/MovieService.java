@@ -1,5 +1,6 @@
 package com.clases.security.usuarios.domain.movie;
 
+import com.clases.security.usuarios.domain.shared.dto.GalleryDto;
 import com.clases.security.usuarios.dao.entity.MovieActorEntity;
 import com.clases.security.usuarios.dao.entity.MovieEntity;
 import com.clases.security.usuarios.dao.entity.MovieUserEntity;
@@ -17,7 +18,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -137,5 +142,29 @@ public class MovieService {
             //si no esta presente
             return "index";
         }
+
     }
-}
+
+
+
+
+    public String saveMovie(Model model,MovieDto movieDto) {
+
+        log.info("movie to save: "+movieDto.toString());
+
+        MovieEntity movieEntity = mapper.map(movieDto,MovieEntity.class);
+
+
+
+        movieEntity= movieRepository.saveAndFlush(movieEntity);
+        //agregar al model attribute
+        model.addAttribute("movie", mapper.map(movieEntity, MovieDto.class) );
+        //retornar la vista
+
+        return "movie-list";
+
+
+
+    }
+
+    }

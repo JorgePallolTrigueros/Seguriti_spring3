@@ -21,7 +21,8 @@
 <body>
 <header class="p-sm-5 p-4">
   <div class="row justify-content-center">
-    <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234"></div>
+    <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234">
+    </div>
     <div class="col-auto text-center text-sm-left align-self-center mt-3 mt-sm-0">
       <h1>Los Usuarios de:</h1>
       <p class="lead">Sandman</p>
@@ -31,41 +32,66 @@
 <div class="container bg-white border rounded border-white shadow-sm main">
   <nav class="navbar navbar-light navbar-expand-md">
     <div class="container-fluid">
-      <div><a class="navbar-brand d-none" href="#"> </a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button></div>
+      <div><a class="navbar-brand d-none" href="#"> </a>
+        <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
+      </div>
       <div class="collapse navbar-collapse" id="navcol-1">
         <ul class="navbar-nav main-nav">
 
-          <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-          <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-          <li class="nav-item"><a class="nav-link-2" th:href="@{/contacto}" >Contacto </a></li>&nbsp;&nbsp;&nbsp;&nbsp;
-          <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos Protegido </a></li>
-
           <div th:switch="${currentRol}">
+            <div th:case="'ROLE_VISITOR'">
+              <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
+              <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
+              <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos</a></li>
+              <li class="nav-item"><a class="nav-link-2" th:href="@{/correo}" >Enviar Correo </a></li>
+              <li class="nav-item"><a class="nav-link-2" th:href="@{/actorindex}" >Lista de Actores </a></li>
+            </div>
             <div th:case="'ROLE_ADMIN'">
-
-              <li class="nav-item"><a class="nav-link-2" th:href="@{/correoindex}" >Lista de Correo </a></li>
+              <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
+              <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
+              <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos</a></li>
+              <li class="nav-item"><a class="nav-link-2" th:href="@{/actorindex}" >Lista de Actores </a></li>
+              <li class="nav-item"><a class="nav-link-2" th:href="@{/correo-list}" >Lista de Correo </a></li>
             </div>
           </div>
+
+
 
 
         </ul>
       </div>
     </div>
   </nav>
-  <section class="content">
-    <ol></ol>
-  </section>
-  <section class="content">
-    <figure class="figure"></figure>
-    <figure class="figure"></figure>
-    <figure class="figure"></figure>
-  </section>
+
+
+
+
   <div class="rf-register-form">
-    <form class="rg-form">
-      <h2 style="color: var(--blue);margin-right: 40px;"><strong>Registro de Direccion</strong></h2>
-      <div class="rf-input-container"><i class="fa fa-star fa fa-userEntity rf-icon"></i><input class="form-control rf-input-field" type="text" placeholder="Name"></div>
-      <div class="rf-input-container"><i class="fa fa-star fa fa-envelope rf-icon"></i><input class="form-control rf-input-field" type="text" placeholder="Username"></div>
-      <div class="rf-input-container"><i class="fa fa-star fa fa-key rf-icon"></i><input class="form-control rf-input-field" type="password" placeholder="Password"></div><button class="btn btn-primary rf-btn" type="button">Register</button>
+
+    <h1>Registrarse</h1>
+
+
+
+    <form th:action="@{/galery/save}" th:object="${gallery}" method="POST"  class="rg-form">
+
+
+
+      <h2 style="color: var(--blue);margin-right: 40px;"><strong>Insercion de Galeria</strong></h2>
+
+
+
+
+      <div class="mb-3">
+        <label class="form-label">Movie</label>
+        <input type="text" class="form-control" id="id_movie" th:field="*{id_movie}">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Url</label>
+        <input type="text"  class="form-control" id="url" th:field="*{url}">
+      </div>
+
+      <button type="submit" class="btn btn-primary rf-btn" >Guardar</button>
     </form>
   </div>
   <section class="content">

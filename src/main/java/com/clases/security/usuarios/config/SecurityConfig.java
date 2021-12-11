@@ -9,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -55,19 +56,25 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {//se establec
         auth.userDetailsService( authSecurityManager  ).passwordEncoder(passwordEncoder());
     }
 
+    private static final String[] AUTH_WHITELIST = {
+            // -- swagger ui
+            "/resources/static/**"
+    };
+
+
     //configura la seguridad, rutas y lo que esta permitido, y cuales seran las paginas autorizadas
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 
         http.authorizeRequests()//autoriza las peticiones
-                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-
-                .antMatchers("/resources/static/assets/**")
-                .permitAll()
-
+                .antMatchers("/assets/**").permitAll()
                 .antMatchers("/login*")//hace que se mueva a este prefijo de login, spring security crea esta pagina
                 .permitAll()//permite el acceso a todos a la pagina de anterior (login)
                 .antMatchers("/no-protegida*")
+                .permitAll()
+                .antMatchers("/error*")
+                .permitAll()
+                .antMatchers("/users/save*")
                 .permitAll()
                 .antMatchers("/no-protegida-correo*")
                 .permitAll()
@@ -77,17 +84,27 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {//se establec
                 .permitAll()
                 .antMatchers("/registro*")
                 .permitAll()
+
+                .antMatchers("/correo1*")
+                .permitAll()
+
+                .antMatchers("/pelis-movie*")
+                .permitAll()
+
+                .antMatchers("/sobrenosotros1")
+                .permitAll()
+
                 .antMatchers("/correosinproteger*")
                 .permitAll()
                 .antMatchers("/users/new*")
                 .permitAll()
-                .antMatchers(HttpMethod.GET,"/movies/{id}/view").hasAnyRole("ADMIN")
+                //.antMatchers(HttpMethod.GET,"/movies/{id}/view")//.hasAnyRole("ADMIN")
                 .anyRequest()                   //todas las peticiones deben cumplir el siguiente criterio
                 .authenticated()                //que esten autenticadas
                 .and()                          // y ademas debe mostrar lo siguiente
                 .exceptionHandling().accessDeniedPage("/prohibido")
                 .and()
-                .formLogin().loginPage("/login");                   //formulario de login
+                .formLogin().loginPage("/login").defaultSuccessUrl("/");                   //formulario de login
         //automaticamente si el ingreso es correcto nos llevara a la pagina / que es la inicial, que esta en UserController->homePage
     }
 

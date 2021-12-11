@@ -18,6 +18,10 @@ public class UserDto {
 
     public UserDto() {
         //constructor vacio
+        enabled = true;
+        created = new Date();
+        rol = "VISITOR";
+        status = "ACTIVO";
     }
 
     public UserDto(Long id, String name,  String imagen, String rol, String status, Date created, String email) {

@@ -19,53 +19,53 @@
 </head>
 
 <body>
-<header class="p-sm-7 p-6">
+<header class="p-sm-5 p-4">
     <div class="row justify-content-center">
-        <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234"></div>
+        <div class="col-12 col-sm-auto text-center text-sm-right"><img th:src="@{/assets/img/logo.svg}" data-article-id="1234">
+        </div>
         <div class="col-auto text-center text-sm-left align-self-center mt-3 mt-sm-0">
             <h1>Los Usuarios de:</h1>
             <p class="lead">Sandman</p>
         </div>
     </div>
 </header>
-
-
-
 <div class="container bg-white border rounded border-white shadow-sm main">
     <nav class="navbar navbar-light navbar-expand-md">
         <div class="container-fluid">
-            <div>
+            <div><a class="navbar-brand d-none" href="#"> </a>
+                <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                        class="navbar-toggler-icon"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav main-nav">
 
 
 
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div th:switch="${currentRol}">
+                        <div th:case="'ROLE_VISITOR'">
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos</a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/correo}" >Enviar Correo </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/actorindex}" >Lista de Actores </a></li>
+                        </div>
+                        <div th:case="'ROLE_ADMIN'">
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/movieindex}" >Lista de Peliculas </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/}" >Lista de Usuarios </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/sobrenosotros}" >Quienes Somos</a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/actorindex}" >Lista de Actores </a></li>
+                            <li class="nav-item"><a class="nav-link-2" th:href="@{/correo-list}" >Lista de Correo </a></li>
+                        </div>
+                    </div>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/movieindex}" >Lista de Peliculas </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/}" >Lista de Usuarios </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/contacto}" >Contacto </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/sobrenosotros}" >Quienes Somos Protegido </a>
-                        </li>
 
-                    </ul>
-                </div>
-            </nav>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 
 
@@ -74,30 +74,19 @@
         <figcaption class="figure-caption">Datos De la pelicula:</figcaption>
         <span class="label label-success" th:text="${movie.getId()}"></span>
         <span class="label label-success" th:text="${movie.getName()}"></span>
-        <!--
-        <span class="label label-success" th:text="${movie.getPictures().size()}"></span>
-        -->
-    </blockquote><img>
+    </blockquote>
+
+                <div th:switch="${currentRol}">
+                    <div th:case="'ROLE_ADMIN'">
+                        <a th:href="@{'/movies/' + ${movie.getId()}  + '/edit'}" class="table-link danger">Editar Novela</a>
+                        <a th:href="@{'/movies/' + ${movie.getId()}  + '/nuevagaleria(id_movie=${movie.getId()})'}">Nuevo Galeria</a>
+                        <a th:href="@{'/movies/' + ${id_movie}  + '/nuevagaleria(id_movie=${movie.getId()})'}">Nuevo Galeria</a>
+
+                    </div>
+                </div>
 
 
 
-    <figure class="figure">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <figure class="figure">
-        <figcaption class="figure-caption">
 
 
 
@@ -105,65 +94,55 @@
             <table class="table userEntity-list">
                 <thead>
                 <tr>
-                    <th><span>Galeria</span>Crear Gañeria</th>
+                    <th><span>Galeria</span></th><th>
+
+
+
+                        <div th:switch="${currentRol}">
+                            <div th:case="'ROLE_ADMIN'">
+ <a  class="table-link danger" th:href="@{/movies/{id_movie}/nuevagaleria(id_movie=${movie.getId()})}">Nuevo Galeria</a>
+
+                            </div>
+                        </div>
+
+
+
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="picture:${movie.getPictures()}">
-                    <td th:utext="${picture.getUrl()}">
-                        <div th:switch="${currentRol}">
-                            <div th:if="${currentUser.getRol()} =='ADMIN'}">
-
-                                <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                </a>
-
-                            </div>
-                        </div>
+                    <td th:utext="${picture.getUrl()}"></td>
+                    <td>
+                                <div th:switch="${currentRol}">
+                                    <div th:case="'ROLE_ADMIN'">
+                                        <a th:href="@{'/galerias/' + ${picture.getId()}  + '/borrar'}" class="table-link danger">Borrar Galeria</a>
+                                    </div>
+                                </div>
                     </td>
                 </tr>
-
-
-
-
-
-                            <div th:switch="${currentRol}">
-                                <div th:case="'ROLE_VISITOR'">
-
-                                </div>
-                                <div th:case="'ROLE_ADMIN'">
-                                    <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                                    </a>
-                                </div>
-                            </div>
-
-
-
-
-
-
-
-
                 </tbody>
          </table>
-
-
-
-
 
 
 
          <table class="table userEntity-list">
              <thead>
              <tr>
-                 <th><span>Actor</span> Crear Actor</th>
+
+
+
+                 <th><span>Actor</span></th>
+                 <th>&nbsp;</th>
+                 <th>
+
+                         <div th:switch="${currentRol}">
+                             <div th:case="'ROLE_ADMIN'">
+                                 <a th:href="@{'/actor/' + ${movie.getId()}  + '/NuevoActorMovie'}" class="table-link danger">Nueva Actor-Relacion</a>
+                             </div>
+                         </div>
+                 </th>
+
 
              </tr>
              </thead>
@@ -181,15 +160,11 @@
                         <span th:text="${movieActor.getActor().getName()}"></span>
                     </td>
                     <td>
-                        <div th:if="${currentUser.getRol()} =='ADMIN'}">
-Borrar
-                            <a href="#" class="table-link danger">
-                                            <span class="fa-stack">
-                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
-                                            </span>
-                            </a>
-
+                        <div th:switch="${currentRol}">
+                            <div th:case="'ROLE_ADMIN'">
+                                <a th:href="@{'/movieactor/' + ${movieActor.getActor().getId()}  + '/Borrarmovieactor'}" class="table-link danger">Editar Novela</a><br/>
+                                <a th:href="@{'/movieactor/' + ${movieActor.getActor().getId()}  + '/EditarActorMovie'}" class="table-link danger">Borrar Actor-Relacion</a>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -243,9 +218,15 @@ Borrar
                 </tbody>
             </table>
 
+    <br/>
+    <span>Comentario</span><br/>
+<form>
 
+    <textarea name="textarea" id="critic"  rows="10" cols="50">Write something here</textarea><br/>
+    <input type="number" id="valoration" min="0" max="10"><br/>
+    <button type="button" class="btn btn-primary">Primary</button>
 
-
+</form>
 
 
 

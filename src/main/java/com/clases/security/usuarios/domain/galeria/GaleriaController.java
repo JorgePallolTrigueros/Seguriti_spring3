@@ -89,6 +89,24 @@ public class GaleriaController {
         return galeriaService.viewGaleriaEdit(id,model);
     }
 
+
+    @GetMapping("/galerias/{id}/borrar")
+    public String deletegallery(@PathVariable Long id, Model model) {
+        final Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+        Optional rol = currentUser.getAuthorities().stream().findFirst();
+
+        log.info("user: "+currentUser.getName());
+        log.info("rol: "+rol.get().toString().toUpperCase());
+
+        model.addAttribute("users", userService.findAllUsers());
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentRol", rol.get().toString());
+        log.info(AppUtil.getMethodWithClass());
+        return galeriaService.deleteGaleria(id,model);
+    }
+
+
+
     /**
      * SELECCIONAR LA ID DEL USUARIO Y MANDARLO A EDITAR (Visible para administrador y solo se puede editar uno su propio perfil)
      */
