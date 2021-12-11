@@ -91,6 +91,9 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {//se establec
                 .antMatchers("/pelis-movie*")
                 .permitAll()
 
+                .antMatchers("/moviepaginada")
+                .permitAll()
+
                 .antMatchers("/sobrenosotros1")
                 .permitAll()
 

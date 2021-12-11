@@ -81,8 +81,7 @@
                         <tbody>
 
                         <tr th:each="movie: ${list}">
-                            <th th:utext="${movie.id}"></th>
-                            <th th:utext="${movie.getId()}"></th>
+                            <th th:utext="${movie.getName()}"></th>
 
 
                         </tr>
@@ -91,7 +90,7 @@
 
 
 
-
+                    </div>
 
     <nav aria-label="Page navigation example">
         <ul class="pagination">
@@ -101,7 +100,7 @@
         </ul>
     </nav>
 
-                    </div>
+
 
 
 
